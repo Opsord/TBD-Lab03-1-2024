@@ -1,6 +1,6 @@
 -- Poblacion de la tabla Voluntarios
 -- Las contraseñas son el primer nombre en 'minuscula'+'primeros 3 digitos del rut'
-INSERT INTO app_user (rut, email, name, last_name, birth_date, sex, password, role, availability)
+INSERT INTO person (rut, email, name, last_name, birth_date, sex, password, role, availability)
 VALUES
     ('123271472-1', 'correo.ejemplo@gmail.com', 'Elsa', 'Capuntas', '1997-06-22', 'F', '$2a$10$JWCTjsZvnbhrh6Y99lSJuubMITj1ykX.0Rn6oysAApoteY20fbqC.', 'VOLUNTEER', True),
     ('176271472-1', 'correo.ejemplo@gmail.com', 'Elivs', 'Tec', '1997-12-22', 'M', '$2a$10$32.WMcUybLU1ykwDaGmJZ.dAR6pkafizvkbl0wSP/VZ7wEqPFUOGS', 'VOLUNTEER', True),
@@ -39,7 +39,7 @@ VALUES
     ('Capacidad para la búsqueda y localización de personas perdidas');
 
 --Poblacion de la tabla Voluntario_Atributo
-INSERT INTO app_user_attribute (rut, attribute_id)
+INSERT INTO person_attribute (rut, attribute_id)
 VALUES 
     ('3641746726-4', '1'),
     ('3641746726-4', '2'),
@@ -69,8 +69,8 @@ VALUES
     ('Bomberos Municipales'),
     ('Equipo de rescate de desastres naturales');
 
--- Poblacion de la tabla app_user_institution
-INSERT INTO app_user_institution (rut, institution)
+-- Poblacion de la tabla person_institution
+INSERT INTO person_institution (rut, institution)
 VALUES 
     ('881263612-k', '1'),
     ('948128124-1', '2'),
@@ -113,7 +113,7 @@ VALUES
     (1, 'Suministro de alimentos', 'Distribuir alimentos y agua potable a los evacuados.', true),
     (2, 'Apoyo psicológico a afectados', 'Brindar apoyo emocional y asistencia psicológica a las personas afectadas por la fuga de gas.', false);
 
-INSERT INTO task_app_user (task, rut)
+INSERT INTO task_person (task, rut)
 VALUES 
     (1, '123271472-1'),
     (2, '176271472-1'),
@@ -199,30 +199,30 @@ VALUES
     (-36.712665, -73.120835);
 
 -- Agregar ubicaciones a los usuarios
-UPDATE app_user SET location = 1 WHERE rut = '123271472-1';
-UPDATE app_user SET location = 2 WHERE rut = '176271472-1';
-UPDATE app_user SET location = 3 WHERE rut = '182473567-4';
-UPDATE app_user SET location = 4 WHERE rut = '2421283874-4';
-UPDATE app_user SET location = 30 WHERE rut = '3641746726-4';
-UPDATE app_user SET location = 5 WHERE rut = '4152351623-5';
-UPDATE app_user SET location = 7 WHERE rut = '42163612342-5';
-UPDATE app_user SET location = 8 WHERE rut = '4412317123-k';
-UPDATE app_user SET location = 9 WHERE rut = '5872873212-4';
-UPDATE app_user SET location = 10 WHERE rut = '61523512412-5';
-UPDATE app_user SET location = 11 WHERE rut = '65265412312-k';
-UPDATE app_user SET location = 12 WHERE rut = '6527442312-k';
-UPDATE app_user SET location = 13 WHERE rut = '6717263715312-k';
-UPDATE app_user SET location = 27 WHERE rut = '7123674212-5';
-UPDATE app_user SET location = 15 WHERE rut = '7126371263-k';
-UPDATE app_user SET location = 16 WHERE rut = '71264646674-4';
-UPDATE app_user SET location = 17 WHERE rut = '7126476122-4';
-UPDATE app_user SET location = 18 WHERE rut = '7146176122-4';
-UPDATE app_user SET location = 19 WHERE rut = '7723674212-5';
-UPDATE app_user SET location = 20 WHERE rut = '81723817246-1';
-UPDATE app_user SET location = 21 WHERE rut = '876327463-4';
-UPDATE app_user SET location = 22 WHERE rut = '881263612-k';
-UPDATE app_user SET location = 23 WHERE rut = '948128124-1';
-UPDATE app_user SET location = 24 WHERE rut = '98482714-4';
+UPDATE person SET location = 1 WHERE rut = '123271472-1';
+UPDATE person SET location = 2 WHERE rut = '176271472-1';
+UPDATE person SET location = 3 WHERE rut = '182473567-4';
+UPDATE person SET location = 4 WHERE rut = '2421283874-4';
+UPDATE person SET location = 30 WHERE rut = '3641746726-4';
+UPDATE person SET location = 5 WHERE rut = '4152351623-5';
+UPDATE person SET location = 7 WHERE rut = '42163612342-5';
+UPDATE person SET location = 8 WHERE rut = '4412317123-k';
+UPDATE person SET location = 9 WHERE rut = '5872873212-4';
+UPDATE person SET location = 10 WHERE rut = '61523512412-5';
+UPDATE person SET location = 11 WHERE rut = '65265412312-k';
+UPDATE person SET location = 12 WHERE rut = '6527442312-k';
+UPDATE person SET location = 13 WHERE rut = '6717263715312-k';
+UPDATE person SET location = 27 WHERE rut = '7123674212-5';
+UPDATE person SET location = 15 WHERE rut = '7126371263-k';
+UPDATE person SET location = 16 WHERE rut = '71264646674-4';
+UPDATE person SET location = 17 WHERE rut = '7126476122-4';
+UPDATE person SET location = 18 WHERE rut = '7146176122-4';
+UPDATE person SET location = 19 WHERE rut = '7723674212-5';
+UPDATE person SET location = 20 WHERE rut = '81723817246-1';
+UPDATE person SET location = 21 WHERE rut = '876327463-4';
+UPDATE person SET location = 22 WHERE rut = '881263612-k';
+UPDATE person SET location = 23 WHERE rut = '948128124-1';
+UPDATE person SET location = 24 WHERE rut = '98482714-4';
 
 -- Agregar ubicaciones a las emergencias
 UPDATE emergency SET location = 6 WHERE emergency_id = 1;

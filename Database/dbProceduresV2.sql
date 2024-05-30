@@ -2,106 +2,106 @@
 -- Genera el reporte a partir del voluntario y rut que que tenga mas de cada tipo de operation.
 
 
-CREATE OR REPLACE PROCEDURE get_app_user_operations_report()
+CREATE OR REPLACE PROCEDURE get_person_operations_report()
 AS $$
 
 DECLARE
-    app_user_volunteer RECORD;
-    app_user_rut RECORD;
+    person_volunteer RECORD;
+    person_rut RECORD;
 BEGIN
-    -- Get the volunteer app_user with the most insert operations
+    -- Get the volunteer person with the most insert operations
     RAISE NOTICE 'Voluntario con más operationes de inserción:';
-    FOR app_user_volunteer IN
+    FOR person_volunteer IN
         SELECT rut, name, last_name, COUNT(*)
-        FROM app_user_auditTrigger
+        FROM person_auditTrigger
         WHERE operation = 'INSERT'
         AND role = 'VOLUNTEER'
         GROUP BY rut
         ORDER BY COUNT(*) DESC
         LIMIT 1
     LOOP
-        RAISE NOTICE 'Rut: %, Nombre: %, Apellido: %, Cantidad: %', app_user_volunteer.rut, app_user_volunteer.name, app_user_volunteer.last_name, app_user_volunteer.count;
+        RAISE NOTICE 'Rut: %, Nombre: %, Apellido: %, Cantidad: %', person_volunteer.rut, person_volunteer.name, person_volunteer.last_name, person_volunteer.count;
     END LOOP;
 
-    -- Get the volunteer app_user with the most update operations
+    -- Get the volunteer person with the most update operations
     RAISE NOTICE 'Voluntario con más operationes de actualización:';
-    FOR app_user_volunteer IN
+    FOR person_volunteer IN
         SELECT rut, name, last_name, COUNT(*)
-        FROM app_user_auditTrigger
+        FROM person_auditTrigger
         WHERE operation = 'UPDATE'
         AND role = 'VOLUNTEER'
         GROUP BY rut
         ORDER BY COUNT(*) DESC
         LIMIT 1
     LOOP
-        RAISE NOTICE 'Rut: %, Nombre: %, Apellido: %, Cantidad: %', app_user_volunteer.rut, app_user_volunteer.name, app_user_volunteer.last_name, app_user_volunteer.count;
+        RAISE NOTICE 'Rut: %, Nombre: %, Apellido: %, Cantidad: %', person_volunteer.rut, person_volunteer.name, person_volunteer.last_name, person_volunteer.count;
     END LOOP;
 
-    -- Get the volunteer app_user with the most delete operations
+    -- Get the volunteer person with the most delete operations
     RAISE NOTICE 'Voluntario con más operationes de eliminación:';
-    FOR app_user_volunteer IN
+    FOR person_volunteer IN
         SELECT rut, name, last_name, COUNT(*)
-        FROM app_user_auditTrigger
+        FROM person_auditTrigger
         WHERE operation = 'DELETE'
         AND role = 'VOLUNTEER'
         GROUP BY rut
         ORDER BY COUNT(*) DESC
         LIMIT 1
     LOOP
-        RAISE NOTICE 'Rut: %, Nombre: %, Apellido: %, Cantidad: %', app_user_volunteer.rut, app_user_volunteer.name, app_user_volunteer.last_name, app_user_volunteer.count;
+        RAISE NOTICE 'Rut: %, Nombre: %, Apellido: %, Cantidad: %', person_volunteer.rut, person_volunteer.name, person_volunteer.last_name, person_volunteer.count;
     END LOOP;
 
-    -- Get the rut app_user with the most insert operations
+    -- Get the rut person with the most insert operations
     RAISE NOTICE 'rut con más operationes de inserción:';
-    FOR app_user_rut IN
+    FOR person_rut IN
         SELECT rut, name, last_name, COUNT(*)
-        FROM app_user_auditTrigger
+        FROM person_auditTrigger
         WHERE operation = 'INSERT'
         AND role = 'rut'
         GROUP BY rut
         ORDER BY COUNT(*) DESC
         LIMIT 1
     LOOP
-        RAISE NOTICE 'Rut: %, Nombre: %, Apellido: %, Cantidad: %', app_user_rut.rut, app_user_rut.name, app_user_rut.last_name, app_user_rut.count;
+        RAISE NOTICE 'Rut: %, Nombre: %, Apellido: %, Cantidad: %', person_rut.rut, person_rut.name, person_rut.last_name, person_rut.count;
     END LOOP;
 
-    -- Get the rut app_user with the most update operations
+    -- Get the rut person with the most update operations
     RAISE NOTICE 'rut con más operationes de actualización:';
-    FOR app_user_rut IN
+    FOR person_rut IN
         SELECT rut, name, last_name, COUNT(*)
-        FROM app_user_auditTrigger
+        FROM person_auditTrigger
         WHERE operation = 'UPDATE'
         AND role = 'rut'
         GROUP BY rut
         ORDER BY COUNT(*) DESC
         LIMIT 1
     LOOP
-        RAISE NOTICE 'Rut: %, Nombre: %, Apellido: %, Cantidad: %', app_user_rut.rut, app_user_rut.name, app_user_rut.last_name, app_user_rut.count;
+        RAISE NOTICE 'Rut: %, Nombre: %, Apellido: %, Cantidad: %', person_rut.rut, person_rut.name, person_rut.last_name, person_rut.count;
     END LOOP;
 
-    -- Get the rut app_user with the most delete operations
+    -- Get the rut person with the most delete operations
     RAISE NOTICE 'rut con más operationes de eliminación:';
-    FOR app_user_rut IN
+    FOR person_rut IN
         SELECT rut, name, last_name, COUNT(*)
-        FROM app_user_auditTrigger
+        FROM person_auditTrigger
         WHERE operation = 'DELETE'
         AND role = 'rut'
         GROUP BY rut
         ORDER BY COUNT(*) DESC
         LIMIT 1
     LOOP
-        RAISE NOTICE 'Rut: %, Nombre: %, Apellido: %, Cantidad: %', app_user_rut.rut, app_user_rut.name, app_user_rut.last_name, app_user_rut.count;
+        RAISE NOTICE 'Rut: %, Nombre: %, Apellido: %, Cantidad: %', person_rut.rut, person_rut.name, person_rut.last_name, person_rut.count;
     END LOOP;
 
 END;
 $$ LANGUAGE plpgsql;
 
--- Para llamarlo dentro directamente en la base de dato ejecute: CALL get_app_user_operations_report();
+-- Para llamarlo dentro directamente en la base de dato ejecute: CALL get_person_operations_report();
 
 
 -- Procedimiento almacenado para el reporte de cantidad e actulaizaciones, inserciones y eliminaciones de emergencia 
 -- Genera el reporte a partir del coordinador que que tenga mas de cada tipo de operation.
-CREATE OR REPLACE PROCEDURE get_rutapp_user_operations()
+CREATE OR REPLACE PROCEDURE get_rutperson_operations()
 AS $$
 
 DECLARE
@@ -145,5 +145,5 @@ END;
 $$ LANGUAGE plpgsql;
 
 
---Para llamar al procedimiento: CALL get_rutapp_user_operations();
+--Para llamar al procedimiento: CALL get_rutperson_operations();
 
