@@ -20,7 +20,7 @@ public class TaskEntity {
 
     private String type;
     private String description;
-    private boolean state;
+    private boolean status;
 
     @ManyToOne
     @JoinColumn(name = "emergency")

@@ -25,30 +25,28 @@ public class TaskService {
         this.taskUserRepository = taskUserRepository;
     }
 
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
     public void create(TaskEntity task) {
         taskRepository.create(
                 task.getEmergency().getEmergency_id(),
                 task.getType(),
                 task.getDescription(),
-                task.isState());
+                task.isstatus());
         logger.info("Task created");
     }
 
-
-    //--------------------------UPDATE--------------------------
+    // --------------------------UPDATE--------------------------
     public void update(TaskEntity task) {
         taskRepository.update(
                 task.getTask_id(),
                 task.getEmergency().getEmergency_id(),
                 task.getType(),
                 task.getDescription(),
-                task.isState());
+                task.isstatus());
         logger.info("Task updated");
     }
 
-
-    //---------------------------READ---------------------------
+    // ---------------------------READ---------------------------
     public List<TaskEntity> getAll() {
         return taskRepository.getAll();
     }
@@ -79,12 +77,10 @@ public class TaskService {
         return tasks;
     }
 
-
-    //--------------------------DELETE--------------------------
+    // --------------------------DELETE--------------------------
     public void delete(long id) {
         taskRepository.delete(id);
         logger.info("Task deleted");
     }
-
 
 }

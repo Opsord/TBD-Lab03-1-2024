@@ -93,7 +93,6 @@ CREATE TABLE emergency_audit_trigger (
     status BOOLEAN,
     title VARCHAR(255),
     description TEXT,
-    coordinator VARCHAR(20),
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     operation TEXT
 );
@@ -101,8 +100,8 @@ CREATE TABLE emergency_audit_trigger (
 CREATE OR REPLACE FUNCTION emergency_audit_trigger_function()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO emergency_audit_trigger (emergency_id, status, title, description, coordinator, date, operation)
-    VALUES (NEW.emergency_id, NEW.status, NEW.title, NEW.description, NEW.coordinator, CURRENT_TIMESTAMP, TG_OP);
+    INSERT INTO emergency_audit_trigger (emergency_id, status, title, description, rut, date, operation)
+    VALUES (NEW.emergency_id, NEW.status, NEW.title, NEW.description, CURRENT_TIMESTAMP, TG_OP);
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;

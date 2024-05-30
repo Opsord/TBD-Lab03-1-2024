@@ -22,10 +22,10 @@ VALUES
     ('7146176122-4', 'correo.ejemplo@gmail.com', 'Clementia', 'Del Rosario', '2000-11-16', 'F', '$2a$10$dUJK89Pao.vGR7hjPezggOapdLwaFqpxnvB8VGO3za3bu4mUIXcHG', 'VOLUNTEER', True),
     ('7723674212-5', 'correo.ejemplo@gmail.com', 'Lola', 'Mento', '2001-03-09', 'F', '$2a$10$0v1Rv1KQRZ4OHKSLSy4JUuYNfMA1/yAvtBndD4JlPBkwhseoKd/Ua', 'VOLUNTEER', True),
     ('81723817246-1', 'correo.ejemplo@gmail.com', 'Zacaria', 'Flores del Campo', '2002-11-26', 'F', '$2a$10$n47WKpnIBCC7zoYVAnDviOaO5MUQiUifwqoaXThAO3/F8a.sIFiFy', 'VOLUNTEER', True),
-    ('876327463-4', 'correo.ejemplo@gmail.com', 'Diego', 'SuperApellido', '2000-12-22', 'M', '$2a$10$xYPusc0RS.yb56gjNZeLSOEKbisdFD4uoU8cuWemtFzk5iPHkyPha', 'COORDINATOR', False),
-    ('881263612-k', 'correo.ejemplo@gmail.com', 'Esteban', 'Dido', '1999-05-20', 'M', '$2a$10$2xuw5OvwVsQ3gaDihcsfyOivRa2X1dALtlKv6pi90mfMQwnSqHlb2', 'COORDINATOR', True),
-    ('948128124-1', 'correo.ejemplo@gmail.com', 'Aquiles', 'Brinco', '2000-11-26', 'F', '$2a$10$oh4r.6xrChGbToX2B3yS6OwkYdSbAdP7IPnuo2PMmzfhlq0UYQ5cG', 'COORDINATOR', True),
-    ('98482714-4', 'correo.ejemplo@gmail.com', 'Elba', 'Calao', '1994-04-20', 'F', '$2a$10$Y0ntA2TXhIKuTIcrtTWOm.uyC7dvYjiNLL5cJsBkMWb1clYQnbVgS', 'COORDINATOR', True);
+    ('876327463-4', 'correo.ejemplo@gmail.com', 'Diego', 'SuperApellido', '2000-12-22', 'M', '$2a$10$xYPusc0RS.yb56gjNZeLSOEKbisdFD4uoU8cuWemtFzk5iPHkyPha', 'rut', False),
+    ('881263612-k', 'correo.ejemplo@gmail.com', 'Esteban', 'Dido', '1999-05-20', 'M', '$2a$10$2xuw5OvwVsQ3gaDihcsfyOivRa2X1dALtlKv6pi90mfMQwnSqHlb2', 'rut', True),
+    ('948128124-1', 'correo.ejemplo@gmail.com', 'Aquiles', 'Brinco', '2000-11-26', 'F', '$2a$10$oh4r.6xrChGbToX2B3yS6OwkYdSbAdP7IPnuo2PMmzfhlq0UYQ5cG', 'rut', True),
+    ('98482714-4', 'correo.ejemplo@gmail.com', 'Elba', 'Calao', '1994-04-20', 'F', '$2a$10$Y0ntA2TXhIKuTIcrtTWOm.uyC7dvYjiNLL5cJsBkMWb1clYQnbVgS', 'rut', True);
 
 --Poblacion de la tabla Atributo
 INSERT INTO attribute (attribute)
@@ -78,7 +78,7 @@ VALUES
 
 
 --Poblacion de la tabla Emergencia
-INSERT INTO emergency (status, title, description, coordinator)
+INSERT INTO emergency (status, title, description, rut)
 VALUES 
     (true, 'Incendio forestal en zona rural', 'Se ha reportado un incendio forestal en la zona de la Reserva Nacional. Se necesita asistencia inmediata.', '881263612-k'),
     (false, 'Evacuación por fuga de gas', 'Se ha detectado una fuga de gas en un edificio residencial. Se requiere evacuación de los residentes.', '881263612-k'),
@@ -103,7 +103,7 @@ VALUES
     (5, 7, true);  -- La emergencia 5 tiene compatibilidad con el atributo 7 (Capacidad para la búsqueda y localización de personas perdidas)
 
 -- Población de la tabla Tarea
-INSERT INTO task (emergency, type, description, state)
+INSERT INTO task (emergency, type, description, status)
 VALUES 
     (1, 'Evacuación de residentes', 'Coordinar y ejecutar la evacuación de los residentes afectados por el incendio forestal.', true),
     (2, 'Control de fuga de gas', 'Gestionar la contención y control de la fuga de gas en el edificio residencial.', false),
