@@ -9,7 +9,7 @@ CREATE TABLE point (
     geom GEOMETRY(Point, 4326)
 );
 
-CREATE TABLE user (
+CREATE TABLE app_user (
     rut VARCHAR(20) PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
@@ -21,11 +21,11 @@ CREATE TABLE user (
     availability BOOLEAN NOT NULL
 );
 
-CREATE TABLE user_point (
-    user_point_id BIGSERIAL PRIMARY KEY,
+CREATE TABLE app_user_point (
+    app_user_point_id BIGSERIAL PRIMARY KEY,
     rut VARCHAR(20),
     point_id BIGINT,
-    FOREIGN KEY (rut) REFERENCES user(rut),
+    FOREIGN KEY (rut) REFERENCES app_user(rut),
     FOREIGN KEY (point_id) REFERENCES point(point_id)
 );
 
@@ -34,11 +34,11 @@ CREATE TABLE attribute (
     attribute VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE user_attribute (
-    user_attribute_id BIGSERIAL PRIMARY KEY,
+CREATE TABLE app_user_attribute (
+    app_user_attribute_id BIGSERIAL PRIMARY KEY,
     rut VARCHAR(20),
     attribute_id BIGINT,
-    FOREIGN KEY (rut) REFERENCES user(rut),
+    FOREIGN KEY (rut) REFERENCES app_user(rut),
     FOREIGN KEY (attribute_id) REFERENCES attribute(attribute_id)
 );
 
@@ -47,11 +47,11 @@ CREATE TABLE institution (
     name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE user_institution (
-    user_institution_id BIGSERIAL PRIMARY KEY,
+CREATE TABLE app_user_institution (
+    app_user_institution_id BIGSERIAL PRIMARY KEY,
     rut VARCHAR(20),
     institution_id BIGINT,
-    FOREIGN KEY (rut) REFERENCES user(rut),
+    FOREIGN KEY (rut) REFERENCES app_user(rut),
     FOREIGN KEY (institution_id) REFERENCES institution(institution_id)
 );
 
@@ -59,15 +59,15 @@ CREATE TABLE emergency (
     emergency_id BIGSERIAL PRIMARY KEY,
     status BOOLEAN NOT NULL,
     title VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL,
+    description TEXT NOT NULL
 );
 
-CREATE TABLE emergency_user (
-    emergency_user_id BIGSERIAL PRIMARY KEY,
+CREATE TABLE emergency_app_user (
+    emergency_app_user_id BIGSERIAL PRIMARY KEY,
     emergency_id BIGINT,
     rut VARCHAR(20),
     FOREIGN KEY (emergency_id) REFERENCES emergency(emergency_id),
-    FOREIGN KEY (rut) REFERENCES user(rut)
+    FOREIGN KEY (rut) REFERENCES app_user(rut)
 );
 
 CREATE TABLE emergency_point (
@@ -76,6 +76,7 @@ CREATE TABLE emergency_point (
     point_id BIGINT,
     FOREIGN KEY (emergency_id) REFERENCES emergency(emergency_id),
     FOREIGN KEY (point_id) REFERENCES point(point_id)
+);
 
 CREATE TABLE emergency_attribute (
     emergency_attribute_id BIGSERIAL PRIMARY KEY,
@@ -115,12 +116,12 @@ CREATE TABLE task_emergency (
     FOREIGN KEY (emergency_id) REFERENCES emergency(emergency_id)
 );
 
-CREATE TABLE task_user (
-    task_user_id BIGSERIAL PRIMARY KEY,
+CREATE TABLE task_app_user (
+    task_app_user_id BIGSERIAL PRIMARY KEY,
     task_id BIGINT,
     rut VARCHAR(20),
     FOREIGN KEY (task_id) REFERENCES task(task_id),
-    FOREIGN KEY (rut) REFERENCES user(rut)
+    FOREIGN KEY (rut) REFERENCES app_user(rut)
 );
 
 
@@ -129,9 +130,9 @@ CREATE TABLE task_user (
 -- Point
 CREATE INDEX idx_point_id ON point (point_id);
 
--- User
-CREATE INDEX idx_user_rut ON user (rut);
-CREATE INDEX idx_user_email ON user (email);
+-- app_user
+CREATE INDEX idx_app_user_rut ON app_user (rut);
+CREATE INDEX idx_app_user_email ON app_user (email);
 
 -- attribute
 CREATE INDEX idx_attribute_id ON attribute (attribute_id);

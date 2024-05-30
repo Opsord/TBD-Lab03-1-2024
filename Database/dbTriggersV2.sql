@@ -19,10 +19,10 @@ WHEN (NEW.latitude <> OLD.latitude OR NEW.longitude <> OLD.longitude)
 EXECUTE FUNCTION generate_point_from_lat_lng();
 -----------------------------------------------------------------------------------------------------------------
 
--- User triggers
+-- app_user triggers
 
 -- Audit trigger
-CREATE TABLE user_audit_trigger (
+CREATE TABLE app_user_audit_trigger (
     trigger_id SERIAL PRIMARY KEY,
     rut VARCHAR(20),
     name VARCHAR(255),
@@ -34,54 +34,54 @@ CREATE TABLE user_audit_trigger (
     operation TEXT
 );
 
--- Modify user_audit_trigger_function
-CREATE OR REPLACE FUNCTION user_audit_trigger_function()
+-- Modify app_user_audit_trigger_function
+CREATE OR REPLACE FUNCTION app_user_audit_trigger_function()
 RETURNS TRIGGER AS $$
 BEGIN
-    -- Insert into user_audit_trigger
-    INSERT INTO user_audit_trigger (rut, name, email, last_name, password, role, date, operation)
+    -- Insert into app_user_audit_trigger
+    INSERT INTO app_user_audit_trigger (rut, name, email, last_name, password, role, date, operation)
     VALUES (NEW.rut, NEW.name, NEW.last_name, NEW.email, NEW.password, NEW.role, CURRENT_TIMESTAMP, TG_OP);
 
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER user_audit_trigger
-BEFORE INSERT OR UPDATE OR DELETE ON user
+CREATE TRIGGER app_user_audit_trigger
+BEFORE INSERT OR UPDATE OR DELETE ON app_user
 FOR EACH ROW
-EXECUTE FUNCTION user_audit_trigger_function();
+EXECUTE FUNCTION app_user_audit_trigger_function();
 
--- Trigger to prevent user from having duplicated attribute
-CREATE OR REPLACE FUNCTION prevent_user_duplicate_attribute_func()
+-- Trigger to prevent app_user from having duplicated attribute
+CREATE OR REPLACE FUNCTION prevent_app_user_duplicate_attribute_func()
 RETURNS TRIGGER AS $$
 BEGIN
-    IF (SELECT COUNT(*) FROM user_attribute WHERE rut = NEW.rut AND attribute_id = NEW.attribute_id) > 0 THEN
+    IF (SELECT COUNT(*) FROM app_user_attribute WHERE rut = NEW.rut AND attribute_id = NEW.attribute_id) > 0 THEN
         RAISE EXCEPTION 'Un usuario no puede tener atributos duplicados.';
     END IF;
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER prevent_user_duplicate_attribute
-BEFORE INSERT ON user_attribute
+CREATE TRIGGER prevent_app_user_duplicate_attribute
+BEFORE INSERT ON app_user_attribute
 FOR EACH ROW
-EXECUTE FUNCTION prevent_user_duplicate_attribute_func();
+EXECUTE FUNCTION prevent_app_user_duplicate_attribute_func();
 
--- Trigger to prevent user from having duplicated institution
-CREATE OR REPLACE FUNCTION prevent_user_duplicate_institution_func()
+-- Trigger to prevent app_user from having duplicated institution
+CREATE OR REPLACE FUNCTION prevent_app_user_duplicate_institution_func()
 RETURNS TRIGGER AS $$
 BEGIN
-    IF (SELECT COUNT(*) FROM user_institution WHERE rut = NEW.rut AND institution = NEW.institution) > 0 THEN
+    IF (SELECT COUNT(*) FROM app_user_institution WHERE rut = NEW.rut AND institution = NEW.institution) > 0 THEN
         RAISE EXCEPTION 'Un usuario no puede tener instituciones duplicadas.';
     END IF;
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER prevent_user_duplicate_institution
-BEFORE INSERT ON user_institution
+CREATE TRIGGER prevent_app_user_duplicate_institution
+BEFORE INSERT ON app_user_institution
 FOR EACH ROW
-EXECUTE FUNCTION prevent_user_duplicate_institution_func();
+EXECUTE FUNCTION prevent_app_user_duplicate_institution_func();
 -----------------------------------------------------------------------------------------------------------------
 
 -- Emergency triggers
