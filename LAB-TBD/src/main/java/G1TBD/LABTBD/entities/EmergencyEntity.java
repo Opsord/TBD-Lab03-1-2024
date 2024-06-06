@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "emergencies")
+@Table(name = "emergency")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,18 +17,10 @@ public class EmergencyEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long emergency_id;
+    private Long emergency_id;
 
     private boolean status;
     private String title;
     private String description;
-
-    @OneToOne
-    @JoinColumn(name = "coordinator")
-    private UserEntity coordinator;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "location", referencedColumnName = "point_id")
-    private PointEntity location;
 
 }

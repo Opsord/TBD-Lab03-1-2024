@@ -1,6 +1,6 @@
 package G1TBD.LABTBD.repositories;
 
-import G1TBD.LABTBD.entities.TaskUserEntity;
+import G1TBD.LABTBD.entities.UserTaskEntity;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TaskUserRepository extends CrudRepository<TaskUserEntity, Long> {
+public interface TaskUserRepository extends CrudRepository<UserTaskEntity, Long> {
 
     //--------------------------CREATE--------------------------
     @Query(value = "INSERT INTO task_user (task, volunteer) VALUES (:task, :volunteer)", nativeQuery = true)
@@ -29,18 +29,18 @@ public interface TaskUserRepository extends CrudRepository<TaskUserEntity, Long>
 
     //---------------------------READ---------------------------
     @Query(value = "SELECT * FROM task_user", nativeQuery = true)
-    List<TaskUserEntity> getAll();
+    List<UserTaskEntity> getAll();
 
     @Query(value = "SELECT * FROM task_user WHERE task_user_id = :task_user_id", nativeQuery = true)
-    TaskUserEntity getById(@Param("task_user_id") long task_user_id);
+    UserTaskEntity getById(@Param("task_user_id") long task_user_id);
 
     // Get all volunteers from a task
     @Query(value = "SELECT * FROM task_user WHERE task = :task", nativeQuery = true)
-    List<TaskUserEntity> getVolunteersByTaskId(@Param("task") long task);
+    List<UserTaskEntity> getVolunteersByTaskId(@Param("task") long task);
 
     // Get all tasks from a volunteer
     @Query(value = "SELECT * FROM task_user WHERE volunteer = :volunteer", nativeQuery = true)
-    List<TaskUserEntity> getByVolunteer(@Param("volunteer") String volunteer);
+    List<UserTaskEntity> getByVolunteer(@Param("volunteer") String volunteer);
 
 
     //--------------------------DELETE--------------------------

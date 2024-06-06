@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "tasks")
+@Table(name = "task")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,14 +16,9 @@ public class TaskEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long task_id;
+    private Long task_id;
 
-    private String type;
     private String description;
     private boolean status;
-
-    @ManyToOne
-    @JoinColumn(name = "emergency")
-    private EmergencyEntity emergency;
 
 }

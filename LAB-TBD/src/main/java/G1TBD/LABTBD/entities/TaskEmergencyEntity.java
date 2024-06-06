@@ -8,18 +8,17 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "person_institution")
+@Table(name = "task_emergency")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserInstitutionEntity {
+public class TaskEmergencyEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "person_institution_id")
-    private Long user_institution_id;
+    private Long task_emergency_id;
 
-    private String rut;
-    private Long institution_id;
+    private Long task_id;
+    private Long emergency_id;
 
 }

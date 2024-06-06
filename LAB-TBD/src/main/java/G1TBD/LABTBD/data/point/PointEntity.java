@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.locationtech.jts.geom.Point;
@@ -14,7 +15,8 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "points")
+@Table(name = "point")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class PointEntity implements Serializable {

@@ -1,6 +1,5 @@
 package G1TBD.LABTBD.entities;
 
-import G1TBD.LABTBD.data.point.PointEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +15,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "users")
+@Table(name = "person")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,16 +27,12 @@ public class UserEntity implements UserDetails {
 
     private String email;
     private String name;
-    private String lastname;
-    private Date birthdate;
+    private String last_name;
+    private Date birth_date;
     private String sex;
     private String password;
     private String role;
     private boolean availability;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "location", referencedColumnName = "point_id")
-    private PointEntity location;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

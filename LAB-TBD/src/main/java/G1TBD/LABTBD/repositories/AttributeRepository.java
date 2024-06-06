@@ -19,20 +19,18 @@ public interface AttributeRepository extends CrudRepository<AttributeEntity, Lon
     @Transactional
     void create(@Param("attribute") String attribute);
 
-
-    //--------------------------UPDATE--------------------------
-    @Query(value = "UPDATE attributes SET attribute = :attribute WHERE attribute_id = :attribute_id", nativeQuery = true)
-    @Modifying
-    @Transactional
-    void update(@Param("attribute_id") long attribute_id, @Param("attribute") String attribute);
-
-
     //---------------------------READ---------------------------
     @Query(value = "SELECT * FROM attributes", nativeQuery = true)
     List<AttributeEntity> getAll();
 
     @Query(value = "SELECT * FROM attributes WHERE attribute_id = :attribute_id", nativeQuery = true)
     AttributeEntity getById(@Param("attribute_id") long attribute_id);
+
+    //--------------------------UPDATE--------------------------
+    @Query(value = "UPDATE attributes SET attribute = :attribute WHERE attribute_id = :attribute_id", nativeQuery = true)
+    @Modifying
+    @Transactional
+    void update(@Param("attribute_id") long attribute_id, @Param("attribute") String attribute);
 
     //--------------------------DELETE--------------------------
     @Query(value = "DELETE FROM attributes WHERE attribute_id = :attribute_id", nativeQuery = true)

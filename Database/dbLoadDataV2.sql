@@ -113,7 +113,7 @@ VALUES
     (1, 'Suministro de alimentos', 'Distribuir alimentos y agua potable a los evacuados.', true),
     (2, 'Apoyo psicológico a afectados', 'Brindar apoyo emocional y asistencia psicológica a las personas afectadas por la fuga de gas.', false);
 
-INSERT INTO task_person (task, rut)
+INSERT INTO person_task (task, rut)
 VALUES 
     (1, '123271472-1'),
     (2, '176271472-1'),

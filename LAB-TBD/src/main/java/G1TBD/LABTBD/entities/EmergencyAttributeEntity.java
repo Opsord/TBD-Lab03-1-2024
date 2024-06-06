@@ -16,10 +16,10 @@ public class EmergencyAttributeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long emergency_attribute_id;
+    private Long emergency_attribute_id;
 
-    private Long emergency; //Llave foranea de EmergencyEntity
-    private Long attribute; //Llave foranea de AttributeEntity
+    private Long emergency_id;
+    private Long attribute_id;
 
     private boolean compatibility;
 

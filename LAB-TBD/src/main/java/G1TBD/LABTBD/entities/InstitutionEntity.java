@@ -7,16 +7,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @Entity
-@Table(name = "institutions")
+@Table(name = "institution")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class InstitutionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long institution_id;
+    private Long institution_id;
 
     private String name;
 

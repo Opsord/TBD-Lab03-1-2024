@@ -1,7 +1,7 @@
 package G1TBD.LABTBD.services;
 
 import G1TBD.LABTBD.entities.TaskEntity;
-import G1TBD.LABTBD.entities.TaskUserEntity;
+import G1TBD.LABTBD.entities.UserTaskEntity;
 import G1TBD.LABTBD.entities.UserEntity;
 import G1TBD.LABTBD.repositories.TaskRepository;
 import G1TBD.LABTBD.repositories.TaskUserRepository;
@@ -25,28 +25,30 @@ public class TaskService {
         this.taskUserRepository = taskUserRepository;
     }
 
-    // --------------------------CREATE--------------------------
+    //--------------------------CREATE--------------------------
     public void create(TaskEntity task) {
         taskRepository.create(
                 task.getEmergency().getEmergency_id(),
                 task.getType(),
                 task.getDescription(),
-                task.isstatus());
+                task.isStatus());
         logger.info("Task created");
     }
 
-    // --------------------------UPDATE--------------------------
+
+    //--------------------------UPDATE--------------------------
     public void update(TaskEntity task) {
         taskRepository.update(
                 task.getTask_id(),
                 task.getEmergency().getEmergency_id(),
                 task.getType(),
                 task.getDescription(),
-                task.isstatus());
+                task.isStatus());
         logger.info("Task updated");
     }
 
-    // ---------------------------READ---------------------------
+
+    //---------------------------READ---------------------------
     public List<TaskEntity> getAll() {
         return taskRepository.getAll();
     }
@@ -60,27 +62,29 @@ public class TaskService {
     }
 
     public List<UserEntity> getAllVolunteers(long task_id) {
-        List<TaskUserEntity> taskUserEntities = taskUserRepository.getVolunteersByTaskId(task_id);
+        List<UserTaskEntity> taskUserEntities = taskUserRepository.getVolunteersByTaskId(task_id);
         List<UserEntity> volunteers = new ArrayList<>();
-        for (TaskUserEntity taskUserEntity : taskUserEntities) {
+        for (UserTaskEntity taskUserEntity : taskUserEntities) {
             volunteers.add(taskUserEntity.getUser());
         }
         return volunteers;
     }
 
     public List<TaskEntity> getTasksByVolunteer(String volunteer) {
-        List<TaskUserEntity> taskUserEntities = taskUserRepository.getByVolunteer(volunteer);
+        List<UserTaskEntity> taskUserEntities = taskUserRepository.getByVolunteer(volunteer);
         List<TaskEntity> tasks = new ArrayList<>();
-        for (TaskUserEntity taskUserEntity : taskUserEntities) {
+        for (UserTaskEntity taskUserEntity : taskUserEntities) {
             tasks.add(taskUserEntity.getTask());
         }
         return tasks;
     }
 
-    // --------------------------DELETE--------------------------
+
+    //--------------------------DELETE--------------------------
     public void delete(long id) {
         taskRepository.delete(id);
         logger.info("Task deleted");
     }
+
 
 }

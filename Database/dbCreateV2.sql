@@ -60,15 +60,15 @@ CREATE TABLE emergency (
     status BOOLEAN NOT NULL,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL
-);
+    );
 
-CREATE TABLE emergency_person (
-    emergency_person_id BIGSERIAL PRIMARY KEY,
-    emergency_id BIGINT,
-    rut VARCHAR(20),
-    FOREIGN KEY (emergency_id) REFERENCES emergency(emergency_id),
-    FOREIGN KEY (rut) REFERENCES person(rut)
-);
+    CREATE TABLE emergency_person (
+        emergency_person_id BIGSERIAL PRIMARY KEY,
+        emergency_id BIGINT,
+        rut VARCHAR(20),
+        FOREIGN KEY (emergency_id) REFERENCES emergency(emergency_id),
+        FOREIGN KEY (rut) REFERENCES person(rut)
+    );
 
 CREATE TABLE emergency_point (
     emergency_point_id BIGSERIAL PRIMARY KEY,
@@ -116,8 +116,8 @@ CREATE TABLE task_emergency (
     FOREIGN KEY (emergency_id) REFERENCES emergency(emergency_id)
 );
 
-CREATE TABLE task_person (
-    task_person_id BIGSERIAL PRIMARY KEY,
+CREATE TABLE person_task (
+    person_task_id BIGSERIAL PRIMARY KEY,
     task_id BIGINT,
     rut VARCHAR(20),
     FOREIGN KEY (task_id) REFERENCES task(task_id),

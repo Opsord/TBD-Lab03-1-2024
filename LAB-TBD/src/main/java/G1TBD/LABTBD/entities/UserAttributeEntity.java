@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "user_attribute")
+@Table(name = "person_attribute")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,14 +16,10 @@ public class UserAttributeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long user_attribute_id;
+    @Column(name = "person_attribute_id")
+    private Long user_attribute_id;
 
-    @ManyToOne
-    @JoinColumn(name = "rut")
-    private UserEntity user;
-
-    @ManyToOne
-    @JoinColumn(name = "attribute_id")
-    private AttributeEntity attribute;
+    private String rut;
+    private Long attribute_id;
 
 }

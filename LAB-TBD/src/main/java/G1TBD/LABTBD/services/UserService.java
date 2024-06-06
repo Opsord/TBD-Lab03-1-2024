@@ -1,7 +1,6 @@
 package G1TBD.LABTBD.services;
 
 import G1TBD.LABTBD.data.point.PointEntity;
-import G1TBD.LABTBD.data.point.PointRepository;
 import G1TBD.LABTBD.data.point.PointService;
 import G1TBD.LABTBD.entities.UserEntity;
 import G1TBD.LABTBD.repositories.UserRepository;
@@ -50,7 +49,7 @@ public class UserService {
 
         userRepository.create(
                 user.getRut(), user.getEmail(), user.getName(),
-                user.getLastname(), user.getBirthdate(), user.getSex(),
+                user.getLast_name(), user.getBirth_date(), user.getSex(),
                 user.getPassword(), user.getRole(), user.isAvailability(),
                 user.getLocation().getPoint_id());
         logger.info("Usuario creado: " + user.getRut());
@@ -62,7 +61,7 @@ public class UserService {
     public void update(UserEntity user) {
         userRepository.update(
                 user.getRut(), user.getEmail(), user.getName(),
-                user.getLastname(), user.getBirthdate(), user.getSex(),
+                user.getLast_name(), user.getBirth_date(), user.getSex(),
                 user.getPassword(), user.getRole(), user.isAvailability());
         logger.info("Usuario actualizado: " + user.getRut());
     }

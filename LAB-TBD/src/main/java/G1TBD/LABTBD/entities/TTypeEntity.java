@@ -8,24 +8,15 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "rankings")
+@Table(name = "t_type")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RankingEntity {
+public class TTypeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ranking_id;
+    private Long t_type_id;
 
-    private Integer value;
-
-    @ManyToOne
-    @JoinColumn(name = "rut")
-    private UserEntity user;
-
-    @ManyToOne
-    @JoinColumn(name = "task_id")
-    private TaskEntity task;
-
+    private String type;
 }
