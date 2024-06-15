@@ -23,14 +23,15 @@ public class EmergencyService {
     private final PointService pointService;
 
     @Autowired
-    public EmergencyService(EmergencyRepository emergencyRepository, TaskService taskService, UserService userService, PointService pointService) {
+    public EmergencyService(EmergencyRepository emergencyRepository, TaskService taskService, UserService userService,
+            PointService pointService) {
         this.emergencyRepository = emergencyRepository;
         this.taskService = taskService;
         this.userService = userService;
         this.pointService = pointService;
     }
 
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
     public void create(EmergencyEntity emergency) {
         emergencyRepository.create(
                 emergency.getTitle(),
@@ -41,8 +42,7 @@ public class EmergencyService {
         logger.info("Emergency created: " + emergency.getTitle());
     }
 
-
-    //--------------------------UPDATE--------------------------
+    // --------------------------UPDATE--------------------------
     public void update(EmergencyEntity emergency) {
         emergencyRepository.update(
                 emergency.getEmergency_id(),
@@ -53,21 +53,28 @@ public class EmergencyService {
         logger.info("Emergency updated: " + emergency.getTitle());
     }
 
+    // ---------------------------READ---------------------------
+    public List<EmergencyEntity> getAll() {
+        return emergencyRepository.getAll();
+    }
 
-    //---------------------------READ---------------------------
-    public List<EmergencyEntity> getAll() {return emergencyRepository.getAll();}
+    public List<EmergencyEntity> getAllActive() {
+        return emergencyRepository.getAllActive();
+    }
 
-    public List<EmergencyEntity> getAllActive() {return emergencyRepository.getAllActive();}
+    public EmergencyEntity getById(Long id) {
+        return emergencyRepository.getById(id);
+    }
 
-    public EmergencyEntity getById(long id) {return emergencyRepository.getById(id);}
-
-    public List<EmergencyEntity> getAllClosed() {return emergencyRepository.getAllClosed();}
+    public List<EmergencyEntity> getAllClosed() {
+        return emergencyRepository.getAllClosed();
+    }
 
     public EmergencyEntity getByLocation(double latitude, double longitude) {
         return emergencyRepository.getByLocation(latitude, longitude);
     }
 
-    public List<UserEntity> getAllVolunteers(long emergency_id) {
+    public List<UserEntity> getAllVolunteers(Long emergency_id) {
         List<TaskEntity> taskList = taskService.getByEmergencyId(emergency_id);
         List<UserEntity> volunteerList = new ArrayList<>();
         for (TaskEntity task : taskList) {
@@ -77,10 +84,10 @@ public class EmergencyService {
     }
 
     public EmergencyEntity getLatestId(EmergencyEntity emergency) {
-        return emergencyRepository.findLatestEmergencyId(emergency.getTitle(), emergency.getDescription(), emergency.getCoordinator().getRut());
+        return emergencyRepository.findLatestEmergencyId(emergency.getTitle(), emergency.getDescription());
     }
 
-    public List<UserEntity> getXNearbyVolunteers(long emergency_id, double radiusInKilometers, int limit) {
+    public List<UserEntity> getXNearbyVolunteers(Long emergency_id, double radiusInKilometers, int limit) {
         logger.info("Working on emergency_id: " + emergency_id);
         EmergencyEntity emergency = getById(emergency_id);
         if (emergency == null) {
@@ -94,27 +101,26 @@ public class EmergencyService {
                 radiusInDegrees, limit, role, available);
     }
 
-    //Funcionalidad SQL 48 del laboratorio 1
-    public List<SingleEmergencyData> getAllClosedEmergencyData(){
+    // Funcionalidad SQL 48 del laboratorio 1
+    public List<SingleEmergencyData> getAllClosedEmergencyData() {
         List<EmergencyEntity> closedEmergencies = getAllClosed();
         List<SingleEmergencyData> singleEmergencyDataList = new ArrayList<>();
 
-    for (EmergencyEntity emergency : closedEmergencies) {
-        long emergency_id = emergency.getEmergency_id();
-        List<TaskEntity> taskList = taskService.getByEmergencyId(emergency_id);
-        List<UserEntity> volunteerList = userService.getByEmergencyId(emergency_id);
-        SingleEmergencyData singleEmergencyData = new SingleEmergencyData(emergency.getTitle(), volunteerList.size(), taskList.size());
-        singleEmergencyDataList.add(singleEmergencyData);
+        for (EmergencyEntity emergency : closedEmergencies) {
+            Long emergency_id = emergency.getEmergency_id();
+            List<TaskEntity> taskList = taskService.getByEmergencyId(emergency_id);
+            List<UserEntity> volunteerList = userService.getByEmergencyId(emergency_id);
+            SingleEmergencyData singleEmergencyData = new SingleEmergencyData(emergency.getTitle(),
+                    volunteerList.size(), taskList.size());
+            singleEmergencyDataList.add(singleEmergencyData);
         }
         return singleEmergencyDataList;
     }
 
-
-    //--------------------------DELETE--------------------------
-    public void delete(long id) {
+    // --------------------------DELETE--------------------------
+    public void delete(Long id) {
         emergencyRepository.delete(id);
         logger.info("Emergency deleted: " + id);
     }
-
 
 }

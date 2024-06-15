@@ -22,20 +22,22 @@ public class EmergencyAttributeController {
     public EmergencyAttributeController(EmergencyAttributeService emergencyAttributeService) {
         this.emergencyAttributeService = emergencyAttributeService;
     }
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
     /*
-    @PostMapping("/create")
-    public void create(@RequestBody EmergencyAttributeEntity emergencyAttribute) {
-        emergencyAttributeService.create(emergencyAttribute);
-        logger.info("EmergencyAttribute created: ");
-        logger.info(emergencyAttribute.toString());
-    }
-
+     * @PostMapping("/create")
+     * public void create(@RequestBody EmergencyAttributeEntity emergencyAttribute)
+     * {
+     * emergencyAttributeService.create(emergencyAttribute);
+     * logger.info("EmergencyAttribute created: ");
+     * logger.info(emergencyAttribute.toString());
+     * }
+     * 
      */
 
     @PostMapping("/create")
     public void createEmergencyAttribute(@RequestBody EmergencyAttributeEntity emergencyAttribute) {
-        emergencyAttributeService.create(emergencyAttribute.getEmergency(), emergencyAttribute.getAttribute(), emergencyAttribute.isCompatibility());
+        emergencyAttributeService.create(emergencyAttribute.getEmergency(), emergencyAttribute.getAttribute(),
+                emergencyAttribute.isCompatibility());
     }
 
     @PostMapping("/createVarious")
@@ -50,10 +52,7 @@ public class EmergencyAttributeController {
         }
     }
 
-
-
-
-    //--------------------------UPDATE--------------------------
+    // --------------------------UPDATE--------------------------
     @PutMapping("/update")
     public void update(@RequestBody EmergencyAttributeEntity emergencyAttribute) {
         emergencyAttributeService.update(emergencyAttribute);
@@ -61,25 +60,23 @@ public class EmergencyAttributeController {
         logger.info(emergencyAttribute.toString());
     }
 
-
-
-
-    //---------------------------READ---------------------------
+    // ---------------------------READ---------------------------
     @GetMapping("/all")
-    public List<EmergencyAttributeEntity> getAll(){return emergencyAttributeService.getAll();}
+    public List<EmergencyAttributeEntity> getAll() {
+        return emergencyAttributeService.getAll();
+    }
 
     @GetMapping("/id/{id}")
-    public EmergencyAttributeEntity getById(@PathVariable long id){return emergencyAttributeService.getById(id);}
+    public EmergencyAttributeEntity getById(@PathVariable Long id) {
+        return emergencyAttributeService.getById(id);
+    }
 
-
-    //--------------------------DELETE--------------------------
+    // --------------------------DELETE--------------------------
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable long id) {
+    public void delete(@PathVariable Long id) {
         emergencyAttributeService.delete(id);
         logger.info("EmergencyAttribute deleted: ");
         logger.info(String.valueOf(id));
     }
-
-
 
 }

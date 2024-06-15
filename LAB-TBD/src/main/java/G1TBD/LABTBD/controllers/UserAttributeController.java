@@ -21,38 +21,39 @@ public class UserAttributeController {
         this.userAttributeService = userAttributeService;
     }
 
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
     @PostMapping("/create")
     public void create(@RequestBody UserAttributeEntity userAttribute) {
         logger.info("Creating user attribute: " + userAttribute.toString());
         userAttributeService.create(userAttribute);
     }
 
-
-    //--------------------------UPDATE--------------------------
+    // --------------------------UPDATE--------------------------
     @PutMapping("/update")
     public void update(@RequestBody UserAttributeEntity userAttribute) {
         logger.info("Updating user attribute: " + userAttribute.toString());
         userAttributeService.update(userAttribute);
     }
 
-
-    //---------------------------READ---------------------------
+    // ---------------------------READ---------------------------
     @GetMapping("/all")
-    public List<UserAttributeEntity> getAll() {return userAttributeService.getAll();}
+    public List<UserAttributeEntity> getAll() {
+        return userAttributeService.getAll();
+    }
 
     @GetMapping("/rut/{rut}")
-    public List<UserAttributeEntity> getByRut(@PathVariable String rut) {return userAttributeService.getByRut(rut);}
+    public List<UserAttributeEntity> getByRut(@PathVariable String rut) {
+        return userAttributeService.getByRut(rut);
+    }
 
     @GetMapping("/attribute-id/{attribute_id}")
-    public List<UserAttributeEntity> getByattribute_id(@PathVariable long attribute_id) {
+    public List<UserAttributeEntity> getByattribute_id(@PathVariable Long attribute_id) {
         return userAttributeService.getByAttributeId(attribute_id);
     }
 
-
-    //--------------------------DELETE--------------------------
+    // --------------------------DELETE--------------------------
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable long id) {
+    public void delete(@PathVariable Long id) {
         logger.info("Deleting user attribute with id: " + id);
         userAttributeService.delete(id);
     }

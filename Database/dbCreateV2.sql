@@ -94,18 +94,18 @@ CREATE TABLE task (
 );
 
 -- Tipo de tarea
-CREATE TABLE t_type (
-    t_type_id BIGSERIAL PRIMARY KEY,
+CREATE TABLE ttype (
+    ttype_id BIGSERIAL PRIMARY KEY,
     type VARCHAR(255) NOT NULL
 );
 
 -- Relacion de tarea con tipo
-CREATE TABLE task_t_type (
-    task_t_type_id BIGSERIAL PRIMARY KEY,
+CREATE TABLE task_ttype (
+    task_ttype_id BIGSERIAL PRIMARY KEY,
     task_id BIGINT,
-    t_type_id BIGINT,
+    ttype_id BIGINT,
     FOREIGN KEY (task_id) REFERENCES task(task_id),
-    FOREIGN KEY (t_type_id) REFERENCES t_type(t_type_id)
+    FOREIGN KEY (ttype_id) REFERENCES ttype(ttype_id)
 );
 
 CREATE TABLE task_emergency (

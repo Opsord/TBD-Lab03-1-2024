@@ -20,12 +20,13 @@ public class RegisterRequest {
     private String rut;
     private String email;
     private String name;
-    private String lastName;
-    private Date birthDate;
+    private String last_name;
+    private Date birth_date;
     private String sex;
     private String password;
     private String role;
     private boolean availability;
+
     private LocationRequest location;
 
 }

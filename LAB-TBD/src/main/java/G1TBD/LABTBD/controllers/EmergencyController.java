@@ -36,18 +36,20 @@ public class EmergencyController {
 
     String homeLinkRedirect = "redirect:/emergencies";
 
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
     @PostMapping("/create")
     public ResponseEntity<EmergencyEntity> create(@RequestBody Map<String, Object> payload) {
         // Extract and convert location
         Map<String, Double> locationMap = (Map<String, Double>) payload.get("location");
-        LocationRequest locationRequest = new LocationRequest(locationMap.get("latitude"), locationMap.get("longitude"));
+        LocationRequest locationRequest = new LocationRequest(locationMap.get("latitude"),
+                locationMap.get("longitude"));
         PointEntity newPoint = new PointEntity();
         newPoint.setLatitude(locationRequest.getLatitude());
         newPoint.setLongitude(locationRequest.getLongitude());
         pointService.create(newPoint);
 
-        Long pointId = pointService.findByLatitudeAndLongitude(locationRequest.getLatitude(), locationRequest.getLongitude());
+        Long pointId = pointService.findByLatitudeAndLongitude(locationRequest.getLatitude(),
+                locationRequest.getLongitude());
         PointEntity point = pointService.getById(pointId);
         logger.info("Retrieved point: " + point);
 
@@ -69,7 +71,8 @@ public class EmergencyController {
         EmergencyEntity emergencyCreated = emergencyService.getLatestId(emergency);
         return new ResponseEntity<>(emergencyCreated, HttpStatus.CREATED);
     }
-    //--------------------------UPDATE--------------------------
+
+    // --------------------------UPDATE--------------------------
     @PutMapping("/update")
     public String update(@RequestBody EmergencyEntity emergency) {
         emergencyService.update(emergency);
@@ -78,7 +81,7 @@ public class EmergencyController {
         return homeLinkRedirect;
     }
 
-    //Actualizar punto
+    // Actualizar punto
     @PutMapping("/point/update")
     public void updatePoint(@RequestBody PointEntity point) {
         System.out.println(point.getPoint());
@@ -86,46 +89,49 @@ public class EmergencyController {
         logger.info("Point updated: " + point.getPoint());
     }
 
-
-    //---------------------------READ---------------------------
+    // ---------------------------READ---------------------------
     @GetMapping("/all")
-    public List<EmergencyEntity> getAll(){return emergencyService.getAll();}
+    public List<EmergencyEntity> getAll() {
+        return emergencyService.getAll();
+    }
 
     @GetMapping("/active")
-    public List<EmergencyEntity> getAllActive(){return  emergencyService.getAllActive();}
+    public List<EmergencyEntity> getAllActive() {
+        return emergencyService.getAllActive();
+    }
 
     @GetMapping("/id/{id}")
-    public EmergencyEntity getById(@PathVariable long id) {return emergencyService.getById(id);}
+    public EmergencyEntity getById(@PathVariable Long id) {
+        return emergencyService.getById(id);
+    }
 
     @GetMapping("/closed")
-    public List<EmergencyEntity> getClosedEmergencies() {return emergencyService.getAllClosed();}
+    public List<EmergencyEntity> getClosedEmergencies() {
+        return emergencyService.getAllClosed();
+    }
 
     @GetMapping("/nearby/{emergency_id}/{radius}/{quantity}")
-    public List<UserEntity> getXNearbyVolunteers(@PathVariable long emergency_id,
-                                                 @PathVariable double radius,
-                                                 @PathVariable int quantity) {
+    public List<UserEntity> getXNearbyVolunteers(@PathVariable Long emergency_id,
+            @PathVariable double radius,
+            @PathVariable int quantity) {
         logger.info("Emergency ID: " + emergency_id);
         logger.info("Radius: " + radius);
         logger.info("Quantity: " + quantity);
         return emergencyService.getXNearbyVolunteers(emergency_id, radius, quantity);
     }
 
-
     @GetMapping("/closedEmergencyData")
     public List<SingleEmergencyData> getAllClosedEmergencyData() {
         return emergencyService.getAllClosedEmergencyData();
     }
 
-    //--------------------------DELETE--------------------------
+    // --------------------------DELETE--------------------------
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable long id) {
+    public String delete(@PathVariable Long id) {
         emergencyService.delete(id);
         logger.info("Emergency deleted: ");
         logger.info(String.valueOf(id));
         return homeLinkRedirect;
     }
-
-
-
 
 }

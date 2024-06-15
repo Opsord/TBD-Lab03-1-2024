@@ -19,7 +19,7 @@ public class UserAttributeService {
         this.userAttributeRepository = userAttributeRepository;
     }
 
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
     public void create(UserAttributeEntity userAttribute) {
         userAttributeRepository.create(
                 userAttribute.getUser().getRut(),
@@ -27,8 +27,7 @@ public class UserAttributeService {
         logger.info("UserAttribute created");
     }
 
-
-    //--------------------------UPDATE--------------------------
+    // --------------------------UPDATE--------------------------
     public void update(UserAttributeEntity userAttribute) {
         userAttributeRepository.update(
                 userAttribute.getUser_attribute_id(),
@@ -37,28 +36,27 @@ public class UserAttributeService {
         logger.info("UserAttribute updated");
     }
 
-
-    //---------------------------READ---------------------------
+    // ---------------------------READ---------------------------
     public List<UserAttributeEntity> getAll() {
         return userAttributeRepository.getAll();
     }
 
-    public UserAttributeEntity getById(long id) {
+    public UserAttributeEntity getById(Long id) {
         return userAttributeRepository.getById(id);
     }
 
-    public List<UserAttributeEntity> getByRut(String rut) {return userAttributeRepository.getByRut(rut);}
+    public List<UserAttributeEntity> getByRut(String rut) {
+        return userAttributeRepository.getByRut(rut);
+    }
 
-    public List<UserAttributeEntity> getByAttributeId(long attribute_id) {
+    public List<UserAttributeEntity> getByAttributeId(Long attribute_id) {
         return userAttributeRepository.getByAttributeId(attribute_id);
     }
 
-
-    //--------------------------DELETE--------------------------
-    public void delete(long id) {
+    // --------------------------DELETE--------------------------
+    public void delete(Long id) {
         userAttributeRepository.delete(id);
         logger.info("UserAttribute deleted");
     }
-
 
 }

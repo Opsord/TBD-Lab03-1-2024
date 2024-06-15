@@ -20,41 +20,42 @@ public class UserInstitutionController {
     public UserInstitutionController(UserInstitutionService userInstitutionService) {
         this.userInstitutionService = userInstitutionService;
     }
-    //--------------------------CREATE--------------------------
+
+    // --------------------------CREATE--------------------------
     @PostMapping("/create")
     public void create(@RequestBody UserInstitutionEntity userInstitution) {
         logger.info("Creating user institution: " + userInstitution.toString());
         userInstitutionService.create(userInstitution);
     }
 
-
-    //--------------------------UPDATE--------------------------
+    // --------------------------UPDATE--------------------------
     @RequestMapping("/update")
     public void update(@RequestBody UserInstitutionEntity userInstitution) {
         logger.info("Updating user institution: " + userInstitution.toString());
         userInstitutionService.update(userInstitution);
     }
 
-
-    //---------------------------READ---------------------------
+    // ---------------------------READ---------------------------
     @GetMapping("/all")
-    public List<UserInstitutionEntity> getAll(){return userInstitutionService.getAll();}
+    public List<UserInstitutionEntity> getAll() {
+        return userInstitutionService.getAll();
+    }
 
     @RequestMapping("/rut/{rut}")
-    public UserInstitutionEntity getByRut(@PathVariable String rut) {return userInstitutionService.getByRut(rut);}
+    public UserInstitutionEntity getByRut(@PathVariable String rut) {
+        return userInstitutionService.getByRut(rut);
+    }
 
     @RequestMapping("/institution-id/{institution_id}")
-    public List<UserInstitutionEntity> getByinstitution_id(@PathVariable long institution_id) {
+    public List<UserInstitutionEntity> getByinstitution_id(@PathVariable Long institution_id) {
         return userInstitutionService.getByInstitutionId(institution_id);
     }
 
-
-    //--------------------------DELETE--------------------------
+    // --------------------------DELETE--------------------------
     @RequestMapping("/delete/{id}")
-    public void delete(@PathVariable long id) {
+    public void delete(@PathVariable Long id) {
         logger.info("Deleting user institution with id: " + id);
         userInstitutionService.delete(id);
     }
-
 
 }

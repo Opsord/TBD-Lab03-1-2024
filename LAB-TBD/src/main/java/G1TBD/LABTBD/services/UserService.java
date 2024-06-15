@@ -24,7 +24,7 @@ public class UserService {
         this.pointService = pointService;
     }
 
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
     public void create(UserEntity user) {
         logger.info("Received user: " + user.toString());
 
@@ -55,9 +55,7 @@ public class UserService {
         logger.info("Usuario creado: " + user.getRut());
     }
 
-
-
-    //--------------------------UPDATE--------------------------
+    // --------------------------UPDATE--------------------------
     public void update(UserEntity user) {
         userRepository.update(
                 user.getRut(), user.getEmail(), user.getName(),
@@ -70,33 +68,45 @@ public class UserService {
         userRepository.updateLocationByRut(location, rut);
     }
 
+    // ---------------------------READ---------------------------
+    public List<UserEntity> getAll() {
+        return userRepository.getAll();
+    }
 
-    //---------------------------READ---------------------------
-    public List<UserEntity> getAll() {return userRepository.getAll();}
+    public Optional<UserEntity> getByRut(String rut) {
+        return userRepository.getByRut(rut);
+    }
 
-    public Optional<UserEntity> getByRut(String rut) {return userRepository.getByRut(rut);}
+    public Optional<UserEntity> getByEmail(String email) {
+        return userRepository.getByEmail(email);
+    }
 
-    public Optional<UserEntity> getByEmail(String email) {return userRepository.getByEmail(email);}
+    public List<UserEntity> getByRole(String role) {
+        return userRepository.getByRole(role);
+    }
 
-    public List<UserEntity> getByRole(String role) {return userRepository.getByRole(role);}
+    public List<UserEntity> getVolunteers() {
+        return userRepository.getVolunteers();
+    }
 
-    public List<UserEntity> getVolunteers() {return userRepository.getVolunteers();}
-
-    public List<UserEntity> getCoordinators() {return userRepository.getCoordinators();}
+    public List<UserEntity> getCoordinators() {
+        return userRepository.getCoordinators();
+    }
 
     public List<UserEntity> getByAvailability(boolean availability) {
         return userRepository.getByAvailability(availability);
     }
 
     public List<UserEntity> getXNearbyVolunteers(double latitude, double longitude,
-                                                 double radius, int quantity, String role, boolean availability) {
+            double radius, int quantity, String role, boolean availability) {
         return userRepository.getXNearbyUsersFromPoint(latitude, longitude, radius, quantity, role, availability);
     }
 
-    public List<UserEntity> getByEmergencyId(long id){return userRepository.getByEmergencyId(id);}
+    public List<UserEntity> getByEmergencyId(Long id) {
+        return userRepository.getByEmergencyId(id);
+    }
 
-
-    //--------------------------DELETE--------------------------
+    // --------------------------DELETE--------------------------
     public void delete(String rut) {
         userRepository.delete(rut);
         logger.info("Usuario eliminado: " + rut);

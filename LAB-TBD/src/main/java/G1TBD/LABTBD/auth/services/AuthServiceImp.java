@@ -5,6 +5,7 @@ import G1TBD.LABTBD.auth.entities.LoginRequest;
 import G1TBD.LABTBD.auth.entities.RegisterRequest;
 import G1TBD.LABTBD.config.JwtService;
 import G1TBD.LABTBD.data.point.PointEntity;
+import G1TBD.LABTBD.data.point.PointService;
 import G1TBD.LABTBD.entities.UserEntity;
 import G1TBD.LABTBD.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,8 @@ public class AuthServiceImp implements AuthService{
     private static final Logger logger = Logger.getLogger(AuthServiceImp.class.getName());
 
     private final UserService userService;
+    private final PointService pointService;
+    private final UserPoint
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -31,19 +34,32 @@ public class AuthServiceImp implements AuthService{
     public AuthResponse register(RegisterRequest request) {
         var locationRequest = request.getLocation();
 
+        // Create user
         var user = UserEntity.builder()
                 .rut(request.getRut())
                 .email(request.getEmail())
                 .name(request.getName())
-                .lastname(request.getLastName())
-                .birthdate(request.getBirthDate())
+                .last_name(request.getLast_name())
+                .birth_date(request.getBirth_date())
                 .sex(request.getSex())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole())
                 .availability(request.isAvailability())
-                .location(new PointEntity(null, locationRequest.getLatitude(), locationRequest.getLongitude(), null))
+                //.location(new PointEntity(null, locationRequest.getLatitude(), locationRequest.getLongitude(), null))
                 .build();
         userService.create(user);
+
+        // Create point
+        var point = PointEntity.builder()
+                .latitude(locationRequest.getLatitude())
+                .longitude(locationRequest.getLongitude())
+                .build();
+        pointService.create(point);
+
+        // Create relation between user and point
+
+
+
 
         var jwtToken = jwtService.generateToken(user);
         return AuthResponse.builder()

@@ -4,7 +4,7 @@ import G1TBD.LABTBD.entities.TaskEntity;
 import G1TBD.LABTBD.entities.UserTaskEntity;
 import G1TBD.LABTBD.entities.UserEntity;
 import G1TBD.LABTBD.repositories.TaskRepository;
-import G1TBD.LABTBD.repositories.TaskUserRepository;
+import G1TBD.LABTBD.repositories.UserTaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,16 +16,16 @@ import java.util.logging.Logger;
 public class TaskService {
 
     private final TaskRepository taskRepository;
-    private final TaskUserRepository taskUserRepository;
+    private final UserTaskRepository userTaskRepository;
     private static final Logger logger = Logger.getLogger(TaskService.class.getName());
 
     @Autowired
-    public TaskService(TaskRepository taskRepository, TaskUserRepository taskUserRepository) {
+    public TaskService(TaskRepository taskRepository, UserTaskRepository userTaskRepository) {
         this.taskRepository = taskRepository;
-        this.taskUserRepository = taskUserRepository;
+        this.userTaskRepository = userTaskRepository;
     }
 
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
     public void create(TaskEntity task) {
         taskRepository.create(
                 task.getEmergency().getEmergency_id(),
@@ -35,8 +35,7 @@ public class TaskService {
         logger.info("Task created");
     }
 
-
-    //--------------------------UPDATE--------------------------
+    // --------------------------UPDATE--------------------------
     public void update(TaskEntity task) {
         taskRepository.update(
                 task.getTask_id(),
@@ -47,22 +46,21 @@ public class TaskService {
         logger.info("Task updated");
     }
 
-
-    //---------------------------READ---------------------------
+    // ---------------------------READ---------------------------
     public List<TaskEntity> getAll() {
         return taskRepository.getAll();
     }
 
-    public TaskEntity getById(long id) {
+    public TaskEntity getById(Long id) {
         return taskRepository.getById(id);
     }
 
-    public List<TaskEntity> getByEmergencyId(long id) {
+    public List<TaskEntity> getByEmergencyId(Long id) {
         return taskRepository.getByEmergencyId(id);
     }
 
-    public List<UserEntity> getAllVolunteers(long task_id) {
-        List<UserTaskEntity> taskUserEntities = taskUserRepository.getVolunteersByTaskId(task_id);
+    public List<UserEntity> getAllVolunteers(Long task_id) {
+        List<UserTaskEntity> taskUserEntities = userTaskRepository.getVolunteersByTaskId(task_id);
         List<UserEntity> volunteers = new ArrayList<>();
         for (UserTaskEntity taskUserEntity : taskUserEntities) {
             volunteers.add(taskUserEntity.getUser());
@@ -71,7 +69,7 @@ public class TaskService {
     }
 
     public List<TaskEntity> getTasksByVolunteer(String volunteer) {
-        List<UserTaskEntity> taskUserEntities = taskUserRepository.getByVolunteer(volunteer);
+        List<UserTaskEntity> taskUserEntities = userTaskRepository.getByVolunteer(volunteer);
         List<TaskEntity> tasks = new ArrayList<>();
         for (UserTaskEntity taskUserEntity : taskUserEntities) {
             tasks.add(taskUserEntity.getTask());
@@ -79,12 +77,10 @@ public class TaskService {
         return tasks;
     }
 
-
-    //--------------------------DELETE--------------------------
-    public void delete(long id) {
+    // --------------------------DELETE--------------------------
+    public void delete(Long id) {
         taskRepository.delete(id);
         logger.info("Task deleted");
     }
-
 
 }

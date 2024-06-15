@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserEmergencyEntity {
+public class EmergencyUserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

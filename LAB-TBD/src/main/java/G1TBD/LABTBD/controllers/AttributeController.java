@@ -25,7 +25,7 @@ public class AttributeController {
 
     String homeLinkRedirect = "redirect:/attributes";
 
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
     @PostMapping("/create")
     public String create(@RequestBody AttributeEntity attribute) {
         attributeService.create(attribute);
@@ -34,8 +34,7 @@ public class AttributeController {
         return homeLinkRedirect;
     }
 
-
-    //--------------------------UPDATE--------------------------
+    // --------------------------UPDATE--------------------------
     @PutMapping("/update")
     public String update(@RequestBody AttributeEntity attribute) {
         attributeService.update(attribute);
@@ -44,23 +43,21 @@ public class AttributeController {
         return homeLinkRedirect;
     }
 
-
-    //---------------------------READ---------------------------
+    // ---------------------------READ---------------------------
     @GetMapping("/all")
     public List<AttributeEntity> getAll() {
         return attributeService.getAll();
     }
 
     @GetMapping("/id/{id}")
-    public AttributeEntity getById(@PathVariable long id) {
+    public AttributeEntity getById(@PathVariable Long id) {
         return attributeService.getById(id);
     }
 
-
-    //--------------------------DELETE--------------------------
+    // --------------------------DELETE--------------------------
 
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable long id) {
+    public String delete(@PathVariable Long id) {
         attributeService.delete(id);
         logger.info("Attribute deleted: ");
         logger.info(String.valueOf(id));

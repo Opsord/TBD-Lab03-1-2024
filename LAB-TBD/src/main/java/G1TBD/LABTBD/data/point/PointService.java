@@ -26,12 +26,11 @@ public class PointService {
         return pointRepository.findIdByLatitudeAndLongitude(latitude, longitude);
     }
 
-
     public List<PointEntity> getAll() {
         return pointRepository.getAll();
     }
 
-    public PointEntity getById(long id) {
+    public PointEntity getById(Long id) {
         return pointRepository.getById(id);
     }
 
@@ -40,12 +39,12 @@ public class PointService {
         logger.info("Point updated: " + point.getPoint());
     }
 
-    public void delete(long id) {
+    public void delete(Long id) {
         pointRepository.delete(id);
         logger.info("Point deleted: " + id);
     }
 
-    public List<PointEntity> getNearbyPoints(long point_id,int radius, int limit) {
+    public List<PointEntity> getNearbyPoints(Long point_id, int radius, int limit) {
         PointEntity point = pointRepository.getById(point_id);
         return pointRepository.findXNearbyPoints(point.getLatitude(), point.getLongitude(), radius, limit);
     }

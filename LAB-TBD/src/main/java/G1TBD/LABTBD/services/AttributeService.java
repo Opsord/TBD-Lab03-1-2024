@@ -15,35 +15,39 @@ public class AttributeService {
     private static final Logger logger = Logger.getLogger(AttributeService.class.getName());
 
     @Autowired
-    public AttributeService(AttributeRepository attributeRepository) {this.attributeRepository = attributeRepository;}
+    public AttributeService(AttributeRepository attributeRepository) {
+        this.attributeRepository = attributeRepository;
+    }
 
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
+
     public void create(AttributeEntity attribute) {
         attributeRepository.create(attribute.getAttribute());
         logger.info("Attribute created: " + attribute.getAttribute());
     }
 
+    // ---------------------------READ---------------------------
 
-    //--------------------------UPDATE--------------------------
+    public List<AttributeEntity> getAll() {
+        return attributeRepository.getAll();
+    }
+
+    public AttributeEntity getById(Long id) {
+        return attributeRepository.getById(id);
+    }
+
+    // --------------------------UPDATE--------------------------
+
     public void update(AttributeEntity attribute) {
         attributeRepository.update(attribute.getAttribute_id(), attribute.getAttribute());
         logger.info("Attribute updated: " + attribute.getAttribute());
     }
 
+    // --------------------------DELETE--------------------------
 
-    //---------------------------READ---------------------------
-    public List<AttributeEntity> getAll() {
-        return attributeRepository.getAll();
-    }
-
-    public AttributeEntity getById(long id) {
-        return attributeRepository.getById(id);
-    }
-
-
-    //--------------------------DELETE--------------------------
-    public void delete(long id) {
+    public void delete(Long id) {
         attributeRepository.delete(id);
         logger.info("Attribute deleted: " + id);
     }
+
 }

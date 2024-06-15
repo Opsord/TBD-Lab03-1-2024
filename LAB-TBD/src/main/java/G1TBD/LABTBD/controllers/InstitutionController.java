@@ -23,7 +23,7 @@ public class InstitutionController {
 
     String homeLinkRedirect = "redirect:/institutions";
 
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
     @PostMapping("/create")
     public String create(@RequestBody InstitutionEntity institution) {
         institutionService.create(institution);
@@ -32,8 +32,7 @@ public class InstitutionController {
         return homeLinkRedirect;
     }
 
-
-    //--------------------------UPDATE--------------------------
+    // --------------------------UPDATE--------------------------
     @PutMapping("/update")
     public String update(@RequestBody InstitutionEntity institution) {
         institutionService.update(institution);
@@ -42,18 +41,20 @@ public class InstitutionController {
         return homeLinkRedirect;
     }
 
-
-    //---------------------------READ---------------------------
+    // ---------------------------READ---------------------------
     @GetMapping("/all")
-    public List<InstitutionEntity> getAll() {return institutionService.getAll();}
+    public List<InstitutionEntity> getAll() {
+        return institutionService.getAll();
+    }
 
     @GetMapping("/id/{id}")
-    public InstitutionEntity getById(@PathVariable long id) {return institutionService.getById(id);}
+    public InstitutionEntity getById(@PathVariable Long id) {
+        return institutionService.getById(id);
+    }
 
-
-    //--------------------------DELETE--------------------------
+    // --------------------------DELETE--------------------------
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable long id) {
+    public String delete(@PathVariable Long id) {
         institutionService.delete(id);
         logger.info("Institution deleted: ");
         logger.info(String.valueOf(id));

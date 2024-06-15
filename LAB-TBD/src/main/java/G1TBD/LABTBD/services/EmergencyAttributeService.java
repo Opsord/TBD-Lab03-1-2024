@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 @Service
 public class EmergencyAttributeService {
-    
+
     private final EmergencyAttributeRepository emergencyAttributeRepository;
     private static final Logger logger = Logger.getLogger(EmergencyAttributeService.class.getName());
 
@@ -19,17 +19,18 @@ public class EmergencyAttributeService {
     public EmergencyAttributeService(EmergencyAttributeRepository emergencyAttributeRepository) {
         this.emergencyAttributeRepository = emergencyAttributeRepository;
     }
-    //--------------------------CREATE--------------------------
-    /*
-    public void create(EmergencyAttributeEntity emergencyAttribute) {
-        emergencyAttributeRepository.create(
-                emergencyAttribute.getEmergency_id(),
-                emergencyAttribute.getAttribute_id(),
-                emergencyAttribute.isCompatibility()
-        );
-        logger.info("EmergencyAttribute created successfully");
-    }
 
+    // --------------------------CREATE--------------------------
+    /*
+     * public void create(EmergencyAttributeEntity emergencyAttribute) {
+     * emergencyAttributeRepository.create(
+     * emergencyAttribute.getEmergency_id(),
+     * emergencyAttribute.getAttribute_id(),
+     * emergencyAttribute.isCompatibility()
+     * );
+     * logger.info("EmergencyAttribute created successfully");
+     * }
+     * 
      */
     public void create(Long emergency, Long attribute, boolean compatibility) {
         emergencyAttributeRepository.create(emergency, attribute, compatibility);
@@ -39,44 +40,36 @@ public class EmergencyAttributeService {
         List<EmergencyAttributeEntity> createdEmergencies = new ArrayList<>();
 
         for (EmergencyAttributeEntity emergencyAttribute : emergencyAttributeEntityList) {
-            create(emergencyAttribute.getEmergency(), emergencyAttribute.getAttribute(), emergencyAttribute.isCompatibility());
+            create(emergencyAttribute.getEmergency(), emergencyAttribute.getAttribute(),
+                    emergencyAttribute.isCompatibility());
             createdEmergencies.add(emergencyAttribute);
         }
         return createdEmergencies;
     }
 
-
-
-
-    //--------------------------UPDATE--------------------------
+    // --------------------------UPDATE--------------------------
     public void update(EmergencyAttributeEntity emergencyAttribute) {
         emergencyAttributeRepository.update(
                 emergencyAttribute.getEmergency_attribute_id(),
                 emergencyAttribute.getEmergency(),
                 emergencyAttribute.getAttribute(),
-                emergencyAttribute.isCompatibility()
-        );
+                emergencyAttribute.isCompatibility());
         logger.info("EmergencyAttribute updated successfully");
     }
 
-
-
-
-    //---------------------------READ---------------------------
+    // ---------------------------READ---------------------------
     public List<EmergencyAttributeEntity> getAll() {
         return emergencyAttributeRepository.getAll();
     }
 
-    public EmergencyAttributeEntity getById(long id) {
+    public EmergencyAttributeEntity getById(Long id) {
         return emergencyAttributeRepository.getById(id);
     }
 
-
-    //--------------------------DELETE--------------------------
-    public void delete(long id) {
+    // --------------------------DELETE--------------------------
+    public void delete(Long id) {
         emergencyAttributeRepository.delete(id);
         logger.info("EmergencyAttribute deleted successfully");
     }
-
 
 }

@@ -23,7 +23,7 @@ public class TaskController {
 
     String homeLinkRedirect = "redirect:/tasks";
 
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
     @PostMapping("/create")
     public String create(@RequestBody TaskEntity task) {
         taskService.create(task);
@@ -32,8 +32,7 @@ public class TaskController {
         return homeLinkRedirect;
     }
 
-
-    //--------------------------UPDATE--------------------------
+    // --------------------------UPDATE--------------------------
     @PutMapping("/update")
     public String update(@RequestBody TaskEntity task) {
         taskService.update(task);
@@ -42,21 +41,25 @@ public class TaskController {
         return homeLinkRedirect;
     }
 
-
-    //---------------------------READ---------------------------
+    // ---------------------------READ---------------------------
     @GetMapping("/all")
-    public List<TaskEntity> getAll() {return taskService.getAll();}
+    public List<TaskEntity> getAll() {
+        return taskService.getAll();
+    }
 
     @GetMapping("/id/{id}")
-    public TaskEntity getById(@PathVariable long id) {return taskService.getById(id);}
+    public TaskEntity getById(@PathVariable Long id) {
+        return taskService.getById(id);
+    }
 
     @GetMapping("/emergency_id/{id}")
-    public List<TaskEntity> getByemergency_id(@PathVariable long id) {return taskService.getByEmergencyId(id);}
+    public List<TaskEntity> getByemergency_id(@PathVariable Long id) {
+        return taskService.getByEmergencyId(id);
+    }
 
-
-    //--------------------------DELETE--------------------------
+    // --------------------------DELETE--------------------------
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable long id) {
+    public String delete(@PathVariable Long id) {
         taskService.delete(id);
         logger.info("Task deleted: ");
         logger.info(String.valueOf(id));

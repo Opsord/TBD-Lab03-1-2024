@@ -19,7 +19,7 @@ public class UserInstitutionService {
         this.userInstitutionRepository = userInstitutionRepository;
     }
 
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
     public void create(UserInstitutionEntity userInstitution) {
         userInstitutionRepository.create(
                 userInstitution.getUser().getRut(),
@@ -27,8 +27,7 @@ public class UserInstitutionService {
         logger.info("UserInstitution created: " + userInstitution);
     }
 
-
-    //--------------------------UPDATE--------------------------
+    // --------------------------UPDATE--------------------------
     public void update(UserInstitutionEntity userInstitution) {
         userInstitutionRepository.update(
                 userInstitution.getUser_institution_id(),
@@ -37,13 +36,12 @@ public class UserInstitutionService {
         logger.info("UserInstitution updated: " + userInstitution);
     }
 
-
-    //---------------------------READ---------------------------
+    // ---------------------------READ---------------------------
     public List<UserInstitutionEntity> getAll() {
         return userInstitutionRepository.getAll();
     }
 
-    public UserInstitutionEntity getById(long id) {
+    public UserInstitutionEntity getById(Long id) {
         return userInstitutionRepository.getById(id);
     }
 
@@ -51,17 +49,14 @@ public class UserInstitutionService {
         return userInstitutionRepository.getByRut(rut);
     }
 
-    public List<UserInstitutionEntity> getByInstitutionId(long institution_id) {
+    public List<UserInstitutionEntity> getByInstitutionId(Long institution_id) {
         return userInstitutionRepository.getByInstitutionId(institution_id);
     }
 
-
-    //--------------------------DELETE--------------------------
-    public void delete(long id) {
+    // --------------------------DELETE--------------------------
+    public void delete(Long id) {
         userInstitutionRepository.delete(id);
         logger.info("UserInstitution deleted: " + id);
     }
-
-
 
 }

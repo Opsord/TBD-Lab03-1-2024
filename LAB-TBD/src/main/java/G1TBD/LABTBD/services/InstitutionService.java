@@ -19,28 +19,29 @@ public class InstitutionService {
         this.institutionRepository = institutionRepository;
     }
 
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
     public void create(InstitutionEntity institution) {
         institutionRepository.create(institution.getName());
         logger.info("Institution created successfully");
     }
 
-
-    //--------------------------UPDATE--------------------------
+    // --------------------------UPDATE--------------------------
     public void update(InstitutionEntity institution) {
         institutionRepository.update(institution.getInstitution_id(), institution.getName());
         logger.info("Institution updated successfully");
     }
 
+    // ---------------------------READ---------------------------
+    public List<InstitutionEntity> getAll() {
+        return institutionRepository.getAll();
+    }
 
-    //---------------------------READ---------------------------
-    public List<InstitutionEntity> getAll() {return institutionRepository.getAll();}
+    public InstitutionEntity getById(Long id) {
+        return institutionRepository.getById(id);
+    }
 
-    public InstitutionEntity getById(long id) {return institutionRepository.getById(id);}
-
-
-    //--------------------------DELETE--------------------------
-    public void delete(long id) {
+    // --------------------------DELETE--------------------------
+    public void delete(Long id) {
         institutionRepository.delete(id);
         logger.info("Institution deleted successfully");
     }

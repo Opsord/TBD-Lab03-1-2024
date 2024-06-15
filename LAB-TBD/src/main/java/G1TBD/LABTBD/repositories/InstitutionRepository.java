@@ -13,31 +13,34 @@ import java.util.List;
 @Repository
 public interface InstitutionRepository extends CrudRepository<InstitutionEntity, Long> {
 
-    //--------------------------CREATE--------------------------
-    @Query(value = "INSERT INTO institutions (name) VALUES (:name)", nativeQuery = true)
+    // --------------------------CREATE--------------------------
+
+    @Query(value = "INSERT INTO institution (name) VALUES (:name)", nativeQuery = true)
     @Modifying
     @Transactional
     void create(@Param("name") String name);
 
+    // ---------------------------READ---------------------------
 
-    //--------------------------UPDATE--------------------------
-    @Query(value = "UPDATE institutions SET name = :name WHERE institution_id = :institution_id", nativeQuery = true)
-    @Modifying
-    @Transactional
-    void update(@Param("institution_id") long id, @Param("name") String name);
-
-
-    //---------------------------READ---------------------------
-    @Query(value = "SELECT * FROM institutions", nativeQuery = true)
+    @Query(value = "SELECT * FROM institution", nativeQuery = true)
     List<InstitutionEntity> getAll();
 
-    @Query(value = "SELECT * FROM institutions WHERE institution_id = :institution_id", nativeQuery = true)
-    InstitutionEntity getById(@Param("institution_id") long institution_id);
+    @Query(value = "SELECT * FROM institution WHERE institution_id = :institution_id", nativeQuery = true)
+    InstitutionEntity getById(@Param("institution_id") Long institution_id);
 
+    // --------------------------UPDATE--------------------------
 
-    //--------------------------DELETE--------------------------
-    @Query(value = "DELETE FROM institutions WHERE institution_id = :institution_id", nativeQuery = true)
+    @Query(value = "UPDATE institution SET name = :name WHERE institution_id = :institution_id", nativeQuery = true)
     @Modifying
     @Transactional
-    void delete(@Param("institution_id") long institution_id);
+    void update(@Param("institution_id") Long institution_id,
+            @Param("name") String name);
+
+    // --------------------------DELETE--------------------------
+
+    @Query(value = "DELETE FROM institution WHERE institution_id = :institution_id", nativeQuery = true)
+    @Modifying
+    @Transactional
+    void delete(@Param("institution_id") Long institution_id);
+
 }
