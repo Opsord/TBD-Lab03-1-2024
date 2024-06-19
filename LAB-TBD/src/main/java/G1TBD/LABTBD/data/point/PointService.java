@@ -17,12 +17,16 @@ public class PointService {
         this.pointRepository = pointRepository;
     }
 
+    // --------------------------CREATE--------------------------
+
     public void create(PointEntity point) {
         pointRepository.create(point.getLatitude(), point.getLongitude());
         logger.info("Point created: " + point.getPoint());
     }
 
-    public Long findByLatitudeAndLongitude(double latitude, double longitude) {
+    // ---------------------------READ---------------------------
+
+    public Long findIdByLatitudeAndLongitude(double latitude, double longitude) {
         return pointRepository.findIdByLatitudeAndLongitude(latitude, longitude);
     }
 
@@ -34,19 +38,25 @@ public class PointService {
         return pointRepository.getById(id);
     }
 
+    public List<PointEntity> getNearbyPoints(Long point_id, int radius, int limit) {
+        PointEntity point = pointRepository.getById(point_id);
+        return pointRepository.findXNearbyPoints(point.getLatitude(), point.getLongitude(), radius, limit);
+    }
+
+    // --------------------------UPDATE--------------------------
+
     public void update(PointEntity point) {
         pointRepository.update(point.getPoint_id(), point.getLatitude(), point.getLongitude());
         logger.info("Point updated: " + point.getPoint());
     }
+
+    // --------------------------DELETE--------------------------
 
     public void delete(Long id) {
         pointRepository.delete(id);
         logger.info("Point deleted: " + id);
     }
 
-    public List<PointEntity> getNearbyPoints(Long point_id, int radius, int limit) {
-        PointEntity point = pointRepository.getById(point_id);
-        return pointRepository.findXNearbyPoints(point.getLatitude(), point.getLongitude(), radius, limit);
-    }
+
 
 }

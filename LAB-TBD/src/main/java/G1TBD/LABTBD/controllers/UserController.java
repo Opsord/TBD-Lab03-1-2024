@@ -29,57 +29,24 @@ public class UserController {
 
     String homeLinkRedirect = "redirect:/api/users";
 
-    //--------------------------CREATE--------------------------
+    // --------------------------CREATE--------------------------
+
     @PostMapping("/create")
     public String create(@RequestBody UserEntity user) {
-        logger.info("Received user: " + user.toString());
-
-        // Check if the location is provided
-        if (user.getLocation() == null) {
-            throw new IllegalArgumentException("Location cannot be null");
-        }
-
-        PointEntity location = user.getLocation();
-        logger.info("Location received: " + location);
-
-        PointEntity newPoint = new PointEntity();
-        newPoint.setLatitude(location.getLatitude());
-        newPoint.setLongitude(location.getLongitude());
-        logger.info("Creating point: " + newPoint.toString());
-        pointService.create(newPoint);
-
-        Long point_id = pointService.findByLatitudeAndLongitude(location.getLatitude(), location.getLongitude());
-        PointEntity point = pointService.getById(point_id);
-        logger.info("Retrieved point: " + point);
-        user.setLocation(point);
-        logger.info("Creating user: " + user.toString());
         userService.create(user);
+        logger.info("User created: " + user.toString());
         return homeLinkRedirect;
     }
 
-
-    //--------------------------UPDATE--------------------------
-    @PutMapping("/update")
-    public String update(@RequestBody UserEntity user) {
-        userService.update(user);
-        logger.info("User updated: " + user.toString());
+    @PostMapping("/createWithLocation")
+    public String createWithLocation(@RequestBody UserEntity user, @RequestBody PointEntity location) {
+        userService.createWithLocation(user, location);
+        logger.info("User created: " + user.toString());
         return homeLinkRedirect;
     }
 
-    @PutMapping("/updateLocation/{rut}")
-    public void updateLocationByRut(@PathVariable String rut, @RequestBody PointEntity location) {
-        userService.updateLocationByRut(location, rut);
-    }
+    // ---------------------------READ---------------------------
 
-    //Actualizar punto
-    @PutMapping("/point/update")
-    public void updatePoint(@RequestBody PointEntity point) {
-        pointService.update(point);
-        logger.info("Point updated: " + point.getPoint());
-    }
-
-
-    //---------------------------READ---------------------------
     @GetMapping("/all")
     public List<UserEntity> getAll() {
         //System.out.println("ver que sale");
@@ -87,7 +54,9 @@ public class UserController {
     }
 
     @GetMapping("/rut/{rut}")
-    public Optional<UserEntity> getByRut(@PathVariable String rut) {return userService.getByRut(rut);}
+    public Optional<UserEntity> getByRut(@PathVariable String rut) {
+        return Optional.ofNullable(userService.getByRut(rut));
+    }
 
     @GetMapping("/email/{email}")
     public Optional<UserEntity> getByEmail(@PathVariable String email) {return userService.getByEmail(email);}
@@ -106,8 +75,29 @@ public class UserController {
     @GetMapping("/coordinators")
     public List<UserEntity> getCoordinators() {return userService.getCoordinators();}
 
+    // --------------------------UPDATE--------------------------
 
-    //--------------------------DELETE--------------------------
+    @PutMapping("/update")
+    public String update(@RequestBody UserEntity user) {
+        userService.update(user);
+        logger.info("User updated: " + user.toString());
+        return homeLinkRedirect;
+    }
+
+    @PutMapping("/updateLocation/{rut}")
+    public void updateLocationByRut(@PathVariable String rut, @RequestBody PointEntity location) {
+        userService.updateUserLocation(rut, location);
+    }
+
+    //Actualizar punto
+    @PutMapping("/point/update")
+    public void updatePoint(@RequestBody PointEntity point) {
+        pointService.update(point);
+        logger.info("Point updated: " + point.getPoint());
+    }
+
+    //--------------------------DELETE--------------------------}
+
     @DeleteMapping("/delete/{rut}")
     public String delete(@PathVariable String rut) {
         userService.delete(rut);

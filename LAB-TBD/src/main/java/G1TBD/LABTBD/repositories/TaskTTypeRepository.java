@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface TaskTTypeRepository extends CrudRepository<TaskTTypeEntity, Lon
                         "VALUES (:task_id, :ttype_id)", nativeQuery = true)
         @Transactional
         @Modifying
-        void create(Long task_id, Long ttype_id);
+        void create(@Param("task_id") Long task_id, @Param("ttype_id") Long ttype_id);
 
         // ---------------------------READ---------------------------
 
@@ -27,7 +28,7 @@ public interface TaskTTypeRepository extends CrudRepository<TaskTTypeEntity, Lon
 
         @Query(value = "SELECT * FROM task_ttype " +
                         "WHERE task_ttype_id = :task_ttype_id", nativeQuery = true)
-        TaskTTypeEntity getById(Long task_ttype_id);
+        TaskTTypeEntity getById(@Param("task_ttype_id") Long task_ttype_id);
 
         // --------------------------UPDATE--------------------------
 
@@ -35,7 +36,9 @@ public interface TaskTTypeRepository extends CrudRepository<TaskTTypeEntity, Lon
                         "WHERE task_ttype_id = :task_ttype_id", nativeQuery = true)
         @Transactional
         @Modifying
-        void update(Long task_ttype_id, Long task_id, Long ttype_id);
+        void update(@Param("task_ttype_id") Long task_ttype_id,
+                        @Param("task_id") Long task_id,
+                        @Param("ttype_id") Long ttype_id);
 
         // --------------------------DELETE--------------------------
 
@@ -43,6 +46,6 @@ public interface TaskTTypeRepository extends CrudRepository<TaskTTypeEntity, Lon
                         "WHERE task_ttype_id = :task_ttype_id", nativeQuery = true)
         @Transactional
         @Modifying
-        void delete(Long task_ttype_id);
+        void delete(@Param("task_ttype_id") Long task_ttype_id);
 
 }

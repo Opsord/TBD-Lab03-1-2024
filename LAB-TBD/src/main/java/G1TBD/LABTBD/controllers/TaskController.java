@@ -54,7 +54,7 @@ public class TaskController {
 
     @GetMapping("/emergency_id/{id}")
     public List<TaskEntity> getByemergency_id(@PathVariable Long id) {
-        return taskService.getByEmergencyId(id);
+        return taskService.getTasksByEmergencyId(id);
     }
 
     // --------------------------DELETE--------------------------

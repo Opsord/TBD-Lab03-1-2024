@@ -31,6 +31,10 @@ public interface EmergencyPointRepository extends CrudRepository<EmergencyPointE
                         "WHERE emergency_point_id = :emergency_point_id", nativeQuery = true)
         EmergencyPointEntity getById(@Param("emergency_point_id") Long emergency_point_id);
 
+        @Query(value = "SELECT * FROM emergency_point " +
+                        "WHERE emergency_id = :emergency_id", nativeQuery = true)
+        EmergencyPointEntity getByEmergencyId(@Param("emergency_id") Long emergency_id);
+
         // --------------------------UPDATE--------------------------
 
         @Query(value = "UPDATE emergency_point SET emergency_id = :emergency_id, point_id = :point_id " +

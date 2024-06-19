@@ -19,7 +19,7 @@ public interface EmergencyUserRepository extends CrudRepository<EmergencyUserEnt
                         "VALUES (:rut, :emergency_id)", nativeQuery = true)
         @Modifying
         @Transactional
-        void create(@Param("rut") Long rut,
+        void create(@Param("rut") String rut,
                         @Param("emergency_id") Long emergency_id);
 
         // ---------------------------READ---------------------------
@@ -31,6 +31,14 @@ public interface EmergencyUserRepository extends CrudRepository<EmergencyUserEnt
                         "WHERE emergency_person_id = :emergency_person_id", nativeQuery = true)
         EmergencyUserEntity getById(@Param("emergency_person_id") Long emergency_person_id);
 
+        @Query(value = "SELECT * FROM emergency_person " +
+                        "WHERE emergency_id = :emergency_id", nativeQuery = true)
+        EmergencyUserEntity getByEmergencyId(@Param("emergency_id") Long emergency_id);
+
+        @Query(value = "SELECT * FROM emergency_person " +
+                        "WHERE rut = :rut", nativeQuery = true)
+        EmergencyUserEntity getByRut(@Param("rut") String rut);
+
         // --------------------------UPDATE--------------------------
 
         @Query(value = "UPDATE emergency_person SET rut = :rut, emergency_id = :emergency_id " +
@@ -38,7 +46,7 @@ public interface EmergencyUserRepository extends CrudRepository<EmergencyUserEnt
         @Modifying
         @Transactional
         void update(@Param("emergency_person_id") Long emergency_person_id,
-                        @Param("rut") Long rut,
+                        @Param("rut") String rut,
                         @Param("emergency_id") Long emergency_id);
 
         // --------------------------DELETE--------------------------

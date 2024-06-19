@@ -29,6 +29,12 @@ public interface TaskEmergencyRepository extends CrudRepository<TaskEmergencyEnt
     @Query(value = "SELECT * FROM task_emergency WHERE task_emergency_id = :task_emergency_id", nativeQuery = true)
     TaskEmergencyEntity getById(@Param("task_emergency_id") Long task_emergency_id);
 
+    @Query(value = "SELECT * FROM task_emergency WHERE task_id = :task_id", nativeQuery = true)
+    List<TaskEmergencyEntity> getEmergenciesByTaskId(@Param("task_id") Long task_id);
+
+    @Query(value = "SELECT * FROM task_emergency WHERE emergency_id = :emergency_id", nativeQuery = true)
+    List<TaskEmergencyEntity> getTasksByEmergencyId(@Param("emergency_id") Long emergency_id);
+
     // --------------------------UPDATE--------------------------
 
     @Query(value = "UPDATE task_emergency SET task_id = :task_id, emergency_id = :emergency_id " +

@@ -14,35 +14,35 @@ import java.util.List;
 public interface UserInstitutionRepository extends CrudRepository<UserInstitutionEntity, Long> {
 
         // --------------------------CREATE--------------------------
-        @Query(value = "INSERT INTO user_institution (rut, institution) " +
-                        "VALUES (:rut, :institution)", nativeQuery = true)
+        @Query(value = "INSERT INTO person_institution (rut, institution_id) " +
+                        "VALUES (:rut, :institution_id)", nativeQuery = true)
         @Modifying
         @Transactional
-        void create(@Param("rut") String rut, @Param("institution") Long institution);
+        void create(@Param("rut") String rut, @Param("institution_id") Long institution_id);
 
         // --------------------------UPDATE--------------------------
-        @Query(value = "UPDATE user_institution SET rut = :rut, institution = :institution " +
-                        "WHERE user_institution_id = :user_institution_id", nativeQuery = true)
+        @Query(value = "UPDATE person_institution SET rut = :rut, institution_id = :institution_id " +
+                        "WHERE person_institution_id = :user_institution_id", nativeQuery = true)
         @Modifying
         @Transactional
         void update(@Param("user_institution_id") Long user_institution_id, @Param("rut") String rut,
-                        @Param("institution") Long institution);
+                        @Param("institution_id") Long institution_id);
 
         // ---------------------------READ---------------------------
-        @Query(value = "SELECT * FROM user_institution", nativeQuery = true)
+        @Query(value = "SELECT * FROM person_institution", nativeQuery = true)
         List<UserInstitutionEntity> getAll();
 
-        @Query(value = "SELECT * FROM user_institution WHERE user_institution_id = :user_institution_id", nativeQuery = true)
+        @Query(value = "SELECT * FROM person_institution WHERE person_institution_id = :user_institution_id", nativeQuery = true)
         UserInstitutionEntity getById(@Param("user_institution_id") Long user_institution_id);
 
-        @Query(value = "SELECT * FROM user_institution WHERE rut = :rut", nativeQuery = true)
+        @Query(value = "SELECT * FROM person_institution WHERE rut = :rut", nativeQuery = true)
         UserInstitutionEntity getByRut(@Param("rut") String rut);
 
-        @Query(value = "SELECT * FROM user_institution WHERE institution = :institution", nativeQuery = true)
-        List<UserInstitutionEntity> getByInstitutionId(@Param("institution") Long institution);
+        @Query(value = "SELECT * FROM person_institution WHERE institution_id = :institution_id", nativeQuery = true)
+        List<UserInstitutionEntity> getByInstitutionId(@Param("institution_id") Long institution_id);
 
         // --------------------------DELETE--------------------------
-        @Query(value = "DELETE FROM user_institution WHERE user_institution_id = :user_institution_id", nativeQuery = true)
+        @Query(value = "DELETE FROM person_institution WHERE person_institution_id = :user_institution_id", nativeQuery = true)
         @Modifying
         @Transactional
         void delete(@Param("user_institution_id") Long user_institution_id);

@@ -16,65 +16,40 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PointService pointService;
+    private final UserPointService userPointService;
     private static final Logger logger = Logger.getLogger(UserService.class.getName());
 
     @Autowired
-    public UserService(UserRepository userRepository, PointService pointService) {
+    public UserService(UserRepository userRepository, PointService pointService, UserPointService userPointService) {
         this.userRepository = userRepository;
         this.pointService = pointService;
+        this.userPointService = userPointService;
     }
 
     // --------------------------CREATE--------------------------
+
     public void create(UserEntity user) {
-        logger.info("Received user: " + user.toString());
-
-        if (user.getLocation() == null) {
-            throw new IllegalArgumentException("Location cannot be null");
-        }
-
-        PointEntity location = user.getLocation();
-        logger.info("Location received: " + location);
-
-        PointEntity newPoint = new PointEntity();
-        newPoint.setLatitude(location.getLatitude());
-        newPoint.setLongitude(location.getLongitude());
-
-        logger.info("Creating point: " + newPoint.toString());
-        pointService.create(newPoint);
-
-        Long pointId = pointService.findByLatitudeAndLongitude(location.getLatitude(), location.getLongitude());
-        PointEntity pointEntity = pointService.getById(pointId);
-        logger.info("Retrieved point: " + pointEntity);
-        user.setLocation(pointEntity);
 
         userRepository.create(
                 user.getRut(), user.getEmail(), user.getName(),
                 user.getLast_name(), user.getBirth_date(), user.getSex(),
-                user.getPassword(), user.getRole(), user.isAvailability(),
-                user.getLocation().getPoint_id());
+                user.getPassword(), user.getRole(), user.isAvailability());
         logger.info("Usuario creado: " + user.getRut());
     }
 
-    // --------------------------UPDATE--------------------------
-    public void update(UserEntity user) {
-        userRepository.update(
-                user.getRut(), user.getEmail(), user.getName(),
-                user.getLast_name(), user.getBirth_date(), user.getSex(),
-                user.getPassword(), user.getRole(), user.isAvailability());
-        logger.info("Usuario actualizado: " + user.getRut());
-    }
-
-    public void updateLocationByRut(PointEntity location, String rut) {
-        userRepository.updateLocationByRut(location, rut);
+    public void createWithLocation(UserEntity user, PointEntity location) {
+        create(user);
+        updateUserLocation(user.getRut(), location);
     }
 
     // ---------------------------READ---------------------------
+
     public List<UserEntity> getAll() {
         return userRepository.getAll();
     }
 
-    public Optional<UserEntity> getByRut(String rut) {
-        return userRepository.getByRut(rut);
+    public UserEntity getByRut(String rut) {
+        return userRepository.getByRut(rut).orElse(null);
     }
 
     public Optional<UserEntity> getByEmail(String email) {
@@ -98,7 +73,7 @@ public class UserService {
     }
 
     public List<UserEntity> getXNearbyVolunteers(double latitude, double longitude,
-            double radius, int quantity, String role, boolean availability) {
+                                                 double radius, int quantity, String role, boolean availability) {
         return userRepository.getXNearbyUsersFromPoint(latitude, longitude, radius, quantity, role, availability);
     }
 
@@ -106,7 +81,31 @@ public class UserService {
         return userRepository.getByEmergencyId(id);
     }
 
+    // --------------------------UPDATE--------------------------
+
+    public void update(UserEntity user) {
+        userRepository.update(
+                user.getRut(), user.getEmail(), user.getName(),
+                user.getLast_name(), user.getBirth_date(), user.getSex(),
+                user.getPassword(), user.getRole(), user.isAvailability());
+        logger.info("Usuario actualizado: " + user.getRut());
+    }
+
+    public void updateUserLocation(String rut, PointEntity location) {
+        Long pointId = pointService.findIdByLatitudeAndLongitude(location.getLatitude(), location.getLongitude());
+        if (pointId == null) {
+            PointEntity newPoint = new PointEntity();
+            newPoint.setLatitude(location.getLatitude());
+            newPoint.setLongitude(location.getLongitude());
+            pointService.create(newPoint);
+            pointId = pointService.findIdByLatitudeAndLongitude(location.getLatitude(), location.getLongitude());
+        }
+        userPointService.create(rut, pointId);
+        logger.info("Ubicación actualizada para usuario: " + rut);
+    }
+
     // --------------------------DELETE--------------------------
+
     public void delete(String rut) {
         userRepository.delete(rut);
         logger.info("Usuario eliminado: " + rut);

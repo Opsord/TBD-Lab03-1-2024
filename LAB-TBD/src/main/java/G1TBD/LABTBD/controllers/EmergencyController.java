@@ -37,59 +37,47 @@ public class EmergencyController {
     String homeLinkRedirect = "redirect:/emergencies";
 
     // --------------------------CREATE--------------------------
+
     @PostMapping("/create")
     public ResponseEntity<EmergencyEntity> create(@RequestBody Map<String, Object> payload) {
         // Extract and convert location
+        @SuppressWarnings("unchecked")
         Map<String, Double> locationMap = (Map<String, Double>) payload.get("location");
+        // Create location request
         LocationRequest locationRequest = new LocationRequest(locationMap.get("latitude"),
                 locationMap.get("longitude"));
+        // Create point
         PointEntity newPoint = new PointEntity();
         newPoint.setLatitude(locationRequest.getLatitude());
         newPoint.setLongitude(locationRequest.getLongitude());
         pointService.create(newPoint);
-
-        Long pointId = pointService.findByLatitudeAndLongitude(locationRequest.getLatitude(),
+        // Retrieve point ID
+        Long pointId = pointService.findIdByLatitudeAndLongitude(locationRequest.getLatitude(),
                 locationRequest.getLongitude());
         PointEntity point = pointService.getById(pointId);
         logger.info("Retrieved point: " + point);
-
-        // Extract and set coordinator
+        // Extract coordinator
         String coordinatorRut = (String) payload.get("coordinator");
-        UserEntity coordinator = userService.getByRut(coordinatorRut)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid coordinator RUT"));
-
+        UserEntity coordinator = userService.getByRut(coordinatorRut);
         // Create EmergencyEntity
         EmergencyEntity emergency = new EmergencyEntity();
         emergency.setTitle((String) payload.get("title"));
         emergency.setDescription((String) payload.get("description"));
         emergency.setStatus((Boolean) payload.get("status"));
-        emergency.setLocation(point);
-        emergency.setCoordinator(coordinator);
-
         emergencyService.create(emergency);
-        logger.info("Emergency created: " + emergency);
+        // Retrieve emergency ID
         EmergencyEntity emergencyCreated = emergencyService.getLatestId(emergency);
+        // Save emergency-point relationship
+        emergencyService.updateEmergencyLocation(emergencyCreated.getEmergency_id(), point.getPoint_id());
+        // Save emergency-user relationship
+        emergencyService.updateEmergencyCoordinator(emergencyCreated.getEmergency_id(), coordinator.getRut());
+        logger.info("Emergency created: " + emergencyCreated);
+        // Return response
         return new ResponseEntity<>(emergencyCreated, HttpStatus.CREATED);
     }
 
-    // --------------------------UPDATE--------------------------
-    @PutMapping("/update")
-    public String update(@RequestBody EmergencyEntity emergency) {
-        emergencyService.update(emergency);
-        logger.info("Emergency updated: ");
-        logger.info(emergency.toString());
-        return homeLinkRedirect;
-    }
-
-    // Actualizar punto
-    @PutMapping("/point/update")
-    public void updatePoint(@RequestBody PointEntity point) {
-        System.out.println(point.getPoint());
-        pointService.update(point);
-        logger.info("Point updated: " + point.getPoint());
-    }
-
     // ---------------------------READ---------------------------
+
     @GetMapping("/all")
     public List<EmergencyEntity> getAll() {
         return emergencyService.getAll();
@@ -112,8 +100,8 @@ public class EmergencyController {
 
     @GetMapping("/nearby/{emergency_id}/{radius}/{quantity}")
     public List<UserEntity> getXNearbyVolunteers(@PathVariable Long emergency_id,
-            @PathVariable double radius,
-            @PathVariable int quantity) {
+                                                 @PathVariable double radius,
+                                                 @PathVariable int quantity) {
         logger.info("Emergency ID: " + emergency_id);
         logger.info("Radius: " + radius);
         logger.info("Quantity: " + quantity);
@@ -123,6 +111,24 @@ public class EmergencyController {
     @GetMapping("/closedEmergencyData")
     public List<SingleEmergencyData> getAllClosedEmergencyData() {
         return emergencyService.getAllClosedEmergencyData();
+    }
+
+    // --------------------------UPDATE--------------------------
+
+    @PutMapping("/update")
+    public String update(@RequestBody EmergencyEntity emergency) {
+        emergencyService.update(emergency);
+        logger.info("Emergency updated: ");
+        logger.info(emergency.toString());
+        return homeLinkRedirect;
+    }
+
+    // Actualizar punto
+    @PutMapping("/point/update")
+    public void updatePoint(@RequestBody PointEntity point) {
+        System.out.println(point.getPoint());
+        pointService.update(point);
+        logger.info("Point updated: " + point.getPoint());
     }
 
     // --------------------------DELETE--------------------------

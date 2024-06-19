@@ -20,23 +20,16 @@ public class UserAttributeService {
     }
 
     // --------------------------CREATE--------------------------
+
     public void create(UserAttributeEntity userAttribute) {
         userAttributeRepository.create(
-                userAttribute.getUser().getRut(),
-                userAttribute.getAttribute().getAttribute_id());
+                userAttribute.getRut(),
+                userAttribute.getAttribute_id());
         logger.info("UserAttribute created");
     }
 
-    // --------------------------UPDATE--------------------------
-    public void update(UserAttributeEntity userAttribute) {
-        userAttributeRepository.update(
-                userAttribute.getUser_attribute_id(),
-                userAttribute.getUser().getRut(),
-                userAttribute.getAttribute().getAttribute_id());
-        logger.info("UserAttribute updated");
-    }
-
     // ---------------------------READ---------------------------
+
     public List<UserAttributeEntity> getAll() {
         return userAttributeRepository.getAll();
     }
@@ -51,6 +44,16 @@ public class UserAttributeService {
 
     public List<UserAttributeEntity> getByAttributeId(Long attribute_id) {
         return userAttributeRepository.getByAttributeId(attribute_id);
+    }
+
+    // --------------------------UPDATE--------------------------
+
+    public void update(UserAttributeEntity userAttribute) {
+        userAttributeRepository.update(
+                userAttribute.getUser_attribute_id(),
+                userAttribute.getRut(),
+                userAttribute.getAttribute_id());
+        logger.info("UserAttribute updated");
     }
 
     // --------------------------DELETE--------------------------

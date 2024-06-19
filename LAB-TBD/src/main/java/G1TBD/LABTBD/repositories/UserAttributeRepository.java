@@ -44,7 +44,7 @@ public interface UserAttributeRepository extends CrudRepository<UserAttributeEnt
         @Transactional
         void update(@Param("person_attribute_id") Long person_attribute_id,
                         @Param("rut") String rut,
-                        @Param("attribute") Long idAttribute);
+                        @Param("attribute") Long attribute_id);
 
         // --------------------------DELETE--------------------------
 

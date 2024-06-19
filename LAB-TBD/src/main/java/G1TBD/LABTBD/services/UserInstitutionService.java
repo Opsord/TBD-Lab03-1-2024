@@ -20,23 +20,16 @@ public class UserInstitutionService {
     }
 
     // --------------------------CREATE--------------------------
+
     public void create(UserInstitutionEntity userInstitution) {
         userInstitutionRepository.create(
-                userInstitution.getUser().getRut(),
-                userInstitution.getInstitution().getInstitution_id());
+                userInstitution.getRut(),
+                userInstitution.getInstitution_id());
         logger.info("UserInstitution created: " + userInstitution);
     }
 
-    // --------------------------UPDATE--------------------------
-    public void update(UserInstitutionEntity userInstitution) {
-        userInstitutionRepository.update(
-                userInstitution.getUser_institution_id(),
-                userInstitution.getUser().getRut(),
-                userInstitution.getInstitution().getInstitution_id());
-        logger.info("UserInstitution updated: " + userInstitution);
-    }
-
     // ---------------------------READ---------------------------
+
     public List<UserInstitutionEntity> getAll() {
         return userInstitutionRepository.getAll();
     }
@@ -53,7 +46,18 @@ public class UserInstitutionService {
         return userInstitutionRepository.getByInstitutionId(institution_id);
     }
 
+    // --------------------------UPDATE--------------------------
+
+    public void update(UserInstitutionEntity userInstitution) {
+        userInstitutionRepository.update(
+                userInstitution.getUser_institution_id(),
+                userInstitution.getRut(),
+                userInstitution.getInstitution_id());
+        logger.info("UserInstitution updated: " + userInstitution);
+    }
+
     // --------------------------DELETE--------------------------
+
     public void delete(Long id) {
         userInstitutionRepository.delete(id);
         logger.info("UserInstitution deleted: " + id);

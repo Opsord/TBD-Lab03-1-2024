@@ -15,10 +15,10 @@ public interface UserTaskRepository extends CrudRepository<UserTaskEntity, Long>
 
     //--------------------------CREATE--------------------------
 
-    @Query(value = "INSERT INTO person_task (task_id, rut) VALUES (:task, :rut)", nativeQuery = true)
+    @Query(value = "INSERT INTO person_task (task_id, rut) VALUES (:task_id, :rut)", nativeQuery = true)
     @Modifying
     @Transactional
-    void create(@Param("task_id") Long task_id, @Param("rut") String volunteer);
+    void create(@Param("task_id") Long task_id, @Param("rut") String rut);
 
     //---------------------------READ---------------------------
 
@@ -34,7 +34,7 @@ public interface UserTaskRepository extends CrudRepository<UserTaskEntity, Long>
 
     // Get all tasks from a volunteer
     @Query(value = "SELECT * FROM person_task WHERE rut = :rut", nativeQuery = true)
-    List<UserTaskEntity> getByVolunteer(@Param("rut") String rut);
+    List<UserTaskEntity> getTaskByVolunteer(@Param("rut") String rut);
 
     //--------------------------UPDATE--------------------------
 
