@@ -6,12 +6,11 @@ import G1TBD.LABTBD.auth.entities.RegisterRequest;
 import G1TBD.LABTBD.config.JwtService;
 import G1TBD.LABTBD.data.point.PointEntity;
 import G1TBD.LABTBD.data.point.PointService;
-import G1TBD.LABTBD.entities.UserEntity;
-import G1TBD.LABTBD.services.UserPointService;
-import G1TBD.LABTBD.services.UserService;
+import G1TBD.LABTBD.app.user.entities.UserEntity;
+import G1TBD.LABTBD.app.user.services.UserPointService;
+import G1TBD.LABTBD.app.user.services.UserService;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
