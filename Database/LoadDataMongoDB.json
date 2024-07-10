@@ -1,0 +1,137 @@
+[
+    {
+        "rut": "123271472-1",
+        "email": "correo.ejemplo@gmail.com",
+        "name": "Elsa",
+        "last_name": "Capuntas",
+        "birth_date": "1997-06-22",
+        "sex": "F",
+        "password": "$2a$10$JWCTjsZvnbhrh6Y99lSJuubMITj1ykX.0Rn6oysAApoteY20fbqC.",
+        "role": "VOLUNTEER",
+        "availability": true,
+        "skills": [
+            {"code": "HH7", "description": "Capacidad para la búsqueda y localización de personas perdidas"},
+            {"code": "HH3", "description": "Apoyo psicologico"}
+        ]
+    },
+    {
+        "rut": "176271472-1",
+        "email": "correo.ejemplo@gmail.com",
+        "name": "Elivs",
+        "last_name": "Tec",
+        "birth_date": "1997-12-22",
+        "sex": "M",
+        "password": "$2a$10$32.WMcUybLU1ykwDaGmJZ.dAR6pkafizvkbl0wSP/VZ7wEqPFUOGS",
+        "role": "VOLUNTEER",
+        "availability": true,
+        "skills": [
+            {"code": "HH3", "description": "Apoyo psicologico"},
+            {"code": "HH4", "description": "Manejo de herramientas de rescate"}
+        ]
+    },
+    {
+        "rut": "182473567-4",
+        "email": "correo.ejemplo@gmail.com",
+        "name": "Pedro",
+        "last_name": "Perez",
+        "birth_date": "1999-10-31",
+        "sex": "M",
+        "password": "$2a$10$YsmKIfYGUgTmknrsEbJOz.5acNKnWmVM2NDbhuC7mizwANcmMUoLC",
+        "role": "VOLUNTEER",
+        "availability": true,
+        "skills": [
+            {"code": "HH5", "description": "Conocimientos en primeros auxilios"},
+            {"code": "HH6", "description": "Manejo de equipos de comunicacion"}
+        ]
+    },
+    {
+        "rut": "948128124-1",
+        "email": "correo.ejemplo@gmail.com",
+        "name": "Aquiles",
+        "last_name": "Brinco",
+        "birth_date": "2000-11-26",
+        "sex": "F",
+        "password": "$2a$10$oh4r.6xrChGbToX2B3yS6OwkYdSbAdP7IPnuo2PMmzfhlq0UYQ5cG",
+        "role": "COORDINATOR",
+        "availability": true,
+        "skills": [
+            {"code": "HH7", "description": "Capacidad para la búsqueda y localización de personas perdidas"},
+            {"code": "HH1", "description": "Fuerza fisica"}
+        ]
+    },
+    {
+        "rut": "81723817246-1",
+        "email": "correo.ejemplo@gmail.com",
+        "name": "Zacaria",
+        "last_name": "Flores del Campo",
+        "birth_date": "2002-11-26",
+        "sex": "F",
+        "password": "$2a$10$n47WKpnIBCC7zoYVAnDviOaO5MUQiUifwqoaXThAO3/F8a.sIFiFy",
+        "role": "VOLUNTEER",
+        "availability": true,
+        "skills": [
+            {"code": "HH4", "description": "Manejo de herramientas de rescate"},
+            {"code": "HH1", "description": "Fuerza fisica"}
+        ]
+    },
+    {
+        "rut": "71264646674-4",
+        "email": "correo.ejemplo@gmail.com",
+        "name": "Aquiles",
+        "last_name": "Baeza",
+        "birth_date": "2001-11-13",
+        "sex": "M",
+        "password": "$2a$10$cVP6o0eDpTRhElUMTbJrKeR9AFAM3vtk.xogRrSn1BVHd0Wn/rf/C",
+        "role": "VOLUNTEER",
+        "availability": true,
+        "skills": [
+            {"code": "HH6", "description": "Manejo de equipos de comunicacion"},
+            {"code": "HH7", "description": "Capacidad para la búsqueda y localización de personas perdidas"}
+        ]
+    },
+    {
+        "rut": "5872873212-4",
+        "email": "correo.ejemplo@gmail.com",
+        "name": "Susana",
+        "last_name": "Oria",
+        "birth_date": "2000-11-26",
+        "sex": "F",
+        "password": "$2a$10$6n5aRdvxOl3HXAig7L6bBeYUVxkpjfBVRUCvmG55OjlCz3/0o/Ila",
+        "role": "VOLUNTEER",
+        "availability": true,
+        "skills": [
+            {"code": "HH1", "description": "Fuerza fisica"},
+            {"code": "HH2", "description": "Rescate en Terreno"}
+        ]
+    },
+    {
+        "rut": "876327463-4",
+        "email": "correo.ejemplo@gmail.com",
+        "name": "Diego",
+        "last_name": "SuperApellido",
+        "birth_date": "2000-12-22",
+        "sex": "M",
+        "password": "$2a$10$xYPusc0RS.yb56gjNZeLSOEKbisdFD4uoU8cuWemtFzk5iPHkyPha",
+        "role": "COORDINATOR",
+        "availability": false,
+        "skills": [
+            {"code": "HH1", "description": "Fuerza fisica"},
+            {"code": "HH2", "description": "Rescate en Terreno"}
+        ]
+    },
+    {
+        "rut": "7126476122-4",
+        "email": "correo.ejemplo@gmail.com",
+        "name": "Eustacio",
+        "last_name": "Perez",
+        "birth_date": "2001-11-13",
+        "sex": "M",
+        "password": "$2a$10$mIkd1hzL4rGbfyoyByaVDuUYNYBPPxZzPrwlGT7EqPui8ZWA7WjZW",
+        "role": "VOLUNTEER",
+        "availability": true,
+        "skills": [
+            {"code": "HH7", "description": "Capacidad para la búsqueda y localización de personas perdidas"},
+            {"code": "HH3", "description": "Apoyo psicologico"}
+        ]
+    }
+]
