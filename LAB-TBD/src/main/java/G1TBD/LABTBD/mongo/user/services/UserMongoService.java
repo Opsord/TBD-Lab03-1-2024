@@ -37,6 +37,38 @@ public class UserMongoService {
         }
     }
 
+/*
+    public double obtenerPromedioHabilidades() {
+        long totalSkills = 0;
+        long totalVoluntarios = 0;
+
+        for (UserMongo user : userMongoRepository.findAllUsers()) {
+            totalSkills += user.getSkills().size();
+            totalVoluntarios++;
+        }
+
+        return totalVoluntarios == 0 ? 0 : (double) totalSkills / totalVoluntarios;
+    }
+
+ */
+
+    public double obtenerPromedioHabilidades() {
+        long totalSkills = 0;
+        long totalUsers = 0;
+        List<UserMongo> allUsers = userMongoRepository.findAllUsers();
+
+        for (UserMongo user : allUsers) {
+            totalSkills += user.getSkills().size();
+            totalUsers++;
+        }
+
+        if (totalUsers== 0) {
+            return 0;
+        } else {
+            return (double) totalSkills / totalUsers;
+        }
+    }
+
 
     //--------------------------DELETE--------------------------
     public boolean deleteUser(UserMongo user) throws Exception {

@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/usersMongo")
-@CrossOrigin(origins = "http://localhost:8090/usersMongo")
+//@CrossOrigin(origins = "http://localhost:8090/usersMongo")
 public class UserMongoController {
     @Autowired
     private UserMongoService userMongoService;
@@ -64,6 +64,11 @@ public class UserMongoController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/promedio-habilidades")
+    public double obtenerPromedioHabilidades() {
+        return userMongoService.obtenerPromedioHabilidades();
     }
 
 

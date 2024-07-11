@@ -5,8 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,11 +26,11 @@ public class UserMongo {
     private String email;
     private String name;
     private String last_name;
-    //Pondré la fecha como string para probar cosas, después cambiarlo
-    //private Date birth_date;
-    private String birth_date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birth_date;
     private String sex;
     private String password;
     private String role;
     private boolean availability;
+    private List<skill> skills;
 }
