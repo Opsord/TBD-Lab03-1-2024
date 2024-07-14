@@ -35,6 +35,7 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom{
         newUser.setPassword(user.getPassword());
         newUser.setRole(user.getRole());
         newUser.setAvailability(user.isAvailability());
+        newUser.setSkills(user.getSkills());
 
         mongoTemplate.insert(newUser);
         return newUser;
@@ -55,6 +56,7 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom{
         userUpdated.setPassword(user.getPassword());
         userUpdated.setRole(user.getRole());
         userUpdated.setAvailability(user.isAvailability());
+        userUpdated.setSkills(user.getSkills());
 
 
         mongoTemplate.save(userUpdated);
