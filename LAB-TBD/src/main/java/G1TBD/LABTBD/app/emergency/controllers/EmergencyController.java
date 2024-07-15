@@ -8,6 +8,8 @@ import G1TBD.LABTBD.app.emergency.entities.EmergencyEntity;
 import G1TBD.LABTBD.app.user.entities.UserEntity;
 import G1TBD.LABTBD.app.emergency.services.EmergencyService;
 import G1TBD.LABTBD.app.user.services.UserService;
+import G1TBD.LABTBD.mongo.user.models.UserMongo;
+import G1TBD.LABTBD.mongo.user.services.UserMongoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,10 @@ public class EmergencyController {
     private final PointService pointService;
     private final EmergencyService emergencyService;
     private final UserService userService;
+
+    @Autowired
+    UserMongoService userMongoService;
+
     private static final Logger logger = Logger.getLogger(EmergencyController.class.getName());
 
     @Autowired
@@ -99,13 +105,13 @@ public class EmergencyController {
     }
 
     @GetMapping("/nearby/{emergency_id}/{radius}/{quantity}")
-    public List<String> getXNearbyVolunteers(@PathVariable Long emergency_id,
-                                                 @PathVariable double radius,
-                                                 @PathVariable int quantity) {
+    public List<UserMongo> getXNearbyVolunteers(@PathVariable Long emergency_id,
+                                                @PathVariable double radius,
+                                                @PathVariable int quantity) {
         logger.info("Emergency ID: " + emergency_id);
         logger.info("Radius: " + radius);
         logger.info("Quantity: " + quantity);
-        return emergencyService.getXNearbyVolunteers(emergency_id, radius, quantity);
+        return userMongoService.getXNearbyVolunteers(emergency_id, radius, quantity);
     }
 
     @GetMapping("/closedEmergencyData")

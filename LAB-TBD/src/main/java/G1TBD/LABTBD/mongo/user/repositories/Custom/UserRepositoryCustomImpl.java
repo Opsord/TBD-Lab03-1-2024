@@ -91,6 +91,19 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom{
         return mongoTemplate.findOne(query, UserMongo.class);
     }
 
+    @Override
+    public UserMongo findUserByRut(String rut) {
+        Query query = new Query(Criteria.where("rut").is(rut));
+        return mongoTemplate.findOne(query, UserMongo.class);
+    }
+
+    @Override
+    public List<UserMongo> findAllVolunteers() {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("role").is("VOLUNTEER"));
+        return mongoTemplate.find(query, UserMongo.class);
+    }
+
 
     //--------------------------DELETE--------------------------
 

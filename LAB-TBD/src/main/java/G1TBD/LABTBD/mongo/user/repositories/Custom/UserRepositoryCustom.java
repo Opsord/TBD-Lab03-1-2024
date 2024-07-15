@@ -14,7 +14,11 @@ public interface UserRepositoryCustom {
 
     //---------------------------READ---------------------------
     List<UserMongo> findAllUsers();
+
+    List<UserMongo> findAllVolunteers();
     UserMongo findUserById(String id);
+
+    UserMongo findUserByRut(String rut);
 
     //--------------------------DELETE--------------------------
     void deleteUser(UserMongo user);
