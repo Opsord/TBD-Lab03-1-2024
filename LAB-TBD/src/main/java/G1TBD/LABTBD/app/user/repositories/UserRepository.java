@@ -55,21 +55,7 @@ public interface UserRepository extends CrudRepository<UserEntity, String> {
         @Query(value = "SELECT * FROM person WHERE role = 'COORDINATOR'", nativeQuery = true)
         List<UserEntity> getCoordinators();
 
-        // Search n users near a point
-        @Query(value = "WITH person_w_location AS " +
-                        "(SELECT * FROM person JOIN person_point ON person.rut = person_point.rut) " +
-                        "SELECT u.* FROM person_w_location u " +
-                        "JOIN point p ON u.point_id = p.point_id " +
-                        "WHERE ST_DWithin(p.geom, ST_SetSRID(ST_MakePoint(:longitude, :latitude), 4326), :radius) " +
-                        "AND u.role = :role " +
-                        "AND u.availability = :availability " +
-                        "LIMIT :limit", nativeQuery = true)
-        List<UserEntity> getXNearbyUsersFromPoint(@Param("latitude") double latitude,
-                        @Param("longitude") double longitude,
-                        @Param("radius") double radius,
-                        @Param("limit") int limit,
-                        @Param("role") String role,
-                        @Param("availability") boolean availability);
+
 
         // SQL funcionalidad 48 laboratorio 1
         @Query(value = "SELECT u.* FROM person u " +

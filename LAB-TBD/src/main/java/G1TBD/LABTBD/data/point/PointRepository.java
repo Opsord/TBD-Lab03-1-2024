@@ -37,6 +37,20 @@ public interface PointRepository extends CrudRepository<PointEntity, Long> {
         List<PointEntity> findXNearbyPoints(@Param("latitude") double latitude, @Param("longitude") double longitude,
                                             @Param("radius") double radius, @Param("limit") int limit);
 
+
+        // Search n users near a point
+        @Query(value = "WITH person_w_location AS " +
+                "(SELECT * FROM person_point) " +
+                "SELECT u.rut FROM person_w_location u " +
+                "JOIN point p ON u.point_id = p.point_id " +
+                "WHERE ST_DWithin(p.geom, ST_SetSRID(ST_MakePoint(:longitude, :latitude), 4326), :radius) " +
+                "LIMIT :limit", nativeQuery = true)
+        List<String> getXNearbyUsersFromPoint(@Param("latitude") double latitude,
+                                         @Param("longitude") double longitude,
+                                         @Param("radius") double radius,
+                                         @Param("limit") int limit);
+
+
         // --------------------------UPDATE--------------------------
 
         @Query(value = "UPDATE point SET latitude = :latitude, longitude = :longitude " +

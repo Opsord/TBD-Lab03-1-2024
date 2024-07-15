@@ -1,5 +1,6 @@
 package G1TBD.LABTBD.data.point;
 
+import G1TBD.LABTBD.app.user.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,10 @@ import java.util.logging.Logger;
 public class PointService {
 
     private final PointRepository pointRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
     private static final Logger logger = Logger.getLogger(PointService.class.getName());
 
     @Autowired
@@ -41,6 +46,11 @@ public class PointService {
     public List<PointEntity> getNearbyPoints(Long point_id, int radius, int limit) {
         PointEntity point = pointRepository.getById(point_id);
         return pointRepository.findXNearbyPoints(point.getLatitude(), point.getLongitude(), radius, limit);
+    }
+
+    public List<String> getXNearbyVolunteers(double latitude, double longitude,
+                                        double radius, int quantity) {
+        return pointRepository.getXNearbyUsersFromPoint(latitude, longitude, radius, quantity);
     }
 
     // --------------------------UPDATE--------------------------

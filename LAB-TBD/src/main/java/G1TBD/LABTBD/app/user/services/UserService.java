@@ -70,10 +70,7 @@ public class UserService {
         return userRepository.getByAvailability(availability);
     }
 
-    public List<UserEntity> getXNearbyVolunteers(double latitude, double longitude,
-                                                 double radius, int quantity, String role, boolean availability) {
-        return userRepository.getXNearbyUsersFromPoint(latitude, longitude, radius, quantity, role, availability);
-    }
+
 
     public List<UserEntity> getByEmergencyId(Long id) {
         return userRepository.getByEmergencyId(id);

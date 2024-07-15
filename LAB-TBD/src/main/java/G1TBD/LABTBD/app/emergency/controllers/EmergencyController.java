@@ -99,7 +99,7 @@ public class EmergencyController {
     }
 
     @GetMapping("/nearby/{emergency_id}/{radius}/{quantity}")
-    public List<UserEntity> getXNearbyVolunteers(@PathVariable Long emergency_id,
+    public List<String> getXNearbyVolunteers(@PathVariable Long emergency_id,
                                                  @PathVariable double radius,
                                                  @PathVariable int quantity) {
         logger.info("Emergency ID: " + emergency_id);

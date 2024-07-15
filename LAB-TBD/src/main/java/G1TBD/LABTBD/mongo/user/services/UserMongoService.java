@@ -1,5 +1,6 @@
 package G1TBD.LABTBD.mongo.user.services;
 
+import G1TBD.LABTBD.data.point.PointService;
 import G1TBD.LABTBD.mongo.user.models.UserMongo;
 import G1TBD.LABTBD.mongo.user.repositories.UserMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,9 @@ import java.util.List;
 public class UserMongoService {
     @Autowired
     UserMongoRepository userMongoRepository;
+
+    @Autowired
+    PointService pointService;
 
     //--------------------------CREATE--------------------------
     public UserMongo saveUser(UserMongo user) {
@@ -36,6 +40,8 @@ public class UserMongoService {
             throw new Exception(e.getMessage());
         }
     }
+
+
 
 /*
     public double obtenerPromedioHabilidades() {

@@ -10,6 +10,8 @@ import G1TBD.LABTBD.app.task.services.TaskService;
 import G1TBD.LABTBD.app.task.entities.TaskEntity;
 import G1TBD.LABTBD.app.user.services.UserService;
 import G1TBD.LABTBD.app.user.entities.UserEntity;
+import G1TBD.LABTBD.data.point.PointService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -23,6 +25,10 @@ public class EmergencyService {
     private final UserService userService;
     private final EmergencyPointService emergencyPointService;
     private final EmergencyUserService emergencyUserService;
+
+    @Autowired
+    PointService pointService;
+
     private static final Logger logger = Logger.getLogger(EmergencyService.class.getName());
 
     public EmergencyService(EmergencyRepository emergencyRepository, TaskService taskService, UserService userService,
@@ -75,7 +81,7 @@ public class EmergencyService {
         return emergencyRepository.findLatestEmergencyId(emergency.getTitle(), emergency.getDescription());
     }
 
-    public List<UserEntity> getXNearbyVolunteers(Long emergency_id, double radiusInKilometers, int limit) {
+    public List<String> getXNearbyVolunteers(Long emergency_id, double radiusInKilometers, int limit) {
         logger.info("Working on emergency_id: " + emergency_id);
         EmergencyEntity emergency = getById(emergency_id);
         if (emergency == null) {
@@ -85,8 +91,8 @@ public class EmergencyService {
         String role = "VOLUNTEER";
         boolean available = true;
         PointEntity location = emergencyPointService.getPointByEmergencyId(emergency_id);
-        return userService.getXNearbyVolunteers(location.getLatitude(), location.getLongitude(),
-                radiusInDegrees, limit, role, available);
+        return (List<String>) pointService.getXNearbyVolunteers(location.getLatitude(), location.getLongitude(),
+                radiusInDegrees, limit);
     }
 
     // Funcionalidad SQL 48 del laboratorio 1
