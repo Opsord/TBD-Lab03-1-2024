@@ -57,14 +57,8 @@ public interface UserRepository extends CrudRepository<UserEntity, String> {
 
 
 
-        // SQL funcionalidad 48 laboratorio 1
-        @Query(value = "SELECT u.* FROM person u " +
-                        "JOIN person_attribute ua ON u.rut = ua.rut " +
-                        "JOIN attribute a ON ua.attribute_id = a.attribute_id " +
-                        "JOIN emergency_attribute ea ON ua.attribute_id = ea.attribute_id " +
-                        "JOIN emergency e ON ea.emergency_id = e.emergency_id " +
-                        "WHERE e.emergency_id = :emergency_id", nativeQuery = true)
-        List<UserEntity> getByEmergencyId(@Param("emergency_id") Long emergency_id);
+
+
 
         // --------------------------UPDATE--------------------------
 

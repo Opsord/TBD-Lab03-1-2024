@@ -72,9 +72,7 @@ public class UserService {
 
 
 
-    public List<UserEntity> getByEmergencyId(Long id) {
-        return userRepository.getByEmergencyId(id);
-    }
+
 
     // --------------------------UPDATE--------------------------
 

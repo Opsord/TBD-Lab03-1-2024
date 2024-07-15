@@ -103,12 +103,16 @@ public class EmergencyService {
         for (EmergencyEntity emergency : closedEmergencies) {
             Long emergency_id = emergency.getEmergency_id();
             List<TaskEntity> taskList = taskService.getTasksByEmergencyId(emergency_id);
-            List<UserEntity> volunteerList = userService.getByEmergencyId(emergency_id);
+            List<?> volunteerList = getByEmergencyId(emergency_id);
             SingleEmergencyData singleEmergencyData = new SingleEmergencyData(emergency.getTitle(),
                     volunteerList.size(), taskList.size());
             singleEmergencyDataList.add(singleEmergencyData);
         }
         return singleEmergencyDataList;
+    }
+
+    public List<String> getByEmergencyId(Long id) {
+        return emergencyRepository.getByEmergencyId(id);
     }
 
     // --------------------------UPDATE--------------------------
