@@ -12,7 +12,7 @@
                     </select>
                 </div>
                 <div class="space-y-2">
-                    <label for="radiusInput" class="text-sm font-medium">Distancia (grados)</label>
+                    <label for="radiusInput" class="text-sm font-medium">Distancia (km)</label>
                     <input id="radiusInput" v-model="radius" type="number" class="flex h-10 w-full rounded-md border border-slate-300 bg-gray-50 px-3 py-2 text-sm">
                 </div>
                 <div class="space-y-2">
