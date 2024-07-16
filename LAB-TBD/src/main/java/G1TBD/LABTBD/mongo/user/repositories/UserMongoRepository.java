@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserMongoRepository extends MongoRepository<UserMongo, String>, UserRepositoryCustom {
+
+
+
 }

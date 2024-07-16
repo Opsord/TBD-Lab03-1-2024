@@ -3,7 +3,6 @@ package G1TBD.LABTBD.mongo.user.services;
 import G1TBD.LABTBD.app.emergency.services.EmergencyService;
 import G1TBD.LABTBD.data.point.PointService;
 import G1TBD.LABTBD.mongo.user.models.UserMongo;
-import G1TBD.LABTBD.mongo.user.models.skill;
 import G1TBD.LABTBD.mongo.user.repositories.UserMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,6 @@
 package G1TBD.LABTBD.mongo.user.repositories.Custom;
 
 import G1TBD.LABTBD.mongo.user.models.UserMongo;
-import G1TBD.LABTBD.mongo.user.models.UserMongo;
 
 import java.util.List;
 

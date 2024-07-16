@@ -5,13 +5,11 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.mongodb.core.query.Query;
 
 
-import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -25,7 +23,7 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom{
     public UserMongo createUser(UserMongo user) {
         UserMongo newUser = new UserMongo();
         //voluntario.setId(UUID.randomUUID().toString());
-        newUser.setId(String.valueOf(new ObjectId()));
+        newUser.setUser_id(String.valueOf(new ObjectId()));
         newUser.setRut(user.getRut());
         newUser.setName(user.getName());
         newUser.setLast_name(user.getLast_name());
@@ -46,7 +44,7 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom{
     @Override
     public UserMongo updateUser(UserMongo user) {
         UserMongo userUpdated = new UserMongo();
-        userUpdated.setId(user.getId());
+        userUpdated.setUser_id(user.getUser_id());
         userUpdated.setRut(user.getRut());
         userUpdated.setName(user.getName());
         userUpdated.setLast_name(user.getLast_name());
