@@ -11,56 +11,51 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/usersMongo")
 //@CrossOrigin(origins = "http://localhost:8090/usersMongo")
 public class UserMongoController {
-    @Autowired
-    private UserMongoService userMongoService;
+
+    private final UserMongoService userMongoService;
+
+    public UserMongoController(UserMongoService userMongoService){
+        this.userMongoService = userMongoService;
+    }
 
     //--------------------------CREATE--------------------------
+
     @PostMapping("/")
-    public ResponseEntity<?> saveUser(@RequestBody UserMongo user){
+    public ResponseEntity<UserMongo> saveUser(@RequestBody UserMongo user){
         try {
-            UserMongo newUser = userMongoService.saveUser(user);
-            return new ResponseEntity<UserMongo>(newUser, HttpStatus.CREATED);
+            UserMongo userSaved = userMongoService.saveUser(user);
+            return new ResponseEntity<>(userSaved, HttpStatus.CREATED);
         }catch (Exception e){
-            return new ResponseEntity<String>(e.getCause().toString(),
-                    HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-
-    //--------------------------UPDATE--------------------------
-    @PutMapping("/")
-    public ResponseEntity<UserMongo> updateVoluntario(@RequestBody UserMongo user){
-        UserMongo userUpdated = userMongoService.updateUser(user);
-        return ResponseEntity.ok(userUpdated);
-    }
-
-
     //---------------------------READ---------------------------
+
     @GetMapping("/")
-    public ResponseEntity<?> findAllUsers(){
+    public ResponseEntity<List<UserMongo>> getUsers() {
         try {
             List<UserMongo> users = userMongoService.getUsers();
-            return new ResponseEntity<List<UserMongo>>(users, HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<String>(e.getCause().toString(),
-                    HttpStatus.INTERNAL_SERVER_ERROR);
+            if (users.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserMongo> findUserById(@PathVariable String id) {
         try {
-            UserMongo user = userMongoService.getUserById(id);
-            if (user != null) {
-                return new ResponseEntity<>(user, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+            Optional<UserMongo> user = userMongoService.getUserById(id);
+            return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -71,11 +66,20 @@ public class UserMongoController {
         return userMongoService.obtenerPromedioHabilidades();
     }
 
+    //--------------------------UPDATE--------------------------
+
+    @PutMapping("/")
+    public String updateVoluntario(@RequestBody UserMongo user){
+        userMongoService.updateUser(user);
+        return "Usuario actualizado";
+    }
 
     //--------------------------DELETE--------------------------
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteUserById(@PathVariable String id) throws Exception {
-        var isDeleted = userMongoService.deleteUserById(id);
-        return ResponseEntity.noContent().build();
+    public String deleteUser(@PathVariable String id) throws Exception {
+        userMongoService.deleteUserById(id);
+        return "Usuario eliminado";
     }
+
 }

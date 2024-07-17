@@ -27,17 +27,16 @@ public class EmergencyController {
     private final PointService pointService;
     private final EmergencyService emergencyService;
     private final UserService userService;
-
-    @Autowired
-    UserMongoService userMongoService;
+    private final UserMongoService userMongoService;
 
     private static final Logger logger = Logger.getLogger(EmergencyController.class.getName());
 
     @Autowired
-    public EmergencyController(PointService pointService, EmergencyService emergencyService, UserService userService) {
+    public EmergencyController(PointService pointService, EmergencyService emergencyService, UserService userService, UserMongoService userMongoService) {
         this.pointService = pointService;
         this.emergencyService = emergencyService;
         this.userService = userService;
+        this.userMongoService = userMongoService;
     }
 
     String homeLinkRedirect = "redirect:/emergencies";

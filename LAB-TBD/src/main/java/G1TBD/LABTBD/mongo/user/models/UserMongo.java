@@ -43,7 +43,7 @@ public class UserMongo implements UserDetails {
     private boolean availability;
 
     private UserRole role;
-    private List<UserSkill> skills;
+    private transient List<UserSkill> skills;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
