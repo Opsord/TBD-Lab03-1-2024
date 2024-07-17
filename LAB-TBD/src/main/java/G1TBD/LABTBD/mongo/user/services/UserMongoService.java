@@ -4,30 +4,47 @@ import G1TBD.LABTBD.app.emergency.services.EmergencyService;
 import G1TBD.LABTBD.data.point.PointService;
 import G1TBD.LABTBD.mongo.user.models.UserMongo;
 import G1TBD.LABTBD.mongo.user.models.UserRole;
+import G1TBD.LABTBD.mongo.user.models.UserSkill;
 import G1TBD.LABTBD.mongo.user.repositories.UserMongoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 public class UserMongoService {
 
+    private static final Logger logger = Logger.getLogger(UserMongoService.class.getName());
+
+    private final SkillService skillService;
     private final PointService pointService;
     private final EmergencyService emergencyService;
     private final UserMongoRepository userMongoRepository;
 
-    public UserMongoService(UserMongoRepository userMongoRepository, PointService pointService, EmergencyService emergencyService) {
+    public UserMongoService(SkillService skillService , UserMongoRepository userMongoRepository, PointService pointService, EmergencyService emergencyService) {
         this.userMongoRepository = userMongoRepository;
         this.pointService = pointService;
+        this.skillService = skillService;
         this.emergencyService = emergencyService;
     }
 
     //--------------------------CREATE--------------------------
 
-    public UserMongo saveUser(UserMongo user) {
-        return userMongoRepository.insert(user);
+    public void saveUser(UserMongo user) {
+        List<UserSkill> processedSkills = new ArrayList<>();
+        logger.info("Guardando usuario: " + user.toString());
+        for (UserSkill skill : user.getSkills()) {
+            UserSkill existingSkill = skillService.getSkillBySkillName(skill.getName());
+            if (existingSkill == null) {
+                // La habilidad no existe, así que la guardamos
+                existingSkill = skillService.saveSkill(skill);
+            }
+            processedSkills.add(existingSkill);
+        }
+        user.setSkills(processedSkills);
+        userMongoRepository.save(user);
     }
 
     //---------------------------READ---------------------------
@@ -103,7 +120,6 @@ public class UserMongoService {
     //--------------------------UPDATE--------------------------
 
     public void updateUser(UserMongo user) {
-        // Asegúrate de que el usuario tiene un ID. Si no, maneja el caso adecuadamente (por ejemplo, lanzando una excepción).
         if (user.getUser_id() == null) {
             throw new IllegalArgumentException("El ID del usuario no puede ser nulo para la actualización.");
         }
@@ -122,10 +138,9 @@ public class UserMongoService {
         }
     }
 
-    public boolean deleteUserById(String id) throws Exception {
+    public void deleteUserById(String id) throws Exception {
         try {
             userMongoRepository.deleteById(id);
-            return true;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
