@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SkillRepository extends MongoRepository<UserSkill, String> {
 
+
     // Find by´s
     UserSkill findUserSkillByName(String name);
     UserSkill findUserSkillByDescription(String description);

@@ -6,9 +6,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 public class SkillService {
+
+    public static final Logger logger = Logger.getLogger(SkillService.class.getName());
 
     private final SkillRepository skillRepository;
 
@@ -19,6 +22,13 @@ public class SkillService {
     // --------------------------CREATE--------------------------
 
     public UserSkill saveSkill(UserSkill skill) {
+        // Check if the skill name already exists to prevent duplicates
+        UserSkill existingSkill = skillRepository.findUserSkillByName(skill.getName());
+        if (existingSkill != null) {
+            throw new IllegalStateException("A skill with the same name already exists.");
+        }
+        logger.info("Habilidad nueva: " + skill.getName());
+        // MongoDB will generate a unique ID for the skill if skill_id is null
         return skillRepository.insert(skill);
     }
 

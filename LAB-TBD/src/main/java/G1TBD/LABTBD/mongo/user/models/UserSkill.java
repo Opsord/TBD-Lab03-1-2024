@@ -16,10 +16,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UserSkill {
 
     @Id
-    @Indexed(unique = true)
     private String skill_id;
 
+    @Indexed(unique = true)
     private String name;
+
     private String description;
 
 }

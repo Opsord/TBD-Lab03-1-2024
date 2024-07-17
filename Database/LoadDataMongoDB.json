@@ -7,13 +7,14 @@
         "birth_date": "1997-06-22",
         "sex": "F",
         "password": "$2a$10$JWCTjsZvnbhrh6Y99lSJuubMITj1ykX.0Rn6oysAApoteY20fbqC.",
-        "role": "VOLUNTEER",
+        "role": "VOLUNTARIO",
         "availability": true,
         "skills": [
-            {"code": "HH7", "description": "Capacidad para la búsqueda y localización de personas perdidas"},
-            {"code": "HH3", "description": "Apoyo psicologico"}
+            {"name": "Busqueda personas", "description": "Capacidad para la búsqueda y localización de personas perdidas"},
+            {"name": "Psicologo", "description": "Apoyo psicologico"}
         ]
-    },
+    }
+    ,
     {
         "rut": "176271472-1",
         "email": "correo.ejemplo@gmail.com",

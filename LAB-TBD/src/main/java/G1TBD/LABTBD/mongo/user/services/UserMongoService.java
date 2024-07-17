@@ -34,11 +34,9 @@ public class UserMongoService {
 
     public void saveUser(UserMongo user) {
         List<UserSkill> processedSkills = new ArrayList<>();
-        logger.info("Guardando usuario: " + user.toString());
         for (UserSkill skill : user.getSkills()) {
             UserSkill existingSkill = skillService.getSkillBySkillName(skill.getName());
             if (existingSkill == null) {
-                // La habilidad no existe, así que la guardamos
                 existingSkill = skillService.saveSkill(skill);
             }
             processedSkills.add(existingSkill);

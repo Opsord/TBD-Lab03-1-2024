@@ -27,9 +27,13 @@ public class UserMongoController {
     //--------------------------CREATE--------------------------
 
     @PostMapping("/")
-    public String saveUser(@RequestBody UserMongo user){
-        userMongoService.saveUser(user);
-        return "Usuario guardado";
+    public ResponseEntity<String> saveUser(@RequestBody UserMongo user){
+        try {
+            userMongoService.saveUser(user);
+            return new ResponseEntity<>("Usuario guardado", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     //---------------------------READ---------------------------
