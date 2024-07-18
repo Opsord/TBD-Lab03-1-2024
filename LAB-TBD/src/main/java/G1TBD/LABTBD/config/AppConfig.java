@@ -1,6 +1,7 @@
 package G1TBD.LABTBD.config;
 
 import G1TBD.LABTBD.app.user.repositories.UserRepository;
+import G1TBD.LABTBD.mongo.user.repositories.UserMongoRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,11 +20,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AppConfig {
 
-    private final UserRepository userRepository;
+    private final UserMongoRepository userRepository;
 
     @Bean
     public UserDetailsService userDetailService() {
-        return username -> userRepository.getByRut(username)
+        return username -> userRepository.findUserMongoByRut(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 

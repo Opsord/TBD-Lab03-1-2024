@@ -6,9 +6,11 @@ import G1TBD.LABTBD.auth.entities.RegisterRequest;
 import G1TBD.LABTBD.config.JwtService;
 import G1TBD.LABTBD.data.point.PointEntity;
 import G1TBD.LABTBD.data.point.PointService;
-import G1TBD.LABTBD.app.user.entities.UserEntity;
 import G1TBD.LABTBD.app.user.services.UserPointService;
 import G1TBD.LABTBD.app.user.services.UserService;
+import G1TBD.LABTBD.mongo.user.models.UserMongo;
+import G1TBD.LABTBD.mongo.user.models.UserRole;
+import G1TBD.LABTBD.mongo.user.services.UserMongoService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,13 +32,14 @@ public class AuthServiceImp implements AuthService{
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final UserMongoService userMongoService;
 
     @Override
     public AuthResponse register(RegisterRequest request) {
         var locationRequest = request.getLocation();
 
-        // Create user
-        var user = UserEntity.builder()
+        // Create UserMongo
+        var user = UserMongo.builder()
                 .rut(request.getRut())
                 .email(request.getEmail())
                 .name(request.getName())
@@ -44,20 +47,22 @@ public class AuthServiceImp implements AuthService{
                 .birth_date(request.getBirth_date())
                 .sex(request.getSex())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
+                .role(UserRole.valueOf(request.getRole()))
                 .availability(request.isAvailability())
                 .build();
-        userService.create(user);
+        userMongoService.saveUser(user);
 
-        // Create point
-        var point = PointEntity.builder()
-                .latitude(locationRequest.getLatitude())
-                .longitude(locationRequest.getLongitude())
-                .build();
-        pointService.create(point);
+        if (locationRequest != null) {
+            // Create point
+            var point = PointEntity.builder()
+                    .latitude(locationRequest.getLatitude())
+                    .longitude(locationRequest.getLongitude())
+                    .build();
+            pointService.create(point);
 
-        // Create relation between user and point
-        userPointService.create(user.getRut(), point.getPoint_id());
+            // Create relation between user and point
+            userPointService.create(user.getRut(), point.getPoint_id());
+        }
 
         var jwtToken = jwtService.generateToken(user);
         return AuthResponse.builder().token(jwtToken).build();
@@ -69,7 +74,7 @@ public class AuthServiceImp implements AuthService{
                 new UsernamePasswordAuthenticationToken(request.getRut(), request.getPassword())
         );
 
-        var user = userService.getByRut(request.getRut());
+        var user = userMongoService.getUserByRut(request.getRut()).orElseThrow();
         logger.info("User logged in: " + user.toString());
 
         var jwtToken = jwtService.generateToken(user);

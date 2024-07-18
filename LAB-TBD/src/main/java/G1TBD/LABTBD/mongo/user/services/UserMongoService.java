@@ -33,15 +33,19 @@ public class UserMongoService {
     //--------------------------CREATE--------------------------
 
     public void saveUser(UserMongo user) {
-        List<UserSkill> processedSkills = new ArrayList<>();
-        for (UserSkill skill : user.getSkills()) {
-            UserSkill existingSkill = skillService.getSkillBySkillName(skill.getName());
-            if (existingSkill == null) {
-                existingSkill = skillService.saveSkill(skill);
+        logger.info("Create from UserMongoService");
+        if (user.getSkills() != null) {
+            List<UserSkill> processedSkills = new ArrayList<>();
+            for (UserSkill skill : user.getSkills()) {
+                UserSkill existingSkill = skillService.getSkillBySkillName(skill.getName());
+                if (existingSkill == null) {
+                    existingSkill = skillService.saveSkill(skill);
+                }
+                processedSkills.add(existingSkill);
             }
-            processedSkills.add(existingSkill);
+            user.setSkills(processedSkills);
         }
-        user.setSkills(processedSkills);
+        logger.info("User skills processed");
         userMongoRepository.save(user);
     }
 
