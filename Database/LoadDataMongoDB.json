@@ -15,6 +15,10 @@
                 "description": "Capacidad para la búsqueda y localización de personas perdidas"
             },
             {
+                "name": "Primeros auxilios",
+                "description": "Conocimientos en primeros auxilios"
+            },
+            {
                 "name": "Apoyo psicologico",
                 "description": "Apoyo psicologico"
             }
@@ -120,6 +124,10 @@
                 "description": "Manejo de equipos de comunicacion"
             },
             {
+                "name": "Manejo de drones",
+                "description": "Habilidad en el uso de drones para búsqueda y rescate"
+            },
+            {
                 "name": "Busqueda personas",
                 "description": "Capacidad para la búsqueda y localización de personas perdidas"
             }
@@ -139,6 +147,10 @@
             {
                 "name": "Fuerza fisica",
                 "description": "Fuerza fisica"
+            },
+            {
+                "name": "Manejo de drones",
+                "description": "Habilidad en el uso de drones para búsqueda y rescate"
             },
             {
                 "name": "Rescate",
