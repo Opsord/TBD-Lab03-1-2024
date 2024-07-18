@@ -10,11 +10,16 @@
         "role": "VOLUNTARIO",
         "availability": true,
         "skills": [
-            {"name": "Busqueda personas", "description": "Capacidad para la búsqueda y localización de personas perdidas"},
-            {"name": "Psicologo", "description": "Apoyo psicologico"}
+            {
+                "name": "Busqueda personas",
+                "description": "Capacidad para la búsqueda y localización de personas perdidas"
+            },
+            {
+                "name": "Apoyo psicologico",
+                "description": "Apoyo psicologico"
+            }
         ]
-    }
-    ,
+    },
     {
         "rut": "176271472-1",
         "email": "correo.ejemplo@gmail.com",
@@ -23,11 +28,17 @@
         "birth_date": "1997-12-22",
         "sex": "M",
         "password": "$2a$10$32.WMcUybLU1ykwDaGmJZ.dAR6pkafizvkbl0wSP/VZ7wEqPFUOGS",
-        "role": "VOLUNTEER",
+        "role": "VOLUNTARIO",
         "availability": true,
         "skills": [
-            {"code": "HH3", "description": "Apoyo psicologico"},
-            {"code": "HH4", "description": "Manejo de herramientas de rescate"}
+            {
+                "name": "Apoyo psicologico",
+                "description": "Apoyo psicologico"
+            },
+            {
+                "name": "Manejo de herramientas de rescate",
+                "description": "Manejo de herramientas de rescate"
+            }
         ]
     },
     {
@@ -38,11 +49,17 @@
         "birth_date": "1999-10-31",
         "sex": "M",
         "password": "$2a$10$YsmKIfYGUgTmknrsEbJOz.5acNKnWmVM2NDbhuC7mizwANcmMUoLC",
-        "role": "VOLUNTEER",
+        "role": "VOLUNTARIO",
         "availability": true,
         "skills": [
-            {"code": "HH5", "description": "Conocimientos en primeros auxilios"},
-            {"code": "HH6", "description": "Manejo de equipos de comunicacion"}
+            {
+                "name": "Conocimientos en primeros auxilios",
+                "description": "Conocimientos en primeros auxilios"
+            },
+            {
+                "name": "Manejo de equipos de comunicacion",
+                "description": "Manejo de equipos de comunicacion"
+            }
         ]
     },
     {
@@ -53,11 +70,17 @@
         "birth_date": "2000-11-26",
         "sex": "F",
         "password": "$2a$10$oh4r.6xrChGbToX2B3yS6OwkYdSbAdP7IPnuo2PMmzfhlq0UYQ5cG",
-        "role": "COORDINATOR",
+        "role": "COORDINADOR",
         "availability": true,
         "skills": [
-            {"code": "HH7", "description": "Capacidad para la búsqueda y localización de personas perdidas"},
-            {"code": "HH1", "description": "Fuerza fisica"}
+            {
+                "name": "Busqueda personas",
+                "description": "Capacidad para la búsqueda y localización de personas perdidas"
+            },
+            {
+                "name": "Fuerza fisica",
+                "description": "Fuerza fisica"
+            }
         ]
     },
     {
@@ -68,11 +91,17 @@
         "birth_date": "2002-11-26",
         "sex": "F",
         "password": "$2a$10$n47WKpnIBCC7zoYVAnDviOaO5MUQiUifwqoaXThAO3/F8a.sIFiFy",
-        "role": "VOLUNTEER",
+        "role": "VOLUNTARIO",
         "availability": true,
         "skills": [
-            {"code": "HH4", "description": "Manejo de herramientas de rescate"},
-            {"code": "HH1", "description": "Fuerza fisica"}
+            {
+                "name": "Manejo de herramientas de rescate",
+                "description": "Manejo de herramientas de rescate"
+            },
+            {
+                "name": "Fuerza fisica",
+                "description": "Fuerza fisica"
+            }
         ]
     },
     {
@@ -83,11 +112,17 @@
         "birth_date": "2001-11-13",
         "sex": "M",
         "password": "$2a$10$cVP6o0eDpTRhElUMTbJrKeR9AFAM3vtk.xogRrSn1BVHd0Wn/rf/C",
-        "role": "VOLUNTEER",
+        "role": "VOLUNTARIO",
         "availability": true,
         "skills": [
-            {"code": "HH6", "description": "Manejo de equipos de comunicacion"},
-            {"code": "HH7", "description": "Capacidad para la búsqueda y localización de personas perdidas"}
+            {
+                "name": "Manejo de equipos de comunicacion",
+                "description": "Manejo de equipos de comunicacion"
+            },
+            {
+                "name": "Busqueda personas",
+                "description": "Capacidad para la búsqueda y localización de personas perdidas"
+            }
         ]
     },
     {
@@ -98,11 +133,17 @@
         "birth_date": "2000-11-26",
         "sex": "F",
         "password": "$2a$10$6n5aRdvxOl3HXAig7L6bBeYUVxkpjfBVRUCvmG55OjlCz3/0o/Ila",
-        "role": "VOLUNTEER",
+        "role": "VOLUNTARIO",
         "availability": true,
         "skills": [
-            {"code": "HH1", "description": "Fuerza fisica"},
-            {"code": "HH2", "description": "Rescate en Terreno"}
+            {
+                "name": "Fuerza fisica",
+                "description": "Fuerza fisica"
+            },
+            {
+                "name": "Rescate",
+                "description": "Rescate en Terreno"
+            }
         ]
     },
     {
@@ -113,11 +154,17 @@
         "birth_date": "2000-12-22",
         "sex": "M",
         "password": "$2a$10$xYPusc0RS.yb56gjNZeLSOEKbisdFD4uoU8cuWemtFzk5iPHkyPha",
-        "role": "COORDINATOR",
+        "role": "COORDINADOR",
         "availability": false,
         "skills": [
-            {"code": "HH1", "description": "Fuerza fisica"},
-            {"code": "HH2", "description": "Rescate en Terreno"}
+            {
+                "name": "Fuerza fisica",
+                "description": "Fuerza fisica"
+            },
+            {
+                "name": "Rescate",
+                "description": "Rescate en Terreno"
+            }
         ]
     },
     {
@@ -128,11 +175,17 @@
         "birth_date": "2001-11-13",
         "sex": "M",
         "password": "$2a$10$mIkd1hzL4rGbfyoyByaVDuUYNYBPPxZzPrwlGT7EqPui8ZWA7WjZW",
-        "role": "VOLUNTEER",
+        "role": "VOLUNTARIO",
         "availability": true,
         "skills": [
-            {"code": "HH7", "description": "Capacidad para la búsqueda y localización de personas perdidas"},
-            {"code": "HH3", "description": "Apoyo psicologico"}
+            {
+                "name": "Busqueda personas",
+                "description": "Capacidad para la búsqueda y localización de personas perdidas"
+            },
+            {
+                "name": "Apoyo psicologico",
+                "description": "Apoyo psicologico"
+            }
         ]
     }
 ]
