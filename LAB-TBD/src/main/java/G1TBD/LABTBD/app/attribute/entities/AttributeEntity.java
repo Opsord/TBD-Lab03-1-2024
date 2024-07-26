@@ -18,6 +18,7 @@ public class AttributeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long attribute_id;
 
-    private String attribute;
-
+    private String skill_id;
+    private String name;
+    private String description;
 }

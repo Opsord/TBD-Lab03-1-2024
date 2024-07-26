@@ -20,8 +20,8 @@ public class AttributeService {
     // --------------------------CREATE--------------------------
 
     public void create(AttributeEntity attribute) {
-        attributeRepository.create(attribute.getAttribute());
-        logger.info("Attribute created: " + attribute.getAttribute());
+        attributeRepository.create(attribute.getName());
+        logger.info("Attribute created: " + attribute.getName());
     }
 
     // ---------------------------READ---------------------------
@@ -37,8 +37,8 @@ public class AttributeService {
     // --------------------------UPDATE--------------------------
 
     public void update(AttributeEntity attribute) {
-        attributeRepository.update(attribute.getAttribute_id(), attribute.getAttribute());
-        logger.info("Attribute updated: " + attribute.getAttribute());
+        attributeRepository.update(attribute.getAttribute_id(), attribute.getName());
+        logger.info("Attribute updated: " + attribute.getName());
     }
 
     // --------------------------DELETE--------------------------
