@@ -11,16 +11,19 @@
         "availability": true,
         "skills": [
             {
-                "name": "Busqueda personas",
+                "skill_id": "SKL007",
+                "name": "Búsqueda",
                 "description": "Capacidad para la búsqueda y localización de personas perdidas"
             },
             {
-                "name": "Primeros auxilios",
+                "skill_id": "SKL005",
+                "name": "Primeros Auxilios",
                 "description": "Conocimientos en primeros auxilios"
             },
             {
-                "name": "Apoyo psicologico",
-                "description": "Apoyo psicologico"
+                "skill_id": "SKL003",
+                "name": "Psicología",
+                "description": "Apoyo psicológico"
             }
         ]
     },
@@ -36,11 +39,13 @@
         "availability": true,
         "skills": [
             {
-                "name": "Apoyo psicologico",
-                "description": "Apoyo psicologico"
+                "skill_id": "SKL003",
+                "name": "Psicología",
+                "description": "Apoyo psicológico"
             },
             {
-                "name": "Manejo de herramientas de rescate",
+                "skill_id": "SKL004",
+                "name": "Herramientas",
                 "description": "Manejo de herramientas de rescate"
             }
         ]
@@ -57,12 +62,14 @@
         "availability": true,
         "skills": [
             {
-                "name": "Conocimientos en primeros auxilios",
+                "skill_id": "SKL005",
+                "name": "Primeros Auxilios",
                 "description": "Conocimientos en primeros auxilios"
             },
             {
-                "name": "Manejo de equipos de comunicacion",
-                "description": "Manejo de equipos de comunicacion"
+                "skill_id": "SKL006",
+                "name": "Comunicación",
+                "description": "Manejo de equipos de comunicación"
             }
         ]
     },
@@ -78,12 +85,14 @@
         "availability": true,
         "skills": [
             {
-                "name": "Busqueda personas",
+                "skill_id": "SKL007",
+                "name": "Búsqueda",
                 "description": "Capacidad para la búsqueda y localización de personas perdidas"
             },
             {
-                "name": "Fuerza fisica",
-                "description": "Fuerza fisica"
+                "skill_id": "SKL001",
+                "name": "Fuerza",
+                "description": "Fuerza física"
             }
         ]
     },
@@ -99,12 +108,14 @@
         "availability": true,
         "skills": [
             {
-                "name": "Manejo de herramientas de rescate",
+                "skill_id": "SKL004",
+                "name": "Herramientas",
                 "description": "Manejo de herramientas de rescate"
             },
             {
-                "name": "Fuerza fisica",
-                "description": "Fuerza fisica"
+                "skill_id": "SKL001",
+                "name": "Fuerza",
+                "description": "Fuerza física"
             }
         ]
     },
@@ -120,15 +131,18 @@
         "availability": true,
         "skills": [
             {
-                "name": "Manejo de equipos de comunicacion",
-                "description": "Manejo de equipos de comunicacion"
+                "skill_id": "SKL006",
+                "name": "Comunicación",
+                "description": "Manejo de equipos de comunicación"
             },
             {
-                "name": "Manejo de drones",
+                "skill_id": "SKL008",
+                "name": "Drones",
                 "description": "Habilidad en el uso de drones para búsqueda y rescate"
             },
             {
-                "name": "Busqueda personas",
+                "skill_id": "SKL007",
+                "name": "Búsqueda",
                 "description": "Capacidad para la búsqueda y localización de personas perdidas"
             }
         ]
@@ -145,14 +159,17 @@
         "availability": true,
         "skills": [
             {
-                "name": "Fuerza fisica",
-                "description": "Fuerza fisica"
+                "skill_id": "SKL001",
+                "name": "Fuerza",
+                "description": "Fuerza física"
             },
             {
-                "name": "Manejo de drones",
+                "skill_id": "SKL008",
+                "name": "Drones",
                 "description": "Habilidad en el uso de drones para búsqueda y rescate"
             },
             {
+                "skill_id": "SKL002",
                 "name": "Rescate",
                 "description": "Rescate en Terreno"
             }
@@ -170,10 +187,12 @@
         "availability": false,
         "skills": [
             {
-                "name": "Fuerza fisica",
-                "description": "Fuerza fisica"
+                "skill_id": "SKL001",
+                "name": "Fuerza",
+                "description": "Fuerza física"
             },
             {
+                "skill_id": "SKL002",
                 "name": "Rescate",
                 "description": "Rescate en Terreno"
             }
@@ -191,12 +210,14 @@
         "availability": true,
         "skills": [
             {
-                "name": "Busqueda personas",
+                "skill_id": "SKL007",
+                "name": "Búsqueda",
                 "description": "Capacidad para la búsqueda y localización de personas perdidas"
             },
             {
-                "name": "Apoyo psicologico",
-                "description": "Apoyo psicologico"
+                "skill_id": "SKL003",
+                "name": "Psicología",
+                "description": "Apoyo psicológico"
             }
         ]
     }

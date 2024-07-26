@@ -31,7 +31,9 @@ CREATE TABLE person_point (
 
 CREATE TABLE attribute (
     attribute_id BIGSERIAL PRIMARY KEY,
-    attribute VARCHAR(255) NOT NULL
+    skill_id VARCHAR(20),
+    name VARCHAR(20),
+    description VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE person_attribute (

@@ -28,15 +28,16 @@ VALUES
     ('98482714-4', 'correo.ejemplo@gmail.com', 'Elba', 'Calao', '1994-04-20', 'F', '$2a$10$Y0ntA2TXhIKuTIcrtTWOm.uyC7dvYjiNLL5cJsBkMWb1clYQnbVgS', 'rut', True);
 
 --Poblacion de la tabla Atributo
-INSERT INTO attribute (attribute)
+INSERT INTO attribute (skill_id, name, description)
 VALUES 
-    ('Fuerza fisica'),
-    ('Rescate en Terreno'),
-    ('Apoyo psicologico'),
-    ('Manejo de herramientas de rescate'),
-    ('Conocimientos en primeros auxilios'),
-    ('Manejo de equipos de comunicacion'),
-    ('Capacidad para la búsqueda y localización de personas perdidas');
+    ('SKL001', 'Fuerza', 'Fuerza física'),
+    ('SKL002', 'Rescate', 'Rescate en Terreno'),
+    ('SKL003', 'Psicología', 'Apoyo psicológico'),
+    ('SKL004', 'Herramientas', 'Manejo de herramientas de rescate'),
+    ('SKL005', 'Primeros Auxilios', 'Conocimientos en primeros auxilios'),
+    ('SKL006', 'Comunicación', 'Manejo de equipos de comunicación'),
+    ('SKL007', 'Búsqueda', 'Capacidad para la búsqueda y localización de personas perdidas'),
+    ('SKL008', 'Drones', 'Habilidad en el uso de drones para búsqueda y rescate');
 
 --Poblacion de la tabla Voluntario_Atributo
 INSERT INTO person_attribute (rut, attribute_id)
