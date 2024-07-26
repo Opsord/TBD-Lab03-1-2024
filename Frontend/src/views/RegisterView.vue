@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-8 mx-auto my-16 w-5/12">
+    <div class="flex flex-col gap-8 mx-auto my-16 w-6/12">
         <div class="flex justify-center">
             <h2 class=" text-lg font-bold text-teal-600">¿Quieres formar parte de nosotros?</h2>
         </div>
@@ -41,8 +41,12 @@
                             </select>
                         </div>
                     </div>
-                    <DialogMap @save-marker="handleSaveMarker" />
                     <div class="flex flex-col gap-2">
+                        <label class="text-sm">Dirección</label>
+                        <DialogMap @save-marker="handleSaveMarker" />
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm">Disponibilidad</label>
                         <select v-model="availability" class="px-3 py-2.5 border border-gray-400 rounded text-sm"
                             required>
                             <option value="">Disponibilidad</option>

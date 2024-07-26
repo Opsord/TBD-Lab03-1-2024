@@ -2,7 +2,7 @@
     <Dialog>
         <DialogTrigger as-child>
             <Button class=" border-2 border-slate-300">
-                Seleccionar ubicación
+                Seleccionar ubicación 
             </Button>
         </DialogTrigger>
         <DialogContent class="sm:max-w-[625px]">
@@ -18,7 +18,6 @@
                 <Button type="submit" @click="saveMarker">
                     Guardar
                 </Button>
-
             </DialogFooter>
         </DialogContent>
     </Dialog>

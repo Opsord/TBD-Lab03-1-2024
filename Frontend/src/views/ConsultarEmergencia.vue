@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-center">
-        <div class="space-y-8 rounded-lg border border-slate-200 bg-white text-slate-950 shadow-sm w-7/12 my-4 p-10">
+        <div class="space-y-5 rounded-lg border border-slate-200 bg-white text-slate-950 shadow-sm w-7/12 my-4 p-10">
             <div class="space-y-2">
                 <h1 class="text-2xl font-semibold">Estadísticas Voluntarios</h1>
                 <p>Promedio de habilidades que poseen los voluntarios registrados.</p>
@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="flex justify-center">
-        <div class="space-y-8 rounded-lg border border-slate-200 bg-white text-slate-950 shadow-sm w-7/12 my-4 p-10">
+        <div class="space-y-5 rounded-lg border border-slate-200 bg-white text-slate-950 shadow-sm w-7/12 my-4 p-10">
             <div class="space-y-2">
                 <h1 class="text-2xl font-semibold">Voluntarios Cercanos</h1>
                 <p>Busqueda de voluntarios más cercanos a una emergencia específica.</p>
