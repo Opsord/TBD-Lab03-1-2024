@@ -5,9 +5,7 @@ import G1TBD.LABTBD.data.SingleEmergencyData;
 import G1TBD.LABTBD.data.point.PointEntity;
 import G1TBD.LABTBD.data.point.PointService;
 import G1TBD.LABTBD.app.emergency.entities.EmergencyEntity;
-import G1TBD.LABTBD.app.user.entities.UserEntity;
 import G1TBD.LABTBD.app.emergency.services.EmergencyService;
-import G1TBD.LABTBD.app.user.services.UserService;
 import G1TBD.LABTBD.mongo.user.models.UserMongo;
 import G1TBD.LABTBD.mongo.user.services.UserMongoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @RestController
@@ -26,16 +25,14 @@ public class EmergencyController {
 
     private final PointService pointService;
     private final EmergencyService emergencyService;
-    private final UserService userService;
     private final UserMongoService userMongoService;
 
     private static final Logger logger = Logger.getLogger(EmergencyController.class.getName());
 
     @Autowired
-    public EmergencyController(PointService pointService, EmergencyService emergencyService, UserService userService, UserMongoService userMongoService) {
+    public EmergencyController(PointService pointService, EmergencyService emergencyService, UserMongoService userMongoService) {
         this.pointService = pointService;
         this.emergencyService = emergencyService;
-        this.userService = userService;
         this.userMongoService = userMongoService;
     }
 
@@ -63,7 +60,7 @@ public class EmergencyController {
         logger.info("Retrieved point: " + point);
         // Extract coordinator
         String coordinatorRut = (String) payload.get("coordinator");
-        UserEntity coordinator = userService.getByRut(coordinatorRut);
+        Optional<UserMongo> coordinator = userMongoService.getUserByRut(coordinatorRut);
         // Create EmergencyEntity
         EmergencyEntity emergency = new EmergencyEntity();
         emergency.setTitle((String) payload.get("title"));
@@ -75,8 +72,10 @@ public class EmergencyController {
         // Save emergency-point relationship
         emergencyService.updateEmergencyLocation(emergencyCreated.getEmergency_id(), point.getPoint_id());
         // Save emergency-user relationship
-        emergencyService.updateEmergencyCoordinator(emergencyCreated.getEmergency_id(), coordinator.getRut());
-        logger.info("Emergency created: " + emergencyCreated);
+        if (coordinator.isPresent()){
+            emergencyService.updateEmergencyCoordinator(emergencyCreated.getEmergency_id(), coordinator.get().getRut());
+            logger.info("Emergency created: " + emergencyCreated);
+        }
         // Return response
         return new ResponseEntity<>(emergencyCreated, HttpStatus.CREATED);
     }
@@ -131,7 +130,7 @@ public class EmergencyController {
     // Actualizar punto
     @PutMapping("/point/update")
     public void updatePoint(@RequestBody PointEntity point) {
-        System.out.println(point.getPoint());
+        logger.info("Point to update: " + point.getPoint());
         pointService.update(point);
         logger.info("Point updated: " + point.getPoint());
     }

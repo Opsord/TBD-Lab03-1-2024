@@ -7,7 +7,6 @@ import G1TBD.LABTBD.config.JwtService;
 import G1TBD.LABTBD.data.point.PointEntity;
 import G1TBD.LABTBD.data.point.PointService;
 import G1TBD.LABTBD.app.user.services.UserPointService;
-import G1TBD.LABTBD.app.user.services.UserService;
 import G1TBD.LABTBD.mongo.user.models.UserMongo;
 import G1TBD.LABTBD.mongo.user.models.UserRole;
 import G1TBD.LABTBD.mongo.user.services.UserMongoService;
@@ -24,15 +23,14 @@ import java.util.logging.Logger;
 @RequiredArgsConstructor
 public class AuthServiceImp implements AuthService{
 
-    private static final Logger logger = Logger.getLogger(AuthServiceImp.class.getName());
-
-    private final UserService userService;
     private final PointService pointService;
     private final UserPointService userPointService;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final UserMongoService userMongoService;
+
+    private static final Logger logger = Logger.getLogger(AuthServiceImp.class.getName());
 
     @Override
     public AuthResponse register(RegisterRequest request) {
@@ -83,3 +81,4 @@ public class AuthServiceImp implements AuthService{
     }
 
 }
+    

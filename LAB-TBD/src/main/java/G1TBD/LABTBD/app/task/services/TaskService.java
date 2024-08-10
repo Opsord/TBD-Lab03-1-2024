@@ -3,14 +3,15 @@ package G1TBD.LABTBD.app.task.services;
 import G1TBD.LABTBD.app.task.entities.TaskEmergencyEntity;
 import G1TBD.LABTBD.app.task.entities.TaskEntity;
 import G1TBD.LABTBD.app.user.entities.UserTaskEntity;
-import G1TBD.LABTBD.app.user.entities.UserEntity;
-import G1TBD.LABTBD.app.user.services.UserService;
 import G1TBD.LABTBD.app.user.services.UserTaskService;
 import G1TBD.LABTBD.app.task.repositories.TaskRepository;
+import G1TBD.LABTBD.mongo.user.models.UserMongo;
+import G1TBD.LABTBD.mongo.user.services.UserMongoService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -18,16 +19,17 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
     private final UserTaskService userTaskService;
-    private final UserService userService;
     private final TaskEmergencyService taskEmergencyService;
+    private final UserMongoService userMongoService;
+
     private static final Logger logger = Logger.getLogger(TaskService.class.getName());
 
     public TaskService(TaskRepository taskRepository, UserTaskService userTaskService,
-                       TaskEmergencyService taskEmergencyService, UserService userService) {
+                       TaskEmergencyService taskEmergencyService, UserMongoService userMongoService) {
         this.taskRepository = taskRepository;
         this.userTaskService = userTaskService;
-        this.userService = userService;
         this.taskEmergencyService = taskEmergencyService;
+        this.userMongoService = userMongoService;
     }
 
     // --------------------------CREATE--------------------------
@@ -58,11 +60,11 @@ public class TaskService {
         return tasks;
     }
 
-    public List<UserEntity> getVolunteersByTask(Long task_id) {
+    public List<Optional<UserMongo>> getVolunteersByTask(Long task_id) {
         List<UserTaskEntity> taskUserEntities = userTaskService.getVolunteersByTaskId(task_id);
-        List<UserEntity> volunteers = new ArrayList<>();
+        List<Optional<UserMongo>> volunteers = new ArrayList<>();
         for (UserTaskEntity taskUserEntity : taskUserEntities) {
-            volunteers.add(userService.getByRut(taskUserEntity.getRut()));
+            volunteers.add(userMongoService.getUserByRut(taskUserEntity.getRut()));
         }
         return volunteers;
     }

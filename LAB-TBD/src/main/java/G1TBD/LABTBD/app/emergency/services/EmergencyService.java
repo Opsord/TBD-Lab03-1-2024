@@ -8,10 +8,9 @@ import G1TBD.LABTBD.data.SingleEmergencyData;
 import G1TBD.LABTBD.data.point.PointEntity;
 import G1TBD.LABTBD.app.task.services.TaskService;
 import G1TBD.LABTBD.app.task.entities.TaskEntity;
-import G1TBD.LABTBD.app.user.services.UserService;
-import G1TBD.LABTBD.app.user.entities.UserEntity;
 import G1TBD.LABTBD.data.point.PointService;
-import org.springframework.beans.factory.annotation.Autowired;
+import G1TBD.LABTBD.mongo.user.models.UserMongo;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -22,22 +21,20 @@ public class EmergencyService {
 
     private final EmergencyRepository emergencyRepository;
     private final TaskService taskService;
-    private final UserService userService;
     private final EmergencyPointService emergencyPointService;
     private final EmergencyUserService emergencyUserService;
-
-    @Autowired
-    PointService pointService;
+    private final PointService pointService;
 
     private static final Logger logger = Logger.getLogger(EmergencyService.class.getName());
 
-    public EmergencyService(EmergencyRepository emergencyRepository, TaskService taskService, UserService userService,
-                            EmergencyPointService emergencyPointService, EmergencyUserService emergencyUserService) {
+    @Lazy
+    public EmergencyService(EmergencyRepository emergencyRepository, TaskService taskService,
+                            EmergencyPointService emergencyPointService, EmergencyUserService emergencyUserService, PointService pointService) {
         this.emergencyRepository = emergencyRepository;
         this.taskService = taskService;
-        this.userService = userService;
         this.emergencyUserService = emergencyUserService;
         this.emergencyPointService = emergencyPointService;
+        this.pointService = pointService;
     }
 
     // --------------------------CREATE--------------------------
@@ -68,9 +65,9 @@ public class EmergencyService {
         return emergencyRepository.getAllClosed();
     }
 
-    public List<UserEntity> getAllVolunteers(Long emergency_id) {
+    public List<Optional<UserMongo>> getAllVolunteers(Long emergency_id) {
         List<TaskEntity> taskList = taskService.getTasksByEmergencyId(emergency_id);
-        List<UserEntity> volunteerList = new ArrayList<>();
+        List<Optional<UserMongo>> volunteerList = new ArrayList<>();
         for (TaskEntity task : taskList) {
             volunteerList.addAll(taskService.getVolunteersByTask(task.getTask_id()));
         }

@@ -1,6 +1,5 @@
 package G1TBD.LABTBD.config;
 
-import G1TBD.LABTBD.app.user.repositories.UserRepository;
 import G1TBD.LABTBD.mongo.user.repositories.UserMongoRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

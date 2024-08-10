@@ -1,6 +1,5 @@
 package G1TBD.LABTBD.data.point;
 
-import G1TBD.LABTBD.app.user.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +10,6 @@ import java.util.logging.Logger;
 public class PointService {
 
     private final PointRepository pointRepository;
-
-    @Autowired
-    UserRepository userRepository;
 
     private static final Logger logger = Logger.getLogger(PointService.class.getName());
 

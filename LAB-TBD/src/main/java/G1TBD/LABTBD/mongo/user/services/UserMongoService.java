@@ -77,28 +77,13 @@ public class UserMongoService {
             UserMongo user = userMongoRepository.findUserMongoByRut(rut).orElse(null);
 
             // Verificar que el usuario sea voluntario y esté disponible
-            if(user != null && "VOLUNTEER".equals(user.getRole()) && user.isAvailability()){
+            if(user != null && user.isAvailability() && user.getRole().equals(UserRole.VOLUNTARIO)){
                 volunteers.add(user);
             }
         }
 
         return volunteers;
     }
-
- /*
-    public double obtenerPromedioHabilidades() {
-        long totalSkills = 0;
-        long totalVoluntarios = 0;
-
-        for (UserMongo user : userMongoRepository.findAllUsers()) {
-            totalSkills += user.getSkills().size();
-            totalVoluntarios++;
-        }
-
-        return totalVoluntarios == 0 ? 0 : (double) totalSkills / totalVoluntarios;
-    }
-
- */
 
     public double obtenerPromedioHabilidades() {
         long totalSkills = 0;
