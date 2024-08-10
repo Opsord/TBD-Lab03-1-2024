@@ -21,6 +21,9 @@ public class UserSkill {
     @Indexed(unique = true)
     private String name;
 
+    @Indexed(unique = true)
+    private String skill_code;
+
     private String description;
 
 }

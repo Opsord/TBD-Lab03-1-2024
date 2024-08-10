@@ -23,7 +23,7 @@ public class EmergencyAttributeService {
      public void create(EmergencyAttributeEntity emergencyAttribute) {
      emergencyAttributeRepository.create(
      emergencyAttribute.getEmergency_id(),
-     emergencyAttribute.getAttribute_id(),
+     emergencyAttribute.getSkill_code(),
      emergencyAttribute.isCompatibility());
      logger.info("EmergencyAttribute created successfully");
      }
@@ -49,13 +49,21 @@ public class EmergencyAttributeService {
         return emergencyAttributeRepository.getById(id);
     }
 
+    public List<EmergencyAttributeEntity> getBySkillCode(String code) {
+        return emergencyAttributeRepository.getByAttributeId(code);
+    }
+
+    public List<EmergencyAttributeEntity> getByEmergencyId(Long id) {
+        return emergencyAttributeRepository.getByEmergencyId(id);
+    }
+
     // --------------------------UPDATE--------------------------
 
     public void update(EmergencyAttributeEntity emergencyAttribute) {
         emergencyAttributeRepository.update(
                 emergencyAttribute.getEmergency_attribute_id(),
                 emergencyAttribute.getEmergency_id(),
-                emergencyAttribute.getAttribute_id(),
+                emergencyAttribute.getSkill_code(),
                 emergencyAttribute.isCompatibility());
         logger.info("EmergencyAttribute updated successfully");
     }

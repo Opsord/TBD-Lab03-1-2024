@@ -19,7 +19,7 @@ public class EmergencyAttributeEntity {
     private Long emergency_attribute_id;
 
     private Long emergency_id;
-    private Long attribute_id;
+    private String skill_code;
 
     private boolean compatibility;
 

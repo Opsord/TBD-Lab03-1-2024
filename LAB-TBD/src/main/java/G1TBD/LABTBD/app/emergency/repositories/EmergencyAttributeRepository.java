@@ -21,7 +21,7 @@ public interface EmergencyAttributeRepository extends CrudRepository<EmergencyAt
         @Modifying
         @Transactional
         void create(@Param("emergency_id") Long emergency_id,
-                        @Param("attribute_id") Long attribute_id,
+                        @Param("attribute_id") String attribute_id,
                         @Param("compatibility") boolean compatibility);
 
         // ---------------------------READ---------------------------
@@ -32,6 +32,12 @@ public interface EmergencyAttributeRepository extends CrudRepository<EmergencyAt
         @Query(value = "SELECT * FROM emergency_attribute WHERE emergency_attribute_id = :emergency_attribute_id", nativeQuery = true)
         EmergencyAttributeEntity getById(@Param("emergency_attribute_id") Long emergency_attribute_id);
 
+        @Query(value = "SELECT * FROM emergency_attribute WHERE emergency_id = :emergency_id", nativeQuery = true)
+        List<EmergencyAttributeEntity> getByEmergencyId(@Param("emergency_id") Long emergency_id);
+
+        @Query(value = "SELECT * FROM emergency_attribute WHERE attribute_id = :attribute_id", nativeQuery = true)
+        List<EmergencyAttributeEntity> getByAttributeId(@Param("attribute_id") String attribute_id);
+
         // --------------------------UPDATE--------------------------
 
         @Query(value = "UPDATE emergency_attribute SET emergency_id = :emergency_id, attribute_id = :attribute_id, " +
@@ -40,7 +46,7 @@ public interface EmergencyAttributeRepository extends CrudRepository<EmergencyAt
         @Transactional
         void update(@Param("emergency_attribute_id") Long emergency_attribute_id,
                         @Param("emergency_id") Long emergency_id,
-                        @Param("attribute_id") Long attribute_id,
+                        @Param("attribute_id") String attribute_id,
                         @Param("compatibility") boolean compatibility);
 
         // --------------------------DELETE--------------------------
