@@ -88,14 +88,17 @@ public class UserMongoService {
     public double obtenerPromedioHabilidades() {
         long totalSkills = 0;
         long totalVolunteers = 0;
+
         List<UserMongo> allVolunteers =
-                userMongoRepository.findAllByRole(UserRole.valueOf("VOLUNTEER")).orElse(new ArrayList<>());
+                userMongoRepository.findAll();
 
         for (UserMongo user : allVolunteers) {
-            totalSkills += user.getSkills().size();
-            totalVolunteers++;
+            if (String.valueOf(user.getRole()).equals("VOLUNTARIO")) {
+                totalSkills += user.getSkills().size();
+                totalVolunteers++;
+            }
         }
-
+        
         if (totalVolunteers== 0) {
             return 0;
         } else {
