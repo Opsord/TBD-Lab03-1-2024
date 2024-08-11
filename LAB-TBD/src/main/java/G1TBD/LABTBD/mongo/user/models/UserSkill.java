@@ -18,10 +18,10 @@ public class UserSkill {
     @Id
     private String skill_id;
 
-    @Indexed(unique = true)
+    @Indexed(unique = false)
     private String name;
 
-    @Indexed(unique = true)
+    @Indexed(unique = false)
     private String skill_code;
 
     private String description;
