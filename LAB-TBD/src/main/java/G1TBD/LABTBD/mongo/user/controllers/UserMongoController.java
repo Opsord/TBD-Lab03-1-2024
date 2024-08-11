@@ -60,6 +60,7 @@ public class UserMongoController {
         }
     }
 
+    //Funcionalidad laboratorio 3
     @GetMapping("/promedio-habilidades")
     public double obtenerPromedioHabilidades() {
         return userMongoService.obtenerPromedioHabilidades();
