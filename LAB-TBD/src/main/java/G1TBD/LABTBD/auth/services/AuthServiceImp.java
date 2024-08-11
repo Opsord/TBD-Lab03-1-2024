@@ -47,6 +47,7 @@ public class AuthServiceImp implements AuthService{
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(UserRole.valueOf(request.getRole()))
                 .availability(request.isAvailability())
+                .skills(request.getSkills())
                 .build();
         userMongoService.saveUser(user);
 
