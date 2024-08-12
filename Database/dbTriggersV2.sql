@@ -51,7 +51,7 @@ EXECUTE FUNCTION emergency_audit_trigger_function();
 CREATE OR REPLACE FUNCTION prevent_emergency_duplicate_attribute_func()
 RETURNS TRIGGER AS $$
 BEGIN
-    IF (SELECT COUNT(*) FROM emergency_attribute WHERE emergency = NEW.emergency AND attribute = NEW.attribute) > 0 THEN
+    IF (SELECT COUNT(*) FROM emergency_attribute WHERE emergency_id = NEW.emergency_id AND skill_code = NEW.skill_code) > 0 THEN
         RAISE EXCEPTION 'Una emergencia no puede tener atributos duplicados.';
     END IF;
     RETURN NEW;
