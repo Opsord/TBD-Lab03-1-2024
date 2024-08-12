@@ -120,13 +120,12 @@ VALUES
     (-36.719351, -73.121589),
     (-36.712665, -73.120835);
 
-UPDATE person_point SET point_id = 1 WHERE rut = '123271472-1';
+
 
 
 -- Agregar ubicaciones a las emergencias
-UPDATE emergency_point SET point_id = 6 WHERE emergency_id = 1;
-UPDATE emergency_point SET point_id = 26 WHERE emergency_id = 2;
-UPDATE emergency_point SET point_id = 14 WHERE emergency_id = 3;
-UPDATE emergency_point SET point_id = 28 WHERE emergency_id = 4;
-UPDATE emergency_point SET point_id = 29 WHERE emergency_id = 5;
+INSERT INTO emergency_point (point_id, emergency_id)
+VALUES (6, 1);
+
+
 
