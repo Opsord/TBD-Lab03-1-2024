@@ -24,14 +24,15 @@ Se debe clonar o descargar el proyecto desde GitHub, la URL al repositorio del p
 ### POSTGRESQL
 Dentro de PgAdmin4 se debe crear una base de datos cuyo nombre debe ser Lab3TBD-1-2024, posteriormente se deben cargar en la base de datos recién creada los archivos que se encuentan en la ruta https://github.com/Opsord/TBD-Lab03-1-2024/tree/main/Database en el siguiente orden:
 
-1- dbCreateV2.sql: Es el script de creación de tablas.
-2- dbTriggersV2.sql: Es el archivo que contiene los triggers.
-3- dbLoadDataV2.sql: Es el archivo que contiene la población de las tablas.
+1. dbCreateV2.sql: Es el script de creación de tablas.
+2. dbTriggersV2.sql: Es el archivo que contiene los triggers.
+3. dbLoadDataV2.sql: Es el archivo que contiene la población de las tablas.
 
 ### MONGODB
 
-Para ejecutar MongoDB 
+Para ejecutar MongoDB se debe acceder a la carpeta en la que se instaló MongoDB, en este caso nosotros instalamos en el disco local C, y se encuentra dentro de una carpeta llamada Program Files, luego buscamos la carpeta MongoDB , después ingresamos a la carpeta Server, a continuación aparece una carpeta con un número (en este caso es el 7.0) 7.0 y la presionamos, en la última carpeta encontramos bin y finalmente se ejecuta mongod.exe.
 
+Luego se abre la aplicación llamada MongoDB Compass y se busca LAB-TBD-1-2024, aquí se encuentran las colecciones users y skills, para poblar users tenemos el archivo en la ruta https://github.com/Opsord/TBD-Lab03-1-2024/tree/main/Database, dentro de la ruta se encuentra el archivo LoadDataUsersMongoDB.json que es el archivo que contiene los documentos de la colección, para poblar dentro de MongoDB Compass se debe presionar ADD DATA, luego import JSON or CSV file y finalmente se selecciona el archivo anteriormente mencionado. Para poblar skills se deben seguir los mismos pasos pero con el archivo LoadDataSkillsMongoDB.json y usando la colección skills.
 
 
 # Backend
