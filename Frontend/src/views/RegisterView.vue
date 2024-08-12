@@ -99,16 +99,17 @@ const registerUser = async () => {
         rut: rut.value,
         email: email.value,
         name: name.value,
-        lastName: lastname.value,
-        birthDate: birthdate.value,
+        last_name: lastname.value,
+        birth_date: birthdate.value,
         sex: sex.value,
         password: password.value,
-        role: "VOLUNTEER",
+        role: "VOLUNTARIO",
         availability: availability.value,
         location: {
             latitude: latitude.value,
             longitude: longitude.value,
-        }
+        },
+        skills: []
     }
     try {
         console.log("Data antes axios: ", data);

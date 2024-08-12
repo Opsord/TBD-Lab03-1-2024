@@ -17,10 +17,11 @@
                 </div>
             </form>
             <div class="mt-5 space-y-5">
-                <ButtonPrimary @click="handleSubmit" buttonText="Ingresar"/>
+                <ButtonPrimary @click="handleSubmit" buttonText="Ingresar" />
                 <div class="flex justify-center gap-2 text-sm">
                     <span>¿Aún no tienes cuenta?</span>
-                    <button class="font-bold text-teal-600 hover:underline" @click="redirectToRegister">Registrate</button>
+                    <button class="font-bold text-teal-600 hover:underline"
+                        @click="redirectToRegister">Registrate</button>
                 </div>
             </div>
         </div>
@@ -48,19 +49,20 @@ const loginUser = async () => {
         password: password.value
     }
     console.log(data)
-    
+
     try {
         const response = await axios.post('http://localhost:8090/auth/login', data);
         console.log("Usuario logeado correctamente", response.data);
         store.token = response.data;
+        const storedJWT = localStorage.setItem("authToken", store.token.token)
         console.log("Token guardado: ", store.token);
-        
+
         const user = await fetchUserRole();
         role.value = user.role;
 
-        if (role.value === "COORDINATOR") {
+        if (role.value === "COORDINADOR") {
             redirectToHomeCoordinator();
-        } else if (role.value === "VOLUNTEER") {
+        } else if (role.value === "VOLUNTARIO") {
             redirectToHomeVolunteer();
         }
     } catch (error) {

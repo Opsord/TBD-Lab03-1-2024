@@ -7,16 +7,18 @@ export const store = reactive({
 });
 
 export const fetchUserRole = async () => {
-    const decodedRut = jwtDecode(store.token.token).sub;
-    console.log("RUT USUARIO: ", decodedRut);
-    
+    const storedJWT = localStorage.getItem("authToken")
+    store.token = storedJWT
+    const decodedRut = jwtDecode(store.token).sub;
+
     try {
-        const response = await axios.get(`http://localhost:8090/api/users/rut/${decodedRut}`, {
+        const response = await axios.get(`http://localhost:8090/usersMongo/rut/${decodedRut}`, {
             headers: {
-                Authorization: `Bearer ${store.token.token}`
+                Authorization: `Bearer ${store.token}`
             }
         });
         console.log("Rol usuario obtenido correctamente", response.data.role);
+        console.log(response.data)
         return response.data;
     } catch (error) {
         console.error("Ha ocurrido un error al obtener el rol de usuario", error);
