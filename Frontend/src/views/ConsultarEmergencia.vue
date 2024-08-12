@@ -104,7 +104,7 @@ async function fetchStatsVolunteers() {
     }
 
     try {
-        const response_attributes = await axios.get('http://localhost:8090/skills', {
+        const response_attributes = await axios.get('http://localhost:8090/skillsMongo/', {
             headers: {
                 Authorization: `Bearer ${store.token}`
             }
@@ -139,7 +139,7 @@ async function fetchEmergencies() {
     try {
         const response = await axios.get('http://localhost:8090/emergencies/all', {
             headers: {
-                Authorization: `Bearer ${store.token.token}`
+                Authorization: `Bearer ${store.token}`
             }
         });
         console.log("Fetched emergencies: ", response.data);
@@ -153,7 +153,7 @@ async function fetchNearbyVolunteers(emergency, radius, quantity) {
     try {
         const response = await axios.get(`http://localhost:8090/emergencies/nearby/${emergency.emergency_id}/${radius}/${quantity}`, {
             headers: {
-                Authorization: `Bearer ${store.token.token}`
+                Authorization: `Bearer ${store.token}`
             }
         });
         console.log(`Fetched volunteers for emergency ${emergency.emergency_id}: `, response.data);
