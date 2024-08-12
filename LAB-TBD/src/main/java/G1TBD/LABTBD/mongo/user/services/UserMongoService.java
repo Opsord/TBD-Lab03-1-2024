@@ -85,7 +85,6 @@ public class UserMongoService {
         return volunteers;
     }
 
-    //Funcionalidad laboratorio 3
     public double obtenerPromedioHabilidades() {
         long totalSkills = 0;
         long totalVolunteers = 0;

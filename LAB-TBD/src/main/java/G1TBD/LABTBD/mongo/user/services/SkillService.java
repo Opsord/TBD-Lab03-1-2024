@@ -46,6 +46,7 @@ public class SkillService {
         return skillRepository.findUserSkillByName(skill_name);
     }
 
+
     public UserSkill getSkillByDescription(String description) {
         return skillRepository.findUserSkillByDescription(description);
     }
@@ -65,12 +66,10 @@ public class SkillService {
         skillRepository.delete(skill);
     }
 
-    public void deleteSkillBySkillCode(String skill_code) {
-        skillRepository.delete(getSkillBySkillId(skill_code));
-    }
-
     public void deleteSkillBySkillName(String skill_name) {
         skillRepository.delete(getSkillBySkillName(skill_name));
     }
+
+
 
 }
