@@ -121,11 +121,24 @@ VALUES
     (-36.712665, -73.120835);
 
 
-
+-- Agregar ubicaciones a los usuarios
+INSERT INTO person_point (point_id, rut)
+VALUES 
+    (1, '123271472-1'),
+    (2, '176271472-1'),
+    (3, '182473567-4'),
+    (4, '948128124-1'),
+    (5, '81723817246-1'),
+    (7, '71264646674-4'),
+    (8, '5872873212-4'),
+    (9, '876327463-4'),
+    (10, '7126476122-4');
 
 -- Agregar ubicaciones a las emergencias
 INSERT INTO emergency_point (point_id, emergency_id)
-VALUES (6, 1);
-
-
-
+VALUES 
+    (6, 1),
+    (26, 2),
+    (14, 3),
+    (28, 4),
+    (29, 5);
