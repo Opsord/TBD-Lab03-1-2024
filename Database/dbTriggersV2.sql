@@ -36,7 +36,7 @@ CREATE TABLE emergency_audit_trigger (
 CREATE OR REPLACE FUNCTION emergency_audit_trigger_function()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO emergency_audit_trigger (emergency_id, status, title, description, rut, date, operation)
+    INSERT INTO emergency_audit_trigger (emergency_id, status, title, description, date, operation)
     VALUES (NEW.emergency_id, NEW.status, NEW.title, NEW.description, CURRENT_TIMESTAMP, TG_OP);
     RETURN NEW;
 END;
