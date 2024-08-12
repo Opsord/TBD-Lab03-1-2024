@@ -26,17 +26,17 @@ VALUES
 -- Población de la tabla Emergencia_Atributo
 INSERT INTO emergency_attribute (emergency_id, attribute_id, compatibility)
 VALUES 
-    (1, 1, true),   -- La emergencia 1 tiene compatibilidad con el atributo 1 (Fuerza física)
-    (1, 2, true),   -- La emergencia 1 tiene compatibilidad con el atributo 2 (Rescate en Terreno)
-    (1, 3, false),  -- La emergencia 1 no tiene compatibilidad con el atributo 3 (Apoyo psicológico)
-    (2, 4, false),  -- La emergencia 2 no tiene compatibilidad con el atributo 4 (Manejo de herramientas de rescate)
-    (2, 5, true),   -- La emergencia 2 tiene compatibilidad con el atributo 5 (Conocimientos en primeros auxilios)
-    (3, 6, true),   -- La emergencia 3 tiene compatibilidad con el atributo 6 (Manejo de equipos de comunicación)
-    (3, 7, true),   -- La emergencia 3 tiene compatibilidad con el atributo 7 (Capacidad para la búsqueda y localización de personas perdidas)
-    (4, 1, true),   -- La emergencia 4 tiene compatibilidad con el atributo 1 (Fuerza física)
-    (4, 2, false),  -- La emergencia 4 no tiene compatibilidad con el atributo 2 (Rescate en Terreno)
-    (5, 6, false), -- La emergencia 5 no tiene compatibilidad con el atributo 6 (Manejo de equipos de comunicación)
-    (5, 7, true);  -- La emergencia 5 tiene compatibilidad con el atributo 7 (Capacidad para la búsqueda y localización de personas perdidas)
+    (1, "SKL007", true),   -- La emergencia 1 tiene compatibilidad con el atributo 1 (Fuerza física)
+    (1, "SKL001", true),   -- La emergencia 1 tiene compatibilidad con el atributo 2 (Rescate en Terreno)
+    (1, "SKL003", false),  -- La emergencia 1 no tiene compatibilidad con el atributo 3 (Apoyo psicológico)
+    (2, "SKL004", false),  -- La emergencia 2 no tiene compatibilidad con el atributo 4 (Manejo de herramientas de rescate)
+    (2, "SKL001", true),   -- La emergencia 2 tiene compatibilidad con el atributo 5 (Conocimientos en primeros auxilios)
+    (3, "SKL008", true),   -- La emergencia 3 tiene compatibilidad con el atributo 6 (Manejo de equipos de comunicación)
+    (3, "SKL006", true),   -- La emergencia 3 tiene compatibilidad con el atributo 7 (Capacidad para la búsqueda y localización de personas perdidas)
+    (4, "SKL005", true),   -- La emergencia 4 tiene compatibilidad con el atributo 1 (Fuerza física)
+    (4, "SKL003", false),  -- La emergencia 4 no tiene compatibilidad con el atributo 2 (Rescate en Terreno)
+    (5, "SKL002", false), -- La emergencia 5 no tiene compatibilidad con el atributo 6 (Manejo de equipos de comunicación)
+    (5, "SKL001", true);  -- La emergencia 5 tiene compatibilidad con el atributo 7 (Capacidad para la búsqueda y localización de personas perdidas)
 
 -- Población de la tabla Tarea
 INSERT INTO task (description, status)
