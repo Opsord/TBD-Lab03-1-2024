@@ -11,14 +11,15 @@
                             </CardContent>
                             <CardDescription>
                                 Tareas registradas:
-                                <p v-for="tarea in data.tareas" :key="tarea.task_id">
-                                    {{ tarea.type }}</p>
+                                <p class="truncate" v-for="tarea in data.tareas" :key="tarea.task_id">
+                                    {{ tarea.description }}</p>
                             </CardDescription>
                         </CardHeader>
                         <CardFooter class="flex flex-col items-start">
                             <p>Voluntarios registrados:</p>
                             <div v-for="tarea in data.tareas" :key="tarea.task_id">
-                                <p v-for="user in tarea.user" :key="user.rut">&nbsp;{{ user.name }} {{ user.lastname }}</p>
+                                <p v-for="user in tarea.user" :key="user.rut">&nbsp;{{ user.name }} {{ user.lastname }}
+                                </p>
                             </div>
                         </CardFooter>
                     </Card>
@@ -43,11 +44,15 @@ import {
 import { store, fetchUserRole } from '@/store';
 
 const emergencia = ref(null)
+const token = localStorage.getItem("authToken")
+
+console.log("THIS IS MY TOKENNNNNNNNNNNNNNNNNNNNNNnn")
+console.log(token)
+
 
 async function fetchEmergencia() {
     try {
         const response = await axios.get('http://localhost:8090/emergencies/closed');
-        console.log("TERMINA - Emergencias Closed: ", response.data);
         emergencia.value = response.data;
     } catch (error) {
         console.error('There was an error fetching the user data:', error);
@@ -61,13 +66,13 @@ async function fetchTarea() {
             const fetchPromises = emergencia.value.map(async (emergenciaEach) => {
                 const response = await axios.get(`${tareaGet}${emergenciaEach.emergency_id}`, {
                     headers: {
-                        Authorization: `Bearer ${store.token.token}`
+                        Authorization: `Bearer ${token}`
                     }
                 });
                 const tareas = response.data;
                 return { ...emergenciaEach, tareas: tareas };
             });
-            const result = await Promise.all(fetchPromises);    
+            const result = await Promise.all(fetchPromises);
             emergencia.value = result;
             console.log("TERMINA - Emergencia Id: ", result);
         } catch (error) {
@@ -85,7 +90,7 @@ async function fetchVoluntarios() {
                 const taskPromises = tasks.map(async (task) => {
                     const response = await axios.get(`${rankingGet}${task.task_id}`, {
                         headers: {
-                            Authorization: `Bearer ${store.token.token}`
+                            Authorization: `Bearer ${token}`
                         }
                     });
                     console.log("AQUI EL ERROR: ", response.data);
@@ -95,7 +100,7 @@ async function fetchVoluntarios() {
                 const taskResults = await Promise.all(taskPromises);
                 return { ...emergenciaEach, tareas: taskResults };
             });
-            
+
             const results = await Promise.all(fetchPromises);
             emergencia.value = results;
             console.log("TERMINA - Tarea Id: ", results);
