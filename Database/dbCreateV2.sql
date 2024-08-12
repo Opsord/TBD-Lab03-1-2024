@@ -53,7 +53,7 @@ CREATE TABLE emergency_point (
 CREATE TABLE emergency_attribute (
     emergency_attribute_id BIGSERIAL PRIMARY KEY,
     emergency_id BIGINT,
-    attribute_id BIGINT,
+    skill_code VARCHAR(20),
     compatibility BOOLEAN NOT NULL,
     FOREIGN KEY (emergency_id) REFERENCES emergency(emergency_id)
 );
