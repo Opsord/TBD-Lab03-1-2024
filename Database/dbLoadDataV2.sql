@@ -1,9 +1,10 @@
---Poblacion de la tabla Institucion
+-- Poblacion de la tabla Institucion
 INSERT INTO institution (name) 
 VALUES 
     ('Cruz Roja de Chile'),
     ('Bomberos Municipales'),
     ('Equipo de rescate de desastres naturales');
+
 
 -- Poblacion de la tabla person_institution
 INSERT INTO person_institution (rut, institution_id)
@@ -13,7 +14,7 @@ VALUES
     ('98482714-4', '3');
 
 
---Poblacion de la tabla Emergencia
+-- Poblacion de la tabla Emergencia
 INSERT INTO emergency (status, title, description)
 VALUES 
     (true, 'Incendio forestal en zona rural', 'Se ha reportado un incendio forestal en la zona de la Reserva Nacional. Se necesita asistencia inmediata.'),
@@ -22,7 +23,7 @@ VALUES
     (true, 'Accidente de tráfico múltiple', 'Se ha producido un accidente de tráfico en la autopista principal. Varios vehículos están involucrados.'),
     (false, 'Deslizamiento de tierra en carretera', 'Un deslizamiento de tierra ha bloqueado una carretera importante. Se necesita ayuda para despejar la vía.');
 
---Poblacion de tabla
+
 -- Población de la tabla Emergencia_Atributo
 INSERT INTO emergency_attribute (emergency_id, skill_code, compatibility)
 VALUES 
@@ -38,6 +39,7 @@ VALUES
     (5, 'SKL002', false), -- La emergencia 5 no tiene compatibilidad con el atributo 6 (Manejo de equipos de comunicación)
     (5, 'SKL001', true);  -- La emergencia 5 tiene compatibilidad con el atributo 7 (Capacidad para la búsqueda y localización de personas perdidas)
 
+
 -- Población de la tabla Tarea
 INSERT INTO task (description, status)
 VALUES 
@@ -48,6 +50,7 @@ VALUES
     ('Organizar y llevar a cabo el despeje de la carretera bloqueada por el deslizamiento de tierra.', false),
     ('Distribuir alimentos y agua potable a los evacuados.', true),
     ('Brindar apoyo emocional y asistencia psicológica a las personas afectadas por la fuga de gas.', false);
+
 
 -- Población de la tabla Persona_Tarea
 INSERT INTO person_task (task_id, rut)
@@ -62,6 +65,7 @@ VALUES
     (3, '4412317123-k'),
     (4, '5872873212-4'),
     (5, '61523512412-5');
+
 
 -- Población de la tabla Tarea_Emergencia
 INSERT INTO task_emergency (task_id, emergency_id)
@@ -78,8 +82,7 @@ VALUES
     (5, 3);
 
 
-
---Poblacion de la tabla Punto
+-- Población de la tabla Punto
 INSERT INTO point (longitude, latitude)
 VALUES 
 
