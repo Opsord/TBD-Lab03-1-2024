@@ -34,7 +34,8 @@
             <form @submit.prevent="handleSubmit" class="grid grid-cols-5 gap-4">
                 <div class="col-span-2 space-y-2">
                     <label for="emergencySelect" class="text-sm font-medium">Seleccionar emergencia</label>
-                    <select id="emergencySelect" v-model="emergencieSelected" class="flex h-10 w-full rounded-md border border-slate-300 bg-gray-50 px-3 py-2 text-sm">
+                    <select id="emergencySelect" v-model="emergencieSelected"
+                        class="flex h-10 w-full rounded-md border border-slate-300 bg-gray-50 px-3 py-2 text-sm">
                         <option v-for="emergency in emergencies" :key="emergency.emergency_id" :value="emergency">
                             {{ emergency.title }}
                         </option>
@@ -42,11 +43,13 @@
                 </div>
                 <div class="space-y-2">
                     <label for="radiusInput" class="text-sm font-medium">Distancia (km)</label>
-                    <input id="radiusInput" v-model="radius" type="number" class="flex h-10 w-full rounded-md border border-slate-300 bg-gray-50 px-3 py-2 text-sm">
+                    <input id="radiusInput" v-model="radius" type="number"
+                        class="flex h-10 w-full rounded-md border border-slate-300 bg-gray-50 px-3 py-2 text-sm">
                 </div>
                 <div class="space-y-2">
                     <label for="quantityInput" class="text-sm font-medium">Cantidad</label>
-                    <input id="quantityInput" v-model="quantity" type="number" class="flex h-10 w-full rounded-md border border-slate-300 bg-gray-50 px-3 py-2 text-sm">
+                    <input id="quantityInput" v-model="quantity" type="number"
+                        class="flex h-10 w-full rounded-md border border-slate-300 bg-gray-50 px-3 py-2 text-sm">
                 </div>
                 <div class="flex items-end">
                     <Button variant="ghost" class="w-full border border-zinc-600" type="button" @click="handleSubmit">
@@ -57,7 +60,8 @@
             <div class="space-y-2">
                 <h2 class="font-semibold uppercase">Voluntarios encontrados</h2>
                 <div v-if="volunteers.length" class="flex flex-wrap gap-2">
-                    <div class="flex w-fit gap-2 text-sm px-4 py-3 bg-gray-50 rounded-md border border-gray-300" v-for="volunteer in volunteers" :key="volunteer.rut">
+                    <div class="flex w-fit gap-2 text-sm px-4 py-3 bg-gray-50 rounded-md border border-gray-300"
+                        v-for="volunteer in volunteers" :key="volunteer.rut">
                         <div class="font-semibold">
                             {{ volunteer.name }} {{ volunteer.lastname }}
                         </div>
@@ -88,9 +92,9 @@ const average = ref(0);
 async function fetchStatsVolunteers() {
     try {
         // Cambiar por ruta para obtener todos los voluntarios registrados
-        const response_volunteers = await axios.get('', {
+        const response_volunteers = await axios.get('http://localhost:8090/usersMongo/', {
             headers: {
-                Authorization: `Bearer ${store.token.token}`
+                Authorization: `Bearer ${store.token}`
             }
         });
         console.log("Fetching volunteers:", response_volunteers);
@@ -100,9 +104,9 @@ async function fetchStatsVolunteers() {
     }
 
     try {
-        const response_attributes = await axios.get('http://localhost:8090/attributes/all', {
+        const response_attributes = await axios.get('http://localhost:8090/skills', {
             headers: {
-                Authorization: `Bearer ${store.token.token}`
+                Authorization: `Bearer ${store.token}`
             }
         });
         console.log("Fetching attributes:", response_attributes);
@@ -113,9 +117,9 @@ async function fetchStatsVolunteers() {
 
     try {
         // Cambiar por ruta para obtener promedio de habilidades
-        const response_average = await axios.get('', {
+        const response_average = await axios.get('http://localhost:8090/usersMongo/promedio-habilidades', {
             headers: {
-                Authorization: `Bearer ${store.token.token}`
+                Authorization: `Bearer ${store.token}`
             }
         });
         console.log("Fetching average:", response_average);
