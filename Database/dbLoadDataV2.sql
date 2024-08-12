@@ -49,6 +49,7 @@ VALUES
     ('Distribuir alimentos y agua potable a los evacuados.', true),
     ('Brindar apoyo emocional y asistencia psicológica a las personas afectadas por la fuga de gas.', false);
 
+-- Población de la tabla Persona_Tarea
 INSERT INTO person_task (task_id, rut)
 VALUES 
     (1, '123271472-1'),
@@ -61,6 +62,21 @@ VALUES
     (3, '4412317123-k'),
     (4, '5872873212-4'),
     (5, '61523512412-5');
+
+-- Población de la tabla Tarea_Emergencia
+INSERT INTO task_emergency (task_id, emergency_id)
+VALUES 
+    (1, 2),
+    (2, 2),
+    (3, 5),
+    (4, 4),
+    (5, 1),
+    (1, 3),
+    (2, 1),
+    (3, 5),
+    (4, 4),
+    (5, 3);
+
 
 
 --Poblacion de la tabla Punto
