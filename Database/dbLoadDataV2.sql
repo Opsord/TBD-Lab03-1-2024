@@ -124,9 +124,9 @@ UPDATE person_point SET point_id = 1 WHERE rut = '123271472-1';
 
 
 -- Agregar ubicaciones a las emergencias
-UPDATE emergency SET point_id = 6 WHERE emergency_id = 1;
-UPDATE emergency SET point_id = 26 WHERE emergency_id = 2;
-UPDATE emergency SET point_id = 14 WHERE emergency_id = 3;
-UPDATE emergency SET point_id = 28 WHERE emergency_id = 4;
-UPDATE emergency SET point_id = 29 WHERE emergency_id = 5;
+UPDATE emergency_point SET point_id = 6 WHERE emergency_id = 1;
+UPDATE emergency_point SET point_id = 26 WHERE emergency_id = 2;
+UPDATE emergency_point SET point_id = 14 WHERE emergency_id = 3;
+UPDATE emergency_point SET point_id = 28 WHERE emergency_id = 4;
+UPDATE emergency_point SET point_id = 29 WHERE emergency_id = 5;
 
