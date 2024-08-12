@@ -11,17 +11,17 @@
         "availability": true,
         "skills": [
             {
-                "skill_id": "SKL007",
+                "skill_code": "SKL007",
                 "name": "Búsqueda",
                 "description": "Capacidad para la búsqueda y localización de personas perdidas"
             },
             {
-                "skill_id": "SKL005",
+                "skill_code": "SKL005",
                 "name": "Primeros Auxilios",
                 "description": "Conocimientos en primeros auxilios"
             },
             {
-                "skill_id": "SKL003",
+                "skill_code": "SKL003",
                 "name": "Psicología",
                 "description": "Apoyo psicológico"
             }
@@ -29,7 +29,7 @@
     },
     {
         "rut": "176271472-1",
-        "email": "correo.ejemplo@gmail.com",
+        "email": "correo1.ejemplo@gmail.com",
         "name": "Elivs",
         "last_name": "Tec",
         "birth_date": "1997-12-22",
@@ -39,12 +39,12 @@
         "availability": true,
         "skills": [
             {
-                "skill_id": "SKL003",
+                "skill_code": "SKL003",
                 "name": "Psicología",
                 "description": "Apoyo psicológico"
             },
             {
-                "skill_id": "SKL004",
+                "skill_code": "SKL004",
                 "name": "Herramientas",
                 "description": "Manejo de herramientas de rescate"
             }
@@ -52,7 +52,7 @@
     },
     {
         "rut": "182473567-4",
-        "email": "correo.ejemplo@gmail.com",
+        "email": "correo2.ejemplo@gmail.com",
         "name": "Pedro",
         "last_name": "Perez",
         "birth_date": "1999-10-31",
@@ -62,12 +62,12 @@
         "availability": true,
         "skills": [
             {
-                "skill_id": "SKL005",
+                "skill_code": "SKL005",
                 "name": "Primeros Auxilios",
                 "description": "Conocimientos en primeros auxilios"
             },
             {
-                "skill_id": "SKL006",
+                "skill_code": "SKL006",
                 "name": "Comunicación",
                 "description": "Manejo de equipos de comunicación"
             }
@@ -75,7 +75,7 @@
     },
     {
         "rut": "948128124-1",
-        "email": "correo.ejemplo@gmail.com",
+        "email": "correo3.ejemplo@gmail.com",
         "name": "Aquiles",
         "last_name": "Brinco",
         "birth_date": "2000-11-26",
@@ -85,12 +85,12 @@
         "availability": true,
         "skills": [
             {
-                "skill_id": "SKL007",
+                "skill_code": "SKL007",
                 "name": "Búsqueda",
                 "description": "Capacidad para la búsqueda y localización de personas perdidas"
             },
             {
-                "skill_id": "SKL001",
+                "skill_code": "SKL001",
                 "name": "Fuerza",
                 "description": "Fuerza física"
             }
@@ -98,7 +98,7 @@
     },
     {
         "rut": "81723817246-1",
-        "email": "correo.ejemplo@gmail.com",
+        "email": "correo4.ejemplo@gmail.com",
         "name": "Zacaria",
         "last_name": "Flores del Campo",
         "birth_date": "2002-11-26",
@@ -108,12 +108,12 @@
         "availability": true,
         "skills": [
             {
-                "skill_id": "SKL004",
+                "skill_code": "SKL004",
                 "name": "Herramientas",
                 "description": "Manejo de herramientas de rescate"
             },
             {
-                "skill_id": "SKL001",
+                "skill_code": "SKL001",
                 "name": "Fuerza",
                 "description": "Fuerza física"
             }
@@ -121,7 +121,7 @@
     },
     {
         "rut": "71264646674-4",
-        "email": "correo.ejemplo@gmail.com",
+        "email": "correo5.ejemplo@gmail.com",
         "name": "Aquiles",
         "last_name": "Baeza",
         "birth_date": "2001-11-13",
@@ -131,17 +131,17 @@
         "availability": true,
         "skills": [
             {
-                "skill_id": "SKL006",
+                "skill_code": "SKL006",
                 "name": "Comunicación",
                 "description": "Manejo de equipos de comunicación"
             },
             {
-                "skill_id": "SKL008",
+                "skill_code": "SKL008",
                 "name": "Drones",
                 "description": "Habilidad en el uso de drones para búsqueda y rescate"
             },
             {
-                "skill_id": "SKL007",
+                "skill_code": "SKL007",
                 "name": "Búsqueda",
                 "description": "Capacidad para la búsqueda y localización de personas perdidas"
             }
@@ -149,7 +149,7 @@
     },
     {
         "rut": "5872873212-4",
-        "email": "correo.ejemplo@gmail.com",
+        "email": "correo6.ejemplo@gmail.com",
         "name": "Susana",
         "last_name": "Oria",
         "birth_date": "2000-11-26",
@@ -159,17 +159,17 @@
         "availability": true,
         "skills": [
             {
-                "skill_id": "SKL001",
+                "skill_code": "SKL001",
                 "name": "Fuerza",
                 "description": "Fuerza física"
             },
             {
-                "skill_id": "SKL008",
+                "skill_code": "SKL008",
                 "name": "Drones",
                 "description": "Habilidad en el uso de drones para búsqueda y rescate"
             },
             {
-                "skill_id": "SKL002",
+                "skill_code": "SKL002",
                 "name": "Rescate",
                 "description": "Rescate en Terreno"
             }
@@ -177,7 +177,7 @@
     },
     {
         "rut": "876327463-4",
-        "email": "correo.ejemplo@gmail.com",
+        "email": "correo7.ejemplo@gmail.com",
         "name": "Diego",
         "last_name": "SuperApellido",
         "birth_date": "2000-12-22",
@@ -187,12 +187,12 @@
         "availability": false,
         "skills": [
             {
-                "skill_id": "SKL001",
+                "skill_code": "SKL001",
                 "name": "Fuerza",
                 "description": "Fuerza física"
             },
             {
-                "skill_id": "SKL002",
+                "skill_code": "SKL002",
                 "name": "Rescate",
                 "description": "Rescate en Terreno"
             }
@@ -200,7 +200,7 @@
     },
     {
         "rut": "7126476122-4",
-        "email": "correo.ejemplo@gmail.com",
+        "email": "correo8.ejemplo@gmail.com",
         "name": "Eustacio",
         "last_name": "Perez",
         "birth_date": "2001-11-13",
@@ -210,15 +210,16 @@
         "availability": true,
         "skills": [
             {
-                "skill_id": "SKL007",
+                "skill_code": "SKL007",
                 "name": "Búsqueda",
                 "description": "Capacidad para la búsqueda y localización de personas perdidas"
             },
             {
-                "skill_id": "SKL003",
+                "skill_code": "SKL003",
                 "name": "Psicología",
                 "description": "Apoyo psicológico"
             }
         ]
     }
 ]
+
