@@ -53,8 +53,13 @@ async function fetchEmergencia() {
         emergencia.value = response.data;
         const emergencias = response.data;
         const newEmergency = emergencias.map(async (emergencia) => {
-            const fetchAsociados = await axios.get(`http://localhost:8090/emergencies/nearby/${emergencia.emergency_id}/1000000000000000000000000000000/2`)
-            return { ...emergencia, voluntarios: fetchAsociados.data }
+            const fetchAsociados = await axios.get(`http://localhost:8090/emergencies/nearby/${emergencia.emergency_id}/1000000000000000000000000000000/10`)
+            const selected = fetchAsociados.data
+            const select = selected.map(value => ({ value, sort: Math.random() }))
+                .sort((a, b) => a.sort - b.sort)
+                .map(({ value }) => value)
+                .splice(-2)
+            return { ...emergencia, voluntarios: select }
         })
         const result = await Promise.all(newEmergency);
         emergencia.value = result
