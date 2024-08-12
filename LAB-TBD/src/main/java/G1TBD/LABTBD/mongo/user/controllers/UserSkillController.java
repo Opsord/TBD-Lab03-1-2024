@@ -50,6 +50,28 @@ public class UserSkillController {
         }
     }
 
+    @GetMapping("/code/{code}")
+    public ResponseEntity<UserSkill> findSkillByCode(@PathVariable String code) {
+        try {
+            Optional<UserSkill> user = Optional.ofNullable(skillService.getSkillBySkillCode(code));
+            return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<UserSkill> findSkillByName(@PathVariable String name) {
+        try {
+            Optional<UserSkill> user = Optional.ofNullable(skillService.getSkillBySkillName(name));
+            return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     //--------------------------UPDATE--------------------------
 
     @PutMapping("/")

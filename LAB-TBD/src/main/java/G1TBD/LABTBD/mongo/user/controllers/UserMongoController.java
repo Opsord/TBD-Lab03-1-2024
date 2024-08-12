@@ -60,6 +60,17 @@ public class UserMongoController {
         }
     }
 
+    @GetMapping("/rut/{rut}")
+    public ResponseEntity<UserMongo> findUserByRut(@PathVariable String rut) {
+        try {
+            Optional<UserMongo> user = userMongoService.getUserByRut(rut);
+            return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     //Funcionalidad laboratorio 3
     @GetMapping("/promedio-habilidades")
     public double obtenerPromedioHabilidades() {

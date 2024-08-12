@@ -46,6 +46,12 @@ public class SkillService {
         return skillRepository.findUserSkillByName(skill_name);
     }
 
+    public UserSkill getSkillBySkillCode(String skill_code) {
+        return skillRepository.findBySkillCode(skill_code);
+    }
+
+
+
 
     public UserSkill getSkillByDescription(String description) {
         return skillRepository.findUserSkillByDescription(description);

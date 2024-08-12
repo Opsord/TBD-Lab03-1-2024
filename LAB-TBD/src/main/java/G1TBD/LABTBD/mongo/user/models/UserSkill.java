@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Data
 @Builder
@@ -22,7 +23,8 @@ public class UserSkill {
     private String name;
 
     @Indexed(unique = false)
-    private String skill_code;
+    @Field("skill_code")
+    private String skillCode;
 
     private String description;
 

@@ -11,6 +11,7 @@ public interface SkillRepository extends MongoRepository<UserSkill, String> {
     // Find by´s
     UserSkill findUserSkillByName(String name);
     UserSkill findUserSkillByDescription(String description);
-
+    //UserSkill findUserSkillBySkillCode(String code);
+    UserSkill findBySkillCode(String skillCode);
 
 }
