@@ -45,20 +45,20 @@ const availableAttributes = ref(attributes);
 const selectedAttributes = ref([]);
 
 const addAttribute = (attribute, compatibility) => {
-    selectedAttributes.value.push({ attribute_id: attribute.attribute_id, attribute: attribute.attribute, compatibility: compatibility });
-    availableAttributes.value = availableAttributes.value.filter(item => item.attribute_id !== attribute.attribute_id);
+    selectedAttributes.value.push({ skill_id: attribute.skill_id, skillCode: attribute.skillCode, name: attribute.name, description: attribute.description,  compatibility: compatibility });
+    availableAttributes.value = availableAttributes.value.filter(item => item.skillCode !== attribute.skillCode);
 }
 
 const removeAttribute = (attribute) => {
-    selectedAttributes.value = selectedAttributes.value.filter(item => item.attribute_id !== attribute.attribute_id);
+    selectedAttributes.value = selectedAttributes.value.filter(item => item.skillCode !== attribute.skillCode);
     availableAttributes.value.push(attribute);
 }
 
 async function fetchAttributes() {
     try {
-        const response = await axios.get(`http://localhost:8090/attributes/all`, {
+        const response = await axios.get('http://localhost:8090/skillsMongo/', {
             headers: {
-                Authorization: `Bearer ${store.token.token}`
+                Authorization: `Bearer ${store.token}`
             }
         });
         console.log("TERMINADO - Get atributos: ", response.data);
@@ -75,7 +75,7 @@ async function createEmergency(emergency) {
 
         const response = await axios.post(`http://localhost:8090/emergencies/create`, emergency, {
             headers: {
-                Authorization: `Bearer ${store.token.token}`
+                Authorization: `Bearer ${store.token}`
             }
         });
         console.log("TERMINADO - Crear Emergencia: ", response.data.emergency_id);
@@ -90,8 +90,8 @@ async function createEmergencyAttribute(emergency) {
     console.log("Atributos seleccionados: ", selectedAttributes.value);
 
     try {
-        const emergencyAttributes = selectedAttributes.value.map(({ attribute_id, compatibility }) => ({
-            attribute: attribute_id,
+        const emergencyAttributes = selectedAttributes.value.map(({ skill_id, compatibility }) => ({
+            attribute: skill_id,
             compatibility,
             emergency: emergency.emergency_id
         }));
@@ -99,7 +99,7 @@ async function createEmergencyAttribute(emergency) {
 
         const response = await axios.post(`http://localhost:8090/emergencyAttribute/createVarious`, emergencyAttributes, {
             headers: {
-                Authorization: `Bearer ${store.token.token}`
+                Authorization: `Bearer ${store.token}`
             }
         });
         console.log("Emergencia-Atributo: ", response.data);
@@ -140,7 +140,7 @@ onMounted(fetchAttributes);
 </script>
 <template>
     <div class="flex justify-center">
-        <div class="rounded-lg border border-slate-200 bg-white text-slate-950 shadow-sm w-6/12 my-4 p-10">
+        <div class="rounded-lg border border-slate-200 bg-white text-slate-950 shadow-sm w-8/12 my-4 p-10">
             <form class="grid grid-cols-2 gap-10" @submit="onSubmit">
                     <FormField name="titulo">
                         <FormItem>
@@ -164,7 +164,7 @@ onMounted(fetchAttributes);
                         <p class="text-sm font-medium">Habilidades disponibles</p>
                         <ScrollArea class="h-[200px] w-full">
                             <div class="space-y-2" v-if="availableAttributes && availableAttributes.length">
-                                <li class="flex gap-2 items-center text-sm" v-for="data in availableAttributes" :key="data.attribute_id">
+                                <li class="flex gap-2 items-center text-sm" v-for="data in availableAttributes" :key="data.skillCode">
                                     <Button type="button"
                                         v-on:click="addAttribute(data, 1)">
                                         ✅
@@ -174,7 +174,8 @@ onMounted(fetchAttributes);
                                         ❌
                                     </Button>
                                     <div>
-                                        {{ data.attribute }}
+                                        {{ data.name }} <br>
+                                        <span class="text-xs text-gray-600">{{ data.description }}</span>
                                     </div>
                                 </li>
                             </div>
@@ -185,13 +186,15 @@ onMounted(fetchAttributes);
                         <div class="flex">
                             <ScrollArea class="h-[200px] w-full">
                                 <div class="space-y-2" v-if="selectedAttributes && selectedAttributes.length">
-                                    <li class="flex gap-2 items-center text-sm" v-for="data in selectedAttributes" :key="data.attribute_id">
+                                    <li class="flex gap-2 items-center text-sm" v-for="data in selectedAttributes" :key="data.skillCode">
                                         <Button type="button" v-on:click="removeAttribute(data)">
                                             ❌
                                         </Button>
-                                        {{ data.attribute }}
-                                        <p v-if="data.compatibility === 1" class="text-green-600">&nbsp;Compatible</p>
-                                        <p v-else-if="data.compatibility === 0" class="text-red-600">&nbsp;Incompatible</p>
+                                        <div>
+                                            {{ data.name }}
+                                            <p v-if="data.compatibility === 1" class="text-xs text-green-600">Compatible</p>
+                                            <p v-else-if="data.compatibility === 0" class="text-xs text-red-600">Incompatible</p>
+                                        </div>
                                     </li>
                                 </div>
                             </ScrollArea>
