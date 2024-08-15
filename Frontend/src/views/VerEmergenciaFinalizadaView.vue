@@ -11,15 +11,15 @@
                             </CardContent>
                             <CardDescription>
                                 Tareas registradas:
-                                <p class="truncate" v-for="tarea in data.tareas" :key="tarea.task_id">
-                                    {{ tarea.description }}</p>
+                                <p v-for="tarea in data.tareas" :key="tarea.task_id">
+                                    {{ tarea.type }}</p>
                             </CardDescription>
                         </CardHeader>
                         <CardFooter class="flex flex-col items-start">
                             <p>Voluntarios registrados:</p>
-                            <p v-for="voluntario in data.voluntarios" :key="voluntario.rut">
-                                {{ voluntario.name }} {{
-                                    voluntario.last_name }}</p>
+                            <div v-for="tarea in data.tareas" :key="tarea.task_id">
+                                <p v-for="user in tarea.user" :key="user.rut">&nbsp;{{ user.name }} {{ user.lastname }}</p>
+                            </div>
                         </CardFooter>
                     </Card>
                 </div>
@@ -43,26 +43,16 @@ import {
 import { store, fetchUserRole } from '@/store';
 
 const emergencia = ref(null)
-const token = localStorage.getItem("authToken")
-
 
 async function fetchEmergencia() {
     try {
-        const response = await axios.get('http://localhost:8090/emergencies/closed');
+        const response = await axios.get(`http://localhost:8090/emergencies/closed`, {
+                    headers: {
+                        Authorization: `Bearer ${store.token}`
+                    }
+                });
+        console.log("TERMINA - Emergencias Closed: ", response.data);
         emergencia.value = response.data;
-        const emergencias = response.data;
-        const newEmergency = emergencias.map(async (emergencia) => {
-            const fetchAsociados = await axios.get(`http://localhost:8090/emergencies/nearby/${emergencia.emergency_id}/1000000000000000000000000000000/10`)
-            const selected = fetchAsociados.data
-            const select = selected.map(value => ({ value, sort: Math.random() }))
-                .sort((a, b) => a.sort - b.sort)
-                .map(({ value }) => value)
-                .splice(-2)
-            return { ...emergencia, voluntarios: select }
-        })
-        const result = await Promise.all(newEmergency);
-        emergencia.value = result
-
     } catch (error) {
         console.error('There was an error fetching the user data:', error);
     }
@@ -75,13 +65,13 @@ async function fetchTarea() {
             const fetchPromises = emergencia.value.map(async (emergenciaEach) => {
                 const response = await axios.get(`${tareaGet}${emergenciaEach.emergency_id}`, {
                     headers: {
-                        Authorization: `Bearer ${token}`
+                        Authorization: `Bearer ${store.token}`
                     }
                 });
                 const tareas = response.data;
                 return { ...emergenciaEach, tareas: tareas };
             });
-            const result = await Promise.all(fetchPromises);
+            const result = await Promise.all(fetchPromises);    
             emergencia.value = result;
             console.log("TERMINA - Emergencia Id: ", result);
         } catch (error) {
@@ -90,22 +80,36 @@ async function fetchTarea() {
     }
 }
 
-
-async function fetchNearbyVolunteers(emergency, radius, quantity) {
-    try {
-        const response = await axios.get(`http://localhost:8090/emergencies/nearby/${emergency.emergency_id}/${radius}/${quantity}`, {
-            headers: {
-                Authorization: `Bearer ${store.token}`
-            }
-        });
-        console.log(`Fetched volunteers for emergency ${emergency.emergency_id}: `, response.data);
-        volunteers.value = response.data;
-    } catch (error) {
-        console.error(`Error fetching nearby volunteers for emergency ${emergency.emergency_id}:`, error);
+async function fetchVoluntarios() {
+    const rankingGet = "http://localhost:8090/rankings/task_id/";
+    if (emergencia.value && emergencia.value.length > 0) {
+        try {
+            const fetchPromises = emergencia.value.map(async (emergenciaEach) => {
+                const tasks = emergenciaEach.tareas;
+                const taskPromises = tasks.map(async (task) => {
+                    const response = await axios.get(`${rankingGet}${task.task_id}`, {
+                        headers: {
+                            Authorization: `Bearer ${store.token}`
+                        }
+                    });
+                    console.log("AQUI EL ERROR: ", response.data);
+                    const user = response.data.map(ranking => ranking.user);
+                    return { ...task, user: user };
+                });
+                const taskResults = await Promise.all(taskPromises);
+                return { ...emergenciaEach, tareas: taskResults };
+            });
+            
+            const results = await Promise.all(fetchPromises);
+            emergencia.value = results;
+            console.log("TERMINA - Tarea Id: ", results);
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
 
 // If you want to fetch data when the component mounts
-onMounted(async () => { await fetchEmergencia(); await fetchTarea() });
+onMounted(async () => { await fetchEmergencia(); await fetchTarea(); await fetchVoluntarios() });
 
 </script>
