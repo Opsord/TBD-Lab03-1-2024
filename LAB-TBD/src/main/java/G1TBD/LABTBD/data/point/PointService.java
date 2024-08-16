@@ -21,7 +21,7 @@ public class PointService {
     // --------------------------CREATE--------------------------
 
     public Long create(PointEntity point) {
-        Long punto = pointRepository.savePoint(point.getLatitude(), point.getLongitude());
+        Long punto = pointRepository.create(point.getLatitude(), point.getLongitude());
         //pointRepository.save(point);
         logger.info("Point created: " + punto);
         return punto;
