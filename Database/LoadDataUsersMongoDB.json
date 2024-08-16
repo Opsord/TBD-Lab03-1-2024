@@ -289,6 +289,90 @@
                 "description": "Habilidad en el uso de drones para búsqueda y rescate"
             }
         ]
+    },
+    {
+        "rut": "4152351623-5",
+        "email": "ignaciocastillo",
+        "name": "Ignacio",
+        "last_name": "Castillo",
+        "birth_date": "1999-04-12",
+        "sex": "M",
+        "password": "$2a$10$k0mVsBRA4D.uqJwkLZS6ROA2yqvtYERsoWxgPIazshWVXIIWUlntm",
+        "availability": true,
+        "role": "VOLUNTARIO",
+        "skills": [
+            {
+                "skill_code": "SKL001",
+                "name": "Fuerza",
+                "description": "Fuerza física"
+            },
+            {
+                "skill_code": "SKL008",
+                "name": "Drones",
+                "description": "Habilidad en el uso de drones para búsqueda y rescate"
+            },
+            {
+                "skill_code": "SKL002",
+                "name": "Rescate",
+                "description": "Rescate en Terreno"
+            }
+        ]
+    },
+    {
+        "rut": "2421283874-4",
+        "email": "sofiasoto@gmail.com",
+        "name": "Sofía",
+        "last_name": "soto",
+        "birth_date": "1990-09-24",
+        "sex": "F",
+        "password": "$2a$10$H8M8a2v8wxCL7LOXHqjyLu31dd7zpJzuW6W.X909C/XjZ.TnmavaC",
+        "availability": true,
+        "role": "VOLUNTARIO",
+        "skills": [
+            {
+                "skill_code": "SKL001",
+                "name": "Fuerza",
+                "description": "Fuerza física"
+            },
+            {
+                "skill_code": "SKL007",
+                "name": "Búsqueda",
+                "description": "Capacidad para la búsqueda y localización de personas perdidas"
+            },
+            {
+                "skill_code": "SKL002",
+                "name": "Rescate",
+                "description": "Rescate en Terreno"
+            }
+        ]
+    },
+    {
+        "rut": "4412317123-k",
+        "email": "samiraflorez@gmail.com",
+        "name": "samira",
+        "last_name": "florez",
+        "birth_date": "2003-04-22",
+        "sex": "F",
+        "password": "$2a$10$OkujdmNjwhqSQcu0yoXKwOlLCR2Mhp6vNaR4AV88RPTyqp9xDKYpe",
+        "availability": true,
+        "role": "VOLUNTARIO",
+        "skills": [
+            {
+                "skill_code": "SKL001",
+                "name": "Fuerza",
+                "description": "Fuerza física"
+            },
+            {
+                "skill_code": "SKL006",
+                "name": "Comunicación",
+                "description": "Manejo de equipos de comunicación"
+            },
+            {
+                "skill_code": "SKL008",
+                "name": "Drones",
+                "description": "Habilidad en el uso de drones para búsqueda y rescate"
+            }
+        ]
     }
 ]
 
