@@ -1,5 +1,8 @@
 package G1TBD.LABTBD.app.emergency.controllers;
 
+import G1TBD.LABTBD.app.emergency.entities.EmergencyAttributeEntity;
+import G1TBD.LABTBD.app.emergency.services.EmergencyAttributeService;
+import G1TBD.LABTBD.app.institution.entities.InstitutionEntity;
 import G1TBD.LABTBD.auth.entities.LocationRequest;
 import G1TBD.LABTBD.data.SingleEmergencyData;
 import G1TBD.LABTBD.data.point.PointEntity;
@@ -26,14 +29,16 @@ public class EmergencyController {
     private final PointService pointService;
     private final EmergencyService emergencyService;
     private final UserMongoService userMongoService;
+    private final EmergencyAttributeService emergencyAttributeService;
 
     private static final Logger logger = Logger.getLogger(EmergencyController.class.getName());
 
     @Autowired
-    public EmergencyController(PointService pointService, EmergencyService emergencyService, UserMongoService userMongoService) {
+    public EmergencyController(PointService pointService, EmergencyService emergencyService, UserMongoService userMongoService, EmergencyAttributeService emergencyAttributeService) {
         this.pointService = pointService;
         this.emergencyService = emergencyService;
         this.userMongoService = userMongoService;
+        this.emergencyAttributeService = emergencyAttributeService;
     }
 
     String homeLinkRedirect = "redirect:/emergencies";
@@ -80,6 +85,13 @@ public class EmergencyController {
         return new ResponseEntity<>(emergencyCreated, HttpStatus.CREATED);
     }
 
+
+    @PostMapping("/createEmergencyAttributes")
+    public List<EmergencyAttributeEntity> createEmergencyAttributes(@RequestBody List<EmergencyAttributeEntity> emergencyAttributeList) {
+        return emergencyAttributeService.createVarious(emergencyAttributeList);
+    }
+
+
     // ---------------------------READ---------------------------
 
     @GetMapping("/all")
@@ -115,6 +127,11 @@ public class EmergencyController {
     @GetMapping("/closedEmergencyData")
     public List<SingleEmergencyData> getAllClosedEmergencyData() {
         return emergencyService.getAllClosedEmergencyData();
+    }
+
+    @GetMapping("/getAttributesByEmergencyId/{id}")
+    public List<EmergencyAttributeEntity> getAllEmergencyAtribute(@PathVariable Long id){
+        return emergencyAttributeService.getByEmergencyId(id);
     }
 
     // --------------------------UPDATE--------------------------

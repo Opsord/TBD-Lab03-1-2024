@@ -16,12 +16,12 @@ public interface EmergencyAttributeRepository extends CrudRepository<EmergencyAt
         // --------------------------CREATE--------------------------
 
         @Query(value = "INSERT INTO emergency_attribute (" +
-                        "emergency_id, attribute_id, compatibility) " +
-                        "VALUES (:emergency_id, :attribute_id, :compatibility)", nativeQuery = true)
+                        "emergency_id, skill_code, compatibility) " +
+                        "VALUES (:emergency_id, :skill_code, :compatibility)", nativeQuery = true)
         @Modifying
         @Transactional
         void create(@Param("emergency_id") Long emergency_id,
-                        @Param("attribute_id") String attribute_id,
+                        @Param("skill_code") String skill_code,
                         @Param("compatibility") boolean compatibility);
 
         // ---------------------------READ---------------------------
@@ -35,18 +35,18 @@ public interface EmergencyAttributeRepository extends CrudRepository<EmergencyAt
         @Query(value = "SELECT * FROM emergency_attribute WHERE emergency_id = :emergency_id", nativeQuery = true)
         List<EmergencyAttributeEntity> getByEmergencyId(@Param("emergency_id") Long emergency_id);
 
-        @Query(value = "SELECT * FROM emergency_attribute WHERE attribute_id = :attribute_id", nativeQuery = true)
-        List<EmergencyAttributeEntity> getByAttributeId(@Param("attribute_id") String attribute_id);
+        @Query(value = "SELECT * FROM emergency_attribute WHERE skill_code = :skill_code", nativeQuery = true)
+        List<EmergencyAttributeEntity> getBySkillCode(@Param("skill_code") String skill_code);
 
         // --------------------------UPDATE--------------------------
 
-        @Query(value = "UPDATE emergency_attribute SET emergency_id = :emergency_id, attribute_id = :attribute_id, " +
+        @Query(value = "UPDATE emergency_attribute SET emergency_id = :emergency_id, skill_code = :skill_code, " +
                         "compatibility = :compatibility WHERE emergency_attribute_id = :emergency_attribute_id", nativeQuery = true)
         @Modifying
         @Transactional
         void update(@Param("emergency_attribute_id") Long emergency_attribute_id,
                         @Param("emergency_id") Long emergency_id,
-                        @Param("attribute_id") String attribute_id,
+                        @Param("skill_code") String skill_code,
                         @Param("compatibility") boolean compatibility);
 
         // --------------------------DELETE--------------------------

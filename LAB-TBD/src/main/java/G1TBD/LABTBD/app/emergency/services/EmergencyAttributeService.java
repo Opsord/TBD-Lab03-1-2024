@@ -50,8 +50,10 @@ public class EmergencyAttributeService {
     }
 
     public List<EmergencyAttributeEntity> getBySkillCode(String code) {
-        return emergencyAttributeRepository.getByAttributeId(code);
+        return emergencyAttributeRepository.getBySkillCode(code);
     }
+
+
 
     public List<EmergencyAttributeEntity> getByEmergencyId(Long id) {
         return emergencyAttributeRepository.getByEmergencyId(id);
