@@ -52,15 +52,17 @@ public class AuthServiceImp implements AuthService{
         userMongoService.saveUser(user);
 
         if (locationRequest != null) {
-            // Create point
+            // Crear y guardar el punto
             var point = PointEntity.builder()
                     .latitude(locationRequest.getLatitude())
                     .longitude(locationRequest.getLongitude())
                     .build();
-            pointService.create(point);
 
-            // Create relation between user and point
-            userPointService.create(user.getRut(), point.getPoint_id());
+            // Guarda el punto y recibe el objeto con el ID asignado
+            Long pointId = pointService.create(point);
+
+            // Crea la relación entre el usuario y el punto usando el ID asignado
+            userPointService.create(user.getRut(), pointId);
         }
 
         var jwtToken = jwtService.generateToken(user);
