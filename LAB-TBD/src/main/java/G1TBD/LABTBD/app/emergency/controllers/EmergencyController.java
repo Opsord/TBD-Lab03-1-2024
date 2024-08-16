@@ -113,6 +113,7 @@ public class EmergencyController {
         return emergencyService.getAllClosed();
     }
 
+    //Funcionalidad POSTGIS laboratorio 2
     @GetMapping("/nearby/{emergency_id}/{radius}/{quantity}")
     public List<UserMongo> getXNearbyVolunteers(@PathVariable Long emergency_id,
                                                 @PathVariable double radius,
@@ -123,6 +124,7 @@ public class EmergencyController {
         return userMongoService.getXNearbyVolunteers(emergency_id, radius, quantity);
     }
 
+    //Funcionalidad SQL laboratorio 1
     @GetMapping("/closedEmergencyData")
     public List<SingleEmergencyData> getAllClosedEmergencyData() {
         return emergencyService.getAllClosedEmergencyData();

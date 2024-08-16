@@ -14,7 +14,6 @@ import java.util.List;
 public interface EmergencyAttributeRepository extends CrudRepository<EmergencyAttributeEntity, Long> {
 
         // --------------------------CREATE--------------------------
-
         @Query(value = "INSERT INTO emergency_attribute (" +
                         "emergency_id, skill_code, compatibility) " +
                         "VALUES (:emergency_id, :skill_code, :compatibility)", nativeQuery = true)
@@ -25,7 +24,6 @@ public interface EmergencyAttributeRepository extends CrudRepository<EmergencyAt
                         @Param("compatibility") boolean compatibility);
 
         // ---------------------------READ---------------------------
-
         @Query(value = "SELECT * FROM emergency_attribute", nativeQuery = true)
         List<EmergencyAttributeEntity> getAll();
 
@@ -39,7 +37,6 @@ public interface EmergencyAttributeRepository extends CrudRepository<EmergencyAt
         List<EmergencyAttributeEntity> getBySkillCode(@Param("skill_code") String skill_code);
 
         // --------------------------UPDATE--------------------------
-
         @Query(value = "UPDATE emergency_attribute SET emergency_id = :emergency_id, skill_code = :skill_code, " +
                         "compatibility = :compatibility WHERE emergency_attribute_id = :emergency_attribute_id", nativeQuery = true)
         @Modifying
@@ -50,7 +47,6 @@ public interface EmergencyAttributeRepository extends CrudRepository<EmergencyAt
                         @Param("compatibility") boolean compatibility);
 
         // --------------------------DELETE--------------------------
-
         @Query(value = "DELETE FROM emergency_attribute WHERE emergency_attribute_id = :emergency_attribute_id", nativeQuery = true)
         @Modifying
         @Transactional

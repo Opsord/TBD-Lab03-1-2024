@@ -14,7 +14,6 @@ import java.util.List;
 public interface EmergencyUserRepository extends CrudRepository<EmergencyUserEntity, Long> {
 
         // --------------------------CREATE--------------------------
-
         @Query(value = "INSERT INTO emergency_person (rut, emergency_id) " +
                         "VALUES (:rut, :emergency_id)", nativeQuery = true)
         @Modifying
@@ -23,7 +22,6 @@ public interface EmergencyUserRepository extends CrudRepository<EmergencyUserEnt
                         @Param("emergency_id") Long emergency_id);
 
         // ---------------------------READ---------------------------
-
         @Query(value = "SELECT * FROM emergency_person", nativeQuery = true)
         List<EmergencyUserEntity> getAll();
 
@@ -40,7 +38,6 @@ public interface EmergencyUserRepository extends CrudRepository<EmergencyUserEnt
         EmergencyUserEntity getByRut(@Param("rut") String rut);
 
         // --------------------------UPDATE--------------------------
-
         @Query(value = "UPDATE emergency_person SET rut = :rut, emergency_id = :emergency_id " +
                         "WHERE emergency_person_id = :emergency_person_id", nativeQuery = true)
         @Modifying
@@ -50,7 +47,6 @@ public interface EmergencyUserRepository extends CrudRepository<EmergencyUserEnt
                         @Param("emergency_id") Long emergency_id);
 
         // --------------------------DELETE--------------------------
-
         @Query(value = "DELETE FROM emergency_person " +
                         "WHERE emergency_person_id = :emergency_person_id", nativeQuery = true)
         @Modifying

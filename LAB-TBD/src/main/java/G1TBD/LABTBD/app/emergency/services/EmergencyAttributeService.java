@@ -54,7 +54,6 @@ public class EmergencyAttributeService {
     }
 
 
-
     public List<EmergencyAttributeEntity> getByEmergencyId(Long id) {
         return emergencyAttributeRepository.getByEmergencyId(id);
     }

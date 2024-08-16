@@ -83,7 +83,7 @@ public class EmergencyService {
 
     public List<Optional<UserMongo>> getAllVolunteers(Long emergency_id) {
         //obtiene un listado de rut de los voluntarios en una emergencia
-        List<String> ruts = emergencyRepository.getVoluteersByEmergencyId(emergency_id);
+        List<String> ruts = emergencyRepository.getVolunteersByEmergencyId(emergency_id);
         List<Optional<UserMongo>> volunteerList = new ArrayList<>();
         for (String rut : ruts){
             volunteerList.add(userMongoService.getUserByRut(rut));
@@ -118,7 +118,7 @@ public class EmergencyService {
         for (EmergencyEntity emergency : closedEmergencies) {
             Long emergency_id = emergency.getEmergency_id();
             List<TaskEntity> taskList = taskService.getTasksByEmergencyId(emergency_id);
-            List<?> volunteerList = getByEmergencyId(emergency_id);
+            List<String> volunteerList = emergencyRepository.getVolunteersByEmergencyId(emergency_id);
             SingleEmergencyData singleEmergencyData = new SingleEmergencyData(emergency.getTitle(),
                     volunteerList.size(), taskList.size());
             singleEmergencyDataList.add(singleEmergencyData);
@@ -126,9 +126,6 @@ public class EmergencyService {
         return singleEmergencyDataList;
     }
 
-    public List<String> getByEmergencyId(Long id) {
-        return emergencyRepository.getByEmergencyId(id);
-    }
 
     // --------------------------UPDATE--------------------------
 
