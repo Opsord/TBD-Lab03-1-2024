@@ -90,10 +90,10 @@ async function createEmergencyAttribute(emergency) {
     console.log("Atributos seleccionados: ", selectedAttributes.value);
 
     try {
-        const emergencyAttributes = selectedAttributes.value.map(({ skill_id, compatibility }) => ({
-            attribute: skill_id,
+        const emergencyAttributes = selectedAttributes.value.map(({ skillCode, compatibility }) => ({
+            skill_code: skillCode,
             compatibility,
-            emergency: emergency.emergency_id
+            emergency_id: emergency.emergency_id
         }));
         console.log("Lista de emergencia-atributo: ", emergencyAttributes);
 
