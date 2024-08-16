@@ -72,8 +72,6 @@ INSERT INTO task_emergency (task_id, emergency_id)
 VALUES 
     (1, 2),
     (2, 2),
-    (3, 5),
-    (4, 4),
     (5, 1),
     (1, 3),
     (2, 1),
