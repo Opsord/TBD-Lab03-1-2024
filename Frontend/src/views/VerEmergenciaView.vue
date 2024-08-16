@@ -12,13 +12,13 @@
                             <CardDescription>
                                 Tareas registradas:
                                 <p v-for="tarea in data.tareas" :key="tarea.task_id">
-                                    {{ tarea.type }}</p>
+                                    {{ tarea.description }}</p>
                             </CardDescription>
                         </CardHeader>
-                        <CardFooter class="flex flex-col items-start">
-                            <p>Voluntarios registrados:</p>
-                            <div v-for="tarea in data.tareas" :key="tarea.task_id">
-                                <p v-for="user in tarea.user" :key="user.rut">&nbsp;{{ user.name }} {{ user.lastname }}</p>
+                        <CardFooter class="flex flex-col items-start space-y-1">
+                            <p class="text-sm">Voluntarios registrados:</p>
+                            <div class="flex flex-wrap gap-1">
+                                <p class="text-sm px-3 py-1 bg-gray-200 rounded-2xl" v-for="user in data.volunteers" :key="user.user_id">{{ user.name }} {{ user.last_name }}</p>
                             </div>
                         </CardFooter>
                     </Card>
@@ -61,11 +61,10 @@ async function fetchEmergencia() {
 }
 
 async function fetchTarea() {
-    const tareaGet = "http://localhost:8090/tasks/emergency_id/";
     if (emergencia.value && emergencia.value.length > 0) {
         try {
             const fetchPromises = emergencia.value.map(async (emergenciaEach) => {
-                const response = await axios.get(`${tareaGet}${emergenciaEach.emergency_id}`, {
+                const response = await axios.get(`http://localhost:8090/tasks/emergency_id/${emergenciaEach.emergency_id}`, {
                     headers: {
                         Authorization: `Bearer ${store.token}`
                     }
@@ -75,7 +74,7 @@ async function fetchTarea() {
             });
             const result = await Promise.all(fetchPromises);    
             emergencia.value = result;
-            console.log("TERMINA - Emergencia Id: ", result);
+            console.log("TERMINA - Tarea: ", result);
         } catch (error) {
             console.error('There was an error fetching the volunteers data:', error);
         }
@@ -83,34 +82,26 @@ async function fetchTarea() {
 }
 
 async function fetchVoluntarios() {
-    const rankingGet = "http://localhost:8090/rankings/task_id/";
     if (emergencia.value && emergencia.value.length > 0) {
         try {
             const fetchPromises = emergencia.value.map(async (emergenciaEach) => {
-                const tasks = emergenciaEach.tareas;
-                const taskPromises = tasks.map(async (task) => {
-                    const response = await axios.get(`${rankingGet}${task.task_id}`, {
-                        headers: {
-                            Authorization: `Bearer ${store.token}`
-                        }
-                    });
-                    console.log("AQUI EL ERROR: ", response.data);
-                    const user = response.data.map(ranking => ranking.user);
-                    return { ...task, user: user };
+                const response = await axios.get(`http://localhost:8090/emergencies/getVolunteersByEmergencyId/${emergenciaEach.emergency_id}`, {
+                    headers: {
+                        Authorization: `Bearer ${store.token}`
+                    }
                 });
-                const taskResults = await Promise.all(taskPromises);
-                return { ...emergenciaEach, tareas: taskResults };
+                const volunteers = response.data;
+                return { ...emergenciaEach, volunteers: volunteers };
             });
-            
-            const results = await Promise.all(fetchPromises);
-            emergencia.value = results;
-            console.log("TERMINA - Tarea Id: ", results);
+            const result = await Promise.all(fetchPromises);
+            emergencia.value = result;
+            console.log("TERMINA - Voluntarios: ", result);
         } catch (error) {
-            console.error(error);
+            console.error('There was an error fetching the volunteers data:', error);
         }
     }
 }
 
-onMounted(async () => { await fetchEmergencia(); await fetchTarea(); await fetchVoluntarios() });
+onMounted(async () => { await fetchEmergencia(); await fetchTarea(); await fetchVoluntarios(); });
 
 </script>
