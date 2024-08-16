@@ -220,6 +220,75 @@
                 "description": "Apoyo psicológico"
             }
         ]
+    },
+    {
+        "rut": "3641746726-4",
+        "email": "rosamelo@gmail.com",
+        "name": "rosa",
+        "last_name": "melo",
+        "birth_date": "2001-11-14",
+        "sex": "F",
+        "password": "$2a$10$CKLkP04lZq5BmWy3APUr3.0UUK3uRp03NKnv4KlQzdmTzX./4SFOO",
+        "availability": true,
+        "role": "VOLUNTARIO",
+        "skills": [
+            {
+                "skill_code": "SKL007",
+                "name": "Búsqueda",
+                "description": "Capacidad para la búsqueda y localización de personas perdidas"
+            },
+            {
+                "skill_code": "SKL001",
+                "name": "Fuerza",
+                "description": "Fuerza física"
+            }
+        ]
+    },
+    {
+        "rut": "42163612342-5",
+        "email": "nicolas.gajardo@gmail.com",
+        "name": "nicolas",
+        "last_name": "gajardo",
+        "birth_date": "2001-11-09",
+        "sex": "M",
+        "password": "$2a$10$lba8qplJ3sw1uzm1/TbdIuJxZnOvEO.KHHg1JMbJPUc4T8e7UjHTu",
+        "role": "VOLUNTARIO",
+        "availability": true,
+        "skills": [
+            {
+                "skill_code": "SKL001",
+                "name": "Fuerza",
+                "description": "Fuerza física"
+            },
+            {
+                "skill_code": "SKL006",
+                "name": "Comunicación",
+                "description": "Manejo de equipos de comunicación"
+            }
+        ]
+    },
+    {
+        "rut": "61523512412-5",
+        "email": "esteban.pescado@gmail.com",
+        "name": "Esteban",
+        "last_name": "Pescado",
+        "birth_date": "2000-04-12",
+        "sex": "M",
+        "password": "$2a$10$1n3n.tY5BSKexFBGyQRJMeTB3N0PtumN6a2MRQJdwpwWQNzuW6b/6",
+        "availability": true,
+        "role": "VOLUNTARIO",
+        "skills": [
+            {
+                "skill_code": "SKL006",
+                "name": "Comunicación",
+                "description": "Manejo de equipos de comunicación"
+            },
+            {
+                "skill_code": "SKL008",
+                "name": "Drones",
+                "description": "Habilidad en el uso de drones para búsqueda y rescate"
+            }
+        ]
     }
 ]
 
