@@ -24,7 +24,7 @@ public interface PointRepository extends CrudRepository<PointEntity, Long> {
 
 
         @Query(value = "INSERT INTO point (latitude, longitude) VALUES (:latitude, :longitude) RETURNING point_id", nativeQuery = true)
-        Long savePoint(@Param("latitude") double latitude, @Param("longitude") double longitude);
+        Long create(@Param("latitude") double latitude, @Param("longitude") double longitude);
 
         // ---------------------------READ---------------------------
 
