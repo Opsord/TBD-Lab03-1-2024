@@ -9,16 +9,16 @@
                 <table class="bg-gray-50">
                     <tbody>
                         <tr class="text-sm border-b border-slate-200">
-                            <td class="font-semibold px-6 py-2">Voluntarios registrados</td>
-                            <td class="px-6 py-3">{{ volunteers_length }}</td>
+                            <td class="font-semibold px-4 py-2">Voluntarios registrados</td>
+                            <td class="px-4 py-2">{{ volunteers_length }}</td>
                         </tr>
                         <tr class="text-sm border-b border-slate-200">
-                            <td class="font-semibold px-6 py-2">Habilidades disponibles</td>
-                            <td class="px-6 py-3">{{ attributes_length }}</td>
+                            <td class="font-semibold px-4 py-2">Habilidades disponibles</td>
+                            <td class="px-4 py-2">{{ attributes_length }}</td>
                         </tr>
                         <tr class="text-sm">
-                            <td class="font-semibold px-6 py-2">Promedio habilidades</td>
-                            <td class="px-6 py-3">{{ average }}</td>
+                            <td class="font-semibold px-4 py-2">Promedio habilidades</td>
+                            <td class="px-4 py-2">{{ average.toFixed(2) }}</td>
                         </tr>
                     </tbody>
                 </table>
