@@ -2,7 +2,6 @@ package G1TBD.LABTBD.app.emergency.controllers;
 
 import G1TBD.LABTBD.app.emergency.entities.EmergencyAttributeEntity;
 import G1TBD.LABTBD.app.emergency.services.EmergencyAttributeService;
-import G1TBD.LABTBD.app.institution.entities.InstitutionEntity;
 import G1TBD.LABTBD.auth.entities.LocationRequest;
 import G1TBD.LABTBD.data.SingleEmergencyData;
 import G1TBD.LABTBD.data.point.PointEntity;
@@ -132,6 +131,11 @@ public class EmergencyController {
     @GetMapping("/getAttributesByEmergencyId/{id}")
     public List<EmergencyAttributeEntity> getAllEmergencyAtribute(@PathVariable Long id){
         return emergencyAttributeService.getByEmergencyId(id);
+    }
+
+    @GetMapping("/getVolunteersByEmergencyId/{id}")
+    public List<Optional<UserMongo>> getAllVolunteersByEmergencyId(@PathVariable Long id){
+        return emergencyService.getAllVolunteers(id);
     }
 
     // --------------------------UPDATE--------------------------

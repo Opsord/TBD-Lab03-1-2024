@@ -10,6 +10,7 @@ import G1TBD.LABTBD.app.task.services.TaskService;
 import G1TBD.LABTBD.app.task.entities.TaskEntity;
 import G1TBD.LABTBD.data.point.PointService;
 import G1TBD.LABTBD.mongo.user.models.UserMongo;
+import G1TBD.LABTBD.mongo.user.services.UserMongoService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -24,17 +25,19 @@ public class EmergencyService {
     private final EmergencyPointService emergencyPointService;
     private final EmergencyUserService emergencyUserService;
     private final PointService pointService;
+    private final UserMongoService userMongoService;
 
     private static final Logger logger = Logger.getLogger(EmergencyService.class.getName());
 
     @Lazy
     public EmergencyService(EmergencyRepository emergencyRepository, TaskService taskService,
-                            EmergencyPointService emergencyPointService, EmergencyUserService emergencyUserService, PointService pointService) {
+                            EmergencyPointService emergencyPointService, EmergencyUserService emergencyUserService, PointService pointService, UserMongoService userMongoService) {
         this.emergencyRepository = emergencyRepository;
         this.taskService = taskService;
         this.emergencyUserService = emergencyUserService;
         this.emergencyPointService = emergencyPointService;
         this.pointService = pointService;
+        this.userMongoService = userMongoService;
     }
 
     // --------------------------CREATE--------------------------
@@ -64,14 +67,29 @@ public class EmergencyService {
     public List<EmergencyEntity> getAllClosed() {
         return emergencyRepository.getAllClosed();
     }
-
-    public List<Optional<UserMongo>> getAllVolunteers(Long emergency_id) {
+/*
+    public List<String> getAllVolunteers(Long emergency_id) {
         List<TaskEntity> taskList = taskService.getTasksByEmergencyId(emergency_id);
-        List<Optional<UserMongo>> volunteerList = new ArrayList<>();
+        List<String> volunteerList = new ArrayList<>();
         for (TaskEntity task : taskList) {
+
+            volunteerList.addAll(taskService.getVolunteersByTask(task.getTask_id()));
             volunteerList.addAll(taskService.getVolunteersByTask(task.getTask_id()));
         }
         return volunteerList;
+    }
+
+ */
+
+    public List<Optional<UserMongo>> getAllVolunteers(Long emergency_id) {
+        //obtiene un listado de rut de los voluntarios en una emergencia
+        List<String> ruts = emergencyRepository.getVoluteersByEmergencyId(emergency_id);
+        List<Optional<UserMongo>> volunteerList = new ArrayList<>();
+        for (String rut : ruts){
+            volunteerList.add(userMongoService.getUserByRut(rut));
+        }
+        return  volunteerList;
+
     }
 
     public EmergencyEntity getLatestId(EmergencyEntity emergency) {

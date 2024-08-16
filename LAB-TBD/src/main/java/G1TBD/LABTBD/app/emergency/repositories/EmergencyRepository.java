@@ -43,6 +43,10 @@ public interface EmergencyRepository extends CrudRepository<EmergencyEntity, Lon
         EmergencyEntity findLatestEmergencyId(@Param("title") String title,
                         @Param("description") String description);
 
+
+        @Query(value = "SELECT rut FROM person_task, task_emergency WHERE person_task.task_id = task_emergency.task_id and task_emergency.emergency_id = :emergency_id ", nativeQuery = true)
+        List<String> getVoluteersByEmergencyId(@Param("emergency_id") Long id);
+
         // --------------------------UPDATE--------------------------
 
         @Query(value = "UPDATE emergency SET title = :title, description = :description, " +
