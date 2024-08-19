@@ -224,8 +224,8 @@
     {
         "rut": "3641746726-4",
         "email": "rosamelo@gmail.com",
-        "name": "rosa",
-        "last_name": "melo",
+        "name": "Rosa",
+        "last_name": "Melo",
         "birth_date": "2001-11-14",
         "sex": "F",
         "password": "$2a$10$CKLkP04lZq5BmWy3APUr3.0UUK3uRp03NKnv4KlQzdmTzX./4SFOO",
@@ -247,8 +247,8 @@
     {
         "rut": "42163612342-5",
         "email": "nicolas.gajardo@gmail.com",
-        "name": "nicolas",
-        "last_name": "gajardo",
+        "name": "Nicolas",
+        "last_name": "Gajardo",
         "birth_date": "2001-11-09",
         "sex": "M",
         "password": "$2a$10$lba8qplJ3sw1uzm1/TbdIuJxZnOvEO.KHHg1JMbJPUc4T8e7UjHTu",
@@ -349,8 +349,8 @@
     {
         "rut": "4412317123-k",
         "email": "samiraflorez@gmail.com",
-        "name": "samira",
-        "last_name": "florez",
+        "name": "Samira",
+        "last_name": "Florez",
         "birth_date": "2003-04-22",
         "sex": "F",
         "password": "$2a$10$OkujdmNjwhqSQcu0yoXKwOlLCR2Mhp6vNaR4AV88RPTyqp9xDKYpe",
