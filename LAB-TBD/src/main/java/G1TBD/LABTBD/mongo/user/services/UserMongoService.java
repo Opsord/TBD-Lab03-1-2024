@@ -84,13 +84,13 @@ public class UserMongoService {
 
         return volunteers;
     }
-
+    
+//Funcionalidad laboratorio 3
     public double obtenerPromedioHabilidades() {
         long totalSkills = 0;
         long totalVolunteers = 0;
 
-        List<UserMongo> allVolunteers =
-                userMongoRepository.findAll();
+        List<UserMongo> allVolunteers = userMongoRepository.findAll();
 
         for (UserMongo user : allVolunteers) {
             if (String.valueOf(user.getRole()).equals("VOLUNTARIO")) {
@@ -99,7 +99,7 @@ public class UserMongoService {
             }
         }
         
-        if (totalVolunteers== 0) {
+        if (totalVolunteers == 0) {
             return 0;
         } else {
             return (double) totalSkills / totalVolunteers;
