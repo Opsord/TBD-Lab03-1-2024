@@ -1,4 +1,4 @@
-name: Dependency Check
+name: Snyk Security Scan
 
 on:
   push:
@@ -7,24 +7,36 @@ on:
   pull_request:
     branches:
       - DevSecOps---David
+
 jobs:
-  dependency-check:
+  snyk_scan:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+      # Paso 1: Checkout del código
+      - name: Checkout code
+        uses: actions/checkout@v3
 
+      # Paso 2: Configurar Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' 
-      - name: Install Dependencies
+          node-version: '18'  # Usa la versión de Node.js que necesita tu proyecto
+
+      # Paso 3: Instalar dependencias del proyecto
+      - name: Install dependencies
         run: npm install
 
-      - name: Run OWASP Dependency Check
-        uses: owasp/dependency-check-action@v1
+      # Paso 4: Autenticación con Snyk
+      - name: Authenticate with Snyk
+        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+
+      # Paso 5: Escanear vulnerabilidades usando Snyk
+      - name: Run Snyk test
+        run: snyk test
+
+      # Paso 6: (Opcional) Subir el informe de Snyk como un artefacto
+      - name: Upload Snyk Report
+        uses: actions/upload-artifact@v3
         with:
-          fail-build-on-vulnerabilities: true
-          format: ALL
-          scan: package-lock.json
-          suppression-file: dependency-check-suppression.xml # Optional suppression file
+          name: snyk-report
+          path: snyk-report.json
