@@ -1,4 +1,4 @@
-name: Dependency Check for Frontend
+name: Dependency Check
 
 on:
   push:
@@ -7,40 +7,26 @@ on:
   pull_request:
     branches:
       - DevSecOps---David
-
 jobs:
   dependency-check:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18' # Specify the version of Node.js you're using
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'   
+ # Adjust to your preferred Node.js version
 
-    - name: Install Dependencies
-      working-directory: ./Frontend
-      run: npm ci # Use npm ci to install dependencies for clean builds
+      - name: Install Dependencies
+        run: npm install
 
-    - name: Install OWASP Dependency-Check
-      run: |
-        wget https://github.com/jeremylong/DependencyCheck/releases/download/v8.3.2/dependency-check-8.3.2-release.zip
-        unzip dependency-check-8.3.2-release.zip
-        chmod +x dependency-check/bin/dependency-check.sh
-
-    - name: Run OWASP Dependency-Check
-      run: |
-        # Run Dependency-Check on the Vue.js project directory
-        dependency-check/bin/dependency-check.sh --project "Vue.js Frontend" \
-                                                 --scan ./Frontend \
-                                                 --out ./dependency-check-report \
-                                                 --format HTML
-                                                 
-    - name: Upload Dependency Check Report
-      uses: actions/upload-artifact@v3
-      with:
-        name: dependency-check-report
-        path: ./dependency-check-report/*.html
+      - name: Run OWASP Dependency Check
+        uses: jeremylong/DependencyCheck-Action@v1
+        with:
+          fail-build-on-vulnerabilities: true
+          format: ALL
+          scan: package-lock.json
+          suppression-file: dependency-check-suppression.xml # Optional suppression file
