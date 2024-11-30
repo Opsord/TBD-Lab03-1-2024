@@ -25,6 +25,7 @@ jobs:
 
       # Paso 3: Instalar dependencias
       - name: Install dependencies
+        working-directory: Frontend
         run: |
           npm install  
 
