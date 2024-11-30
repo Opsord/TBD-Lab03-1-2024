@@ -3,8 +3,10 @@ name: Dependency Check
 on:
   push:
     branches:
-      - main
+      - DevSecOps---David
   pull_request:
+    branches:
+      - DevSecOps---David
 
 jobs:
   owasp-dependency-check:
