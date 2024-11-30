@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Run OWASP Dependency Check
-        uses: jeremylong/DependencyCheck-Action@v1
+        uses: owasp/dependency-check-action@v1
         with:
           fail-build-on-vulnerabilities: true
           format: ALL
