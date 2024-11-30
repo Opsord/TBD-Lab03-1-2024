@@ -44,4 +44,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dependency-check-report
-          path: demo/target/dependency-check-report.html
+          path: LAB-TBD/target/dependency-check-report.html
