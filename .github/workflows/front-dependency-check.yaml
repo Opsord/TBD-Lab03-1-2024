@@ -22,6 +22,7 @@ jobs:
         node-version: '18' # Specify the version of Node.js you're using
 
     - name: Install Dependencies
+      working-directory: ./Frontend
       run: npm ci # Use npm ci to install dependencies for clean builds
 
     - name: Install OWASP Dependency-Check
@@ -34,7 +35,7 @@ jobs:
       run: |
         # Run Dependency-Check on the Vue.js project directory
         dependency-check/bin/dependency-check.sh --project "Vue.js Frontend" \
-                                                 --scan . \
+                                                 --scan ./Frontend \
                                                  --out ./dependency-check-report \
                                                  --format HTML
                                                  
