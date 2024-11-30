@@ -94,6 +94,27 @@ CREATE TABLE person_task (
     FOREIGN KEY (task_id) REFERENCES task(task_id)
 );
 
+------ Nuevas tablas para DevSecOps
+
+CREATE TABLE supply (
+    supply_id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    description VARCHAR(100),
+    classification VARCHAR(50)
+);
+
+CREATE TABLE inventory (
+    inventory_id BIGSERIAL PRIMARY KEY,
+    emergency_id BIGINT,
+    supply_id BIGINT,
+    requested INT,
+    stock INT,
+    missing VARCHAR(30),
+    priority VARCHAR(50),
+    FOREIGN KEY (supply_id) REFERENCES supply(supply_id),
+    FOREIGN KEY (emergency_id) REFERENCES emergency(emergency_id)
+);
+
 
 ------- Indexes -------
 
