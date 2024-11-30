@@ -1,0 +1,21 @@
+name: Dependency Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  owasp-dependency-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Run OWASP Dependency-Check
+      uses: cyclonedx/gh-nodejs-depcheck@v1
+      with:
+        file-path: 'Frontend/package-lock.json' # Path to the package-lock.json
+        format: 'json'
