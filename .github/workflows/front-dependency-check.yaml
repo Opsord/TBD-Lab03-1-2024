@@ -24,6 +24,7 @@ jobs:
 
       # Paso 3: Instalar dependencias del proyecto
       - name: Install dependencies
+        working-directory: Frontend
         run: npm install
 
       # Paso 4: Autenticación con Snyk
