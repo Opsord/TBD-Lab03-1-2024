@@ -22,6 +22,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
                         Insumos
                     </RouterLink>
                 </TabsTrigger>
+                <TabsTrigger value="inventario">
+                    <RouterLink to="/inventario">
+                        Inventario
+                    </RouterLink>
+                </TabsTrigger>
                 <TabsTrigger value="finalizadas">
                     <RouterLink to="/emergencias-finalizadas">
                         Emergencias Finalizadas
