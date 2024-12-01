@@ -35,4 +35,4 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn clean verify sonar:sonar -f LAB-TBD/pom.xml
+          mvn clean verify sonar:sonar -X -f LAB-TBD/pom.xml
