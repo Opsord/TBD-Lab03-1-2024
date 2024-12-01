@@ -22,7 +22,7 @@
         'Authorization': `Bearer ${store.token}`,
       },
     });
-    const data = await response.json();    
+    const data = await response.json();
     inventories.push(...data);
     loading.value = false;
   };
@@ -166,8 +166,20 @@
     }
   };
 
+  const validateInventory = () => {
+    const { requested, stock } = showModal.selectedInventory;
+    if (requested < 0 || stock < 0) {
+      return false; // No es válido si requested o stock son menores o iguales a 0
+    }
+    return true; // Es válido
+  };
+
 
   const saveChanges = async () => {
+    if (!validateInventory()) {
+      alert("La cantidad solicitada y el stock deben ser mayores o iguales a 0.");
+      return;
+    }
     try {
       const updatedInventory = await updateInventory(showModal.selectedInventory);
 
@@ -205,7 +217,6 @@
     newInventory.emergency_id = '';
     newInventory.requested = '';
     newInventory.stock = '';
-    newInventory.missing = '';
     newInventory.priority = '';
   };
 
@@ -215,8 +226,28 @@
     }
   };
 
+  const validateNewInventory = () => {
+    console.log(newInventory);
+
+    const { requested, stock } = newInventory;
+    if (requested < 0 || stock < 0) {
+      return false; // Si requested o stock son 0 o negativos, no es válido
+    }
+    return true; // Es válido si requested y stock son mayores a 0
+  };
+
   const saveNewInventory = async () => {
-    if (newInventory.supply_id && newInventory.emergency_id && newInventory.requested && newInventory.stock && newInventory.priority) {
+    if (!validateNewInventory()) {
+      alert("La cantidad solicitada y el stock deben ser mayores o iguales a 0.");
+      return;
+    }
+    if (
+      newInventory.supply_id &&
+      newInventory.emergency_id &&
+      newInventory.requested >= 0 &&
+      newInventory.stock >= 0 &&
+      newInventory.priority
+    ) {
       try {
         const inventoryToAdd = {
           supply_id: newInventory.supply_id,
@@ -353,7 +384,7 @@
         +
       </button>
 
-      <!-- Modal for New Inventory -->
+      <!-- Modal para añadir nuevo inventario -->
       <div v-if="isAddingModalVisible.value" @click="handleSaveOutsideClick"
         class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
         <div class="bg-white p-6 rounded-lg w-1/3">
@@ -402,6 +433,7 @@
             <label for="priority" class="block">Prioridad</label>
             <select v-model="newInventory.priority" id="priority"
               class="w-full px-4 py-2 border border-gray-300 rounded">
+              <option value='' disabled selected>Selecciona una prioridad</option>
               <option v-for="option in priorityOptions" :key="option" :value="option">{{ option }}</option>
             </select>
           </div>
@@ -413,6 +445,5 @@
           </div>
         </div>
       </div>
-
     </div>
   </template>
