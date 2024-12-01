@@ -20,18 +20,23 @@ public class InventoryService {
     // --------------------------CREATE--------------------------
 
     public InventoryEntity create(InventoryEntity inventory) {
-        Integer missingAmount = inventory.getRequested() - inventory.getStock();
+        // Handle null values safely
+        Integer requestedValue = inventory.getRequested() != null ? inventory.getRequested() : 0;
+        Integer stockValue = inventory.getStock() != null ? inventory.getStock() : 0;
+
+        Integer missingAmount = requestedValue - stockValue;
         if (missingAmount <= 0) {
             inventory.setMissing("Suficiente");
         } else {
             inventory.setMissing(String.valueOf(missingAmount));
         }
 
-        // Using save() to create and persist the entity
+        // Save the entity
         InventoryEntity newInventory = inventoryRepository.save(inventory);
         logger.info("Inventory entry created successfully");
         return newInventory;
     }
+
 
     // ---------------------------READ---------------------------
 
@@ -46,13 +51,18 @@ public class InventoryService {
     // --------------------------UPDATE--------------------------
 
     public InventoryEntity update(InventoryEntity inventory) {
-        Integer missingAmount = inventory.getRequested() - inventory.getStock();
+        // Handle null values safely
+        Integer requestedValue = inventory.getRequested() != null ? inventory.getRequested() : 0;
+        Integer stockValue = inventory.getStock() != null ? inventory.getStock() : 0;
+
+        Integer missingAmount = requestedValue - stockValue;
         if (missingAmount <= 0) {
             inventory.setMissing("Suficiente");
         } else {
             inventory.setMissing(String.valueOf(missingAmount));
         }
 
+        // Save the updated entity
         InventoryEntity updatedInventory = inventoryRepository.saveAndFlush(inventory);
         logger.info("Inventory entry updated successfully");
         return updatedInventory;
