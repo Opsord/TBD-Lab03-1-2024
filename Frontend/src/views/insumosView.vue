@@ -41,7 +41,7 @@ const createSupply = async (supply) => {
     },
     body: JSON.stringify(supply)
   });
-  const created = await response.status === 200 ? await supply : null;
+  const created = await response.status === 200 ? await response.json() : null;
   return created;
 };
 
