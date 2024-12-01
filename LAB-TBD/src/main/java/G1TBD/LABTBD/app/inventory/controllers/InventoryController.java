@@ -24,20 +24,18 @@ public class InventoryController {
 
     // --------------------------CREATE--------------------------
     @PostMapping("/create")
-    public String create(@RequestBody InventoryEntity inventory) {
-        inventoryService.create(inventory);
-        logger.info("Inventory entry created: ");
-        logger.info(inventory.toString());
-        return homeLinkRedirect;
+    public InventoryEntity create(@RequestBody InventoryEntity inventory) {
+        InventoryEntity createdInventory = inventoryService.create(inventory);
+        logger.info("Inventory entry created: " + createdInventory);
+        return createdInventory;
     }
 
     // --------------------------UPDATE--------------------------
     @PutMapping("/update")
-    public String update(@RequestBody InventoryEntity inventory) {
-        inventoryService.update(inventory);
-        logger.info("Inventory entry updated: ");
-        logger.info(inventory.toString());
-        return homeLinkRedirect;
+    public InventoryEntity update(@RequestBody InventoryEntity inventory) {
+        InventoryEntity updatedInventory = inventoryService.update(inventory);
+        logger.info("Inventory entry updated: " + updatedInventory);
+        return updatedInventory;
     }
 
     // ---------------------------READ---------------------------
@@ -53,10 +51,9 @@ public class InventoryController {
 
     // --------------------------DELETE--------------------------
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
-        inventoryService.delete(id);
-        logger.info("Inventory entry deleted: ");
-        logger.info(String.valueOf(id));
-        return homeLinkRedirect;
+    public Long delete(@PathVariable Long id) {
+        Long deletedId = inventoryService.delete(id);
+        logger.info("Inventory entry deleted with ID: " + deletedId);
+        return deletedId;
     }
 }

@@ -1,7 +1,7 @@
 package G1TBD.LABTBD.app.supply.services;
 
-import G1TBD.LABTBD.app.supply.repositories.SupplyRepository;
 import G1TBD.LABTBD.app.supply.entities.SupplyEntity;
+import G1TBD.LABTBD.app.supply.repositories.SupplyRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class SupplyService {
 
     private final SupplyRepository supplyRepository;
-    private static final Logger logger = Logger.getLogger(G1TBD.LABTBD.app.supply.services.SupplyService.class.getName());
+    private static final Logger logger = Logger.getLogger(SupplyService.class.getName());
 
     public SupplyService(SupplyRepository supplyRepository) {
         this.supplyRepository = supplyRepository;
@@ -19,35 +19,36 @@ public class SupplyService {
 
     // --------------------------CREATE--------------------------
 
-    public void create(SupplyEntity supply) {
-        supplyRepository.create(supply.getName(), supply.getDescription(),
-                supply.getClassification());
-        logger.info("Supply created successfully");
+    public SupplyEntity create(SupplyEntity supply) {
+        // Saving the supply entity
+        SupplyEntity createdSupply = supplyRepository.save(supply);
+        logger.info("Supply created successfully with ID: " + createdSupply.getSupply_id());
+        return createdSupply;
     }
 
     // ---------------------------READ---------------------------
 
     public List<SupplyEntity> getAll() {
-        return supplyRepository.getAll();
+        return supplyRepository.findAll();
     }
 
     public SupplyEntity getById(Long id) {
-        return supplyRepository.getById(id);
+        return supplyRepository.findById(id).orElse(null);
     }
 
     // --------------------------UPDATE--------------------------
 
-    public void update(SupplyEntity supply) {
-        supplyRepository.update(supply.getName(), supply.getDescription(),
-                supply.getClassification(), supply.getSupply_id());
-        logger.info("Supply updated successfully");
+    public SupplyEntity update(SupplyEntity supply) {
+        SupplyEntity updatedSupply = supplyRepository.saveAndFlush(supply);
+        logger.info("Supply updated successfully with ID: " + updatedSupply.getSupply_id());
+        return updatedSupply;
     }
 
     // --------------------------DELETE--------------------------
 
-    public void delete(Long id) {
-        supplyRepository.delete(id);
-        logger.info("Supply deleted successfully");
+    public Long delete(Long id) {
+        supplyRepository.deleteById(id);
+        logger.info("Supply deleted successfully with ID: " + id);
+        return id;
     }
-
 }

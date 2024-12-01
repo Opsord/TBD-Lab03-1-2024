@@ -2,7 +2,6 @@ package G1TBD.LABTBD.app.inventory.services;
 
 import G1TBD.LABTBD.app.inventory.repositories.InventoryRepository;
 import G1TBD.LABTBD.app.inventory.entities.InventoryEntity;
-import G1TBD.LABTBD.app.supply.services.SupplyService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,49 +11,58 @@ import java.util.logging.Logger;
 public class InventoryService {
 
     private final InventoryRepository inventoryRepository;
-    private static final Logger logger = Logger.getLogger(G1TBD.LABTBD.app.supply.services.SupplyService.class.getName());
+    private static final Logger logger = Logger.getLogger(InventoryService.class.getName());
 
-    public InventoryService(InventoryRepository inventoryRepository, SupplyService supplyService) {
+    public InventoryService(InventoryRepository inventoryRepository) {
         this.inventoryRepository = inventoryRepository;
     }
 
     // --------------------------CREATE--------------------------
 
-    public void create(InventoryEntity inventory) {
-        inventoryRepository.create(inventory.getSupply_id(), inventory.getEmergency_id(), inventory.getRequested(),
-                inventory.getStock(), inventory.getMissing(), inventory.getPriority());
-        logger.info("Inventory entry created successfully");
-    }
-
-    // ---------------------------READ---------------------------
-
-    public List<InventoryEntity> getAll() {
-        return inventoryRepository.getAll();
-    }
-
-    public InventoryEntity getById(Long id) {
-        return inventoryRepository.getById(id);
-    }
-
-    // --------------------------UPDATE--------------------------
-
-    public void update(InventoryEntity inventory) {
+    public InventoryEntity create(InventoryEntity inventory) {
         Integer missingAmount = inventory.getRequested() - inventory.getStock();
         if (missingAmount <= 0) {
             inventory.setMissing("Suficiente");
         } else {
             inventory.setMissing(String.valueOf(missingAmount));
         }
-        inventoryRepository.update(inventory.getSupply_id(), inventory.getEmergency_id(), inventory.getRequested(),
-                inventory.getStock(), inventory.getMissing(), inventory.getPriority(), inventory.getInventory_id());
+
+        // Using save() to create and persist the entity
+        InventoryEntity newInventory = inventoryRepository.save(inventory);
+        logger.info("Inventory entry created successfully");
+        return newInventory;
+    }
+
+    // ---------------------------READ---------------------------
+
+    public List<InventoryEntity> getAll() {
+        return inventoryRepository.findAll();
+    }
+
+    public InventoryEntity getById(Long id) {
+        return inventoryRepository.findById(id).orElse(null);
+    }
+
+    // --------------------------UPDATE--------------------------
+
+    public InventoryEntity update(InventoryEntity inventory) {
+        Integer missingAmount = inventory.getRequested() - inventory.getStock();
+        if (missingAmount <= 0) {
+            inventory.setMissing("Suficiente");
+        } else {
+            inventory.setMissing(String.valueOf(missingAmount));
+        }
+
+        InventoryEntity updatedInventory = inventoryRepository.saveAndFlush(inventory);
         logger.info("Inventory entry updated successfully");
+        return updatedInventory;
     }
 
     // --------------------------DELETE--------------------------
 
-    public void delete(Long id) {
-        inventoryRepository.delete(id);
-        logger.info("Inventory entry deleted successfully");
+    public Long delete(Long id) {
+        inventoryRepository.deleteById(id);
+        logger.info("Inventory entry deleted successfully with ID: " + id);
+        return id;
     }
-
 }

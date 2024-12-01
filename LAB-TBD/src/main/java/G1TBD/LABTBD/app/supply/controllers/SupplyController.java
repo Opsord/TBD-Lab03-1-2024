@@ -20,43 +20,47 @@ public class SupplyController {
         this.supplyService = supplyService;
     }
 
-    String homeLinkRedirect = "redirect:/supplies";
-
     // --------------------------CREATE--------------------------
+
     @PostMapping("/create")
-    public String create(@RequestBody SupplyEntity supply) {
-        supplyService.create(supply);
-        logger.info("Supply created: ");
-        logger.info(supply.toString());
-        return homeLinkRedirect;
+    public SupplyEntity create(@RequestBody SupplyEntity supply) {
+        SupplyEntity createdSupply = supplyService.create(supply);
+        logger.info("Supply created: " + createdSupply);
+        return createdSupply;
     }
 
     // --------------------------UPDATE--------------------------
+
     @PutMapping("/update")
-    public String update(@RequestBody SupplyEntity supply) {
-        supplyService.update(supply);
-        logger.info("Supply updated: ");
-        logger.info(supply.toString());
-        return homeLinkRedirect;
+    public SupplyEntity update(@RequestBody SupplyEntity supply) {
+        SupplyEntity updatedSupply = supplyService.update(supply);
+        logger.info("Supply updated: " + updatedSupply);
+        return updatedSupply;
     }
 
     // ---------------------------READ---------------------------
+
     @GetMapping("/all")
     public List<SupplyEntity> getAll() {
-        return supplyService.getAll();
+        List<SupplyEntity> supplies = supplyService.getAll();
+        logger.info("Retrieved all supplies: " + supplies);
+        return supplies;
     }
 
     @GetMapping("/id/{id}")
     public SupplyEntity getById(@PathVariable Long id) {
-        return supplyService.getById(id);
+        SupplyEntity supply = supplyService.getById(id);
+        logger.info("Retrieved supply by ID (" + id + "): " + supply);
+        return supply;
     }
 
     // --------------------------DELETE--------------------------
+
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
-        supplyService.delete(id);
-        logger.info("Supply deleted: ");
-        logger.info(String.valueOf(id));
-        return homeLinkRedirect;
+    public Long delete(@PathVariable Long id) {
+        Long deletedId = supplyService.delete(id);
+        logger.info("Supply deleted with ID: " + deletedId);
+        return deletedId;
     }
 }
+
