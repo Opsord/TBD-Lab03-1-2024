@@ -6,6 +6,7 @@ import VerEmergenciaView from '../views/VerEmergenciaView.vue';
 import VerEmergenciaFinalizadaView from '../views/VerEmergenciaFinalizadaView.vue';
 import ConsultarEmergencia from '../views/ConsultarEmergencia.vue';
 import InsumosView from '@/views/insumosView.vue';
+import inventarioView from '@/views/inventoryView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,6 +25,11 @@ const router = createRouter({
       path: '/insumos',
       name: 'Vista de insumos',
       component: InsumosView,
+    },
+    {
+      path: '/inventario',
+      name: 'Vista de inventario',
+      component: inventarioView,
     },
     {
       path: '/registrar-emergencia',
