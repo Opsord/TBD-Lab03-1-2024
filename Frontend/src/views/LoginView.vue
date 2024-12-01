@@ -53,8 +53,8 @@ const loginUser = async () => {
     try {
         const response = await axios.post('http://localhost:8090/auth/login', data);
         console.log("Usuario logeado correctamente", response.data);
-        store.token = response.data;
-        const storedJWT = localStorage.setItem("authToken", store.token.token)
+        store.token = response.data.token;
+        const storedJWT = localStorage.setItem("authToken", store.token)
         console.log("Token guardado: ", store.token);
 
         const user = await fetchUserRole();
