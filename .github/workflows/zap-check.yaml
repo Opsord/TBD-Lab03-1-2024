@@ -9,7 +9,7 @@ on:
       - DevSecOps---David
 jobs:
   zap_scan:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     services:
       postgres:
@@ -47,11 +47,6 @@ jobs:
     - name: Update npm
       working-directory: Frontend
       run: npm install -g npm@latest
-
-    - name: Install rollup 
-      working-directory: Frontend
-      run: npm install rollup@latest
-    
 
     - name: Install frontend dependencies
       working-directory: Frontend
