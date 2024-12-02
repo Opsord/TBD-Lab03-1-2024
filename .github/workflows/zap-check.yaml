@@ -48,9 +48,13 @@ jobs:
       working-directory: Frontend
       run: npm install -g npm@latest
 
+    - name: Install rollup 
+      working-directory: Frontend
+      run: npm install rollup@latest
+
     - name: Install frontend dependencies
       working-directory: Frontend
-      run: npm install --no-optional
+      run: npm install 
 
     - name: Build front
       working-directory: Frontend
