@@ -9,7 +9,7 @@ on:
       - DevSecOps---David
 jobs:
   zap_scan:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     services:
       postgres:
@@ -45,19 +45,19 @@ jobs:
         node-version: 'latest'
 
     - name: Update npm
-      working-directory: Frontend
+      working-directory: ./Frontend
       run: npm install -g npm@latest
 
     - name: Install frontend dependencies
-      working-directory: Frontend
+      working-directory: ./Frontend
       run: npm install 
 
     - name: Build front
-      working-directory: Frontend
+      working-directory: ./Frontend
       run: npm run build
 
     - name: run preview
-      working-directory: Frontend
+      working-directory: ./Frontend
       run: npm run preview
 
     - name: Set up Java
