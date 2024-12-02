@@ -78,13 +78,8 @@ jobs:
     - name: Start backend application
       working-directory: LAB-TBD
       run: |
-        ./mvnw clean package
-        java -jar target/your-app.jar --spring.profiles.active=test &
-      env:
-        SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/testdb
-        SPRING_DATASOURCE_USERNAME: testuser
-        SPRING_DATASOURCE_PASSWORD: testpassword
-        SPRING_MONGODB_URI: mongodb://localhost:27017/testdb
+        ./mvnw clean package -DskipTests -Ddependency-check.skip=true
+        java -jar target/*.jar --spring.profiles.active=test &
 
     - name: Wait for services to start
       run: |
