@@ -43,10 +43,12 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 'latest'
+
     - name: Install Bun
       run: |
         curl -fsSL https://bun.sh/install | bash
         export PATH=$HOME/.bun/bin:$PATH
+
     - name: Update npm
       working-directory: ./Frontend
       run: npm install -g npm@latest
@@ -57,7 +59,7 @@ jobs:
 
     - name: Update browserslist DB
       working-directory: ./Frontend
-      run: npx update-browserslist-db@latest
+      run: npx update-browserslist-db
 
     - name: Build front
       working-directory: ./Frontend
