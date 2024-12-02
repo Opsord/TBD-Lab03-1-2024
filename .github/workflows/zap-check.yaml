@@ -50,15 +50,7 @@ jobs:
 
     - name: Install frontend dependencies
       working-directory: Frontend
-      run: npm install
-
-    - name: delete frontend dependencies
-      working-directory: Frontend
-      run: rm -rf node_modules package-lock.json
-      
-    - name: Install frontend dependencies
-      working-directory: Frontend
-      run: npm install
+      run: npm install --no-optional
 
     - name: Build front
       working-directory: Frontend
