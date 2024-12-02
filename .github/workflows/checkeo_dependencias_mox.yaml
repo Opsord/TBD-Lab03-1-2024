@@ -1,4 +1,4 @@
-name: OWASP Depedency Descargando de Github
+name: OWASP Depedency Check Front Descargando de Github
 
 on:
   push:
