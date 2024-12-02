@@ -52,13 +52,14 @@ jobs:
       working-directory: Frontend
       run: npm install rollup@latest
     
-    - name: update browserlist 
-      working-directory: Frontend
-      run: npx update-browserslist-db@latest
 
     - name: Install frontend dependencies
       working-directory: Frontend
       run: npm install 
+
+    - name: update browserlist 
+      working-directory: Frontend
+      run: npx update-browserslist-db@latest
 
     - name: Build front
       working-directory: Frontend
