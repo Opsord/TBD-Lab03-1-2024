@@ -43,7 +43,10 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '16'
-
+    - name: Update npm
+      working-directory: Frontend
+      run: npm install -g npm@latest
+      
     - name: Install frontend dependencies
       working-directory: Frontend
       run: npm install
