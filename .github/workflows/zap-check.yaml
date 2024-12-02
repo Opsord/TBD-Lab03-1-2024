@@ -43,7 +43,10 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 'latest'
-
+    - name: Install Bun
+      run: |
+        curl -fsSL https://bun.sh/install | bash
+        export PATH=$HOME/.bun/bin:$PATH
     - name: Update npm
       working-directory: ./Frontend
       run: npm install -g npm@latest
