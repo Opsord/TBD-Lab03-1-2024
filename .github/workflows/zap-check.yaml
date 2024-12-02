@@ -51,6 +51,10 @@ jobs:
     - name: Install rollup 
       working-directory: Frontend
       run: npm install rollup@latest
+    
+    - name: update browserlist 
+      working-directory: Frontend
+      run: npx update-browserslist-db@latest
 
     - name: Install frontend dependencies
       working-directory: Frontend
