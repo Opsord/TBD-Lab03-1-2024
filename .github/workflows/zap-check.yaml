@@ -67,7 +67,7 @@ jobs:
 
     - name: run preview
       working-directory: ./Frontend
-      run: npm run preview
+      run: npm run preview &
 
     - name: Set up Java
       uses: actions/setup-java@v3
