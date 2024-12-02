@@ -78,6 +78,7 @@ jobs:
     - name: Start backend application
       working-directory: LAB-TBD
       run: |
+        chmod +x ./mvnw
         ./mvnw clean package -DskipTests -Ddependency-check.skip=true
         java -jar target/*.jar --spring.profiles.active=test &
 
