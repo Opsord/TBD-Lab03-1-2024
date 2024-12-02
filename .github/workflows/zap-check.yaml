@@ -98,6 +98,7 @@ jobs:
       with:
         target: 'http://localhost:4173'
         format: 'HTML'
+        token: ${{secrets.GITHUB_TOKEN}}
 
     - name: List ZAP Report Files
       run: ls -l
