@@ -48,13 +48,13 @@ jobs:
       working-directory: Frontend
       run: npm install
 
-    - name: Run frontend in dev
+    - name: Build front
       working-directory: Frontend
       run: npm run build
 
-    - name: Run frontend in dev
+    - name: run preview
       working-directory: Frontend
-      run: npm start
+      run: npm run preview
 
     - name: Set up Java
       uses: actions/setup-java@v3
