@@ -76,7 +76,7 @@ jobs:
         java-version: '17'
 
     - name: Start backend application
-      working-directory: ./LAB-TBD
+      working-directory: LAB-TBD
       run: |
         ./mvnw clean package
         java -jar target/your-app.jar --spring.profiles.active=test &
