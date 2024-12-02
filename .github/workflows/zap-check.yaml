@@ -42,7 +42,7 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 'latest'
+        node-version: '20.18.0'
 
     - name: Install Bun
       run: |
