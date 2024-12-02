@@ -51,8 +51,11 @@ jobs:
     - name: Install frontend dependencies
       working-directory: ./Frontend
       run: npm install 
+
     - name: Update browserslist DB
+      working-directory: ./Frontend
       run: npx update-browserslist-db@latest
+
     - name: Build front
       working-directory: ./Frontend
       run: npm run build
