@@ -36,7 +36,7 @@ jobs:
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_CLOUD }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: -Dsonar.projectKey=Opsord_TBD-Lab03-1-2024 -Dsonar.organization=opsord -Dsonar.sources=LAB-TBD/src/main/java -Dsonar.tests=LAB-TBD/src/test/java -Dsonar.java.binaries=LAB-TBD/target/classes
