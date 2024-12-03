@@ -45,3 +45,6 @@ jobs:
         with:
           name: dependency-check-report
           path: LAB-TBD/target/dependency-check-report.html
+  call-workflow2:
+    # This must be specified at the job level, not the step level
+    uses: ./.github/workflows/checkfrontdependencyyml
