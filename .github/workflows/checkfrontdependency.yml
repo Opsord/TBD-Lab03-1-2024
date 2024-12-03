@@ -1,6 +1,7 @@
 name: OWASP Depedency Check Frontend 22
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ["OWASP Dependency-Check Backend"]
     types:
