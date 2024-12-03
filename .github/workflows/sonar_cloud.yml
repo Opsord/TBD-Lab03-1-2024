@@ -37,9 +37,14 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_CLOUD_BACK }}
         with:
-          args: -Dsonar.projectKey=Opsord_TBD-Lab03-1-2024 -Dsonar.organization=opsord -Dsonar.sources=LAB-TBD/src/main/java -Dsonar.tests=LAB-TBD/src/test/java -Dsonar.java.binaries=LAB-TBD/target/classes
+          args: >
+            -Dsonar.projectKey=opsord_TBD-Lab03-1-2024-BACKEND
+            -Dsonar.organization=opsord
+            -Dsonar.sources=LAB-TBD/src/main/java
+            -Dsonar.tests=LAB-TBD/src/test/java
+            -Dsonar.java.binaries=LAB-TBD/target/classes
 
   frontend:
     name: Build and analyze Frontend
@@ -53,7 +58,8 @@ jobs:
         with:
           node-version: '16'
       - name: Clean npm cache
-        run: rm -rf Frontend/node_modules
+        run: |
+          rm -rf Frontend/node_modules
           rm -f Frontend/package-lock.json
           npm cache clean --force
       - name: Install frontend dependencies
@@ -64,12 +70,11 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_CLOUD_FRONT }}
         with:
           args: >
-            -Dsonar.projectKey=Opsord_TBD-Lab03-1-2024
+            -Dsonar.projectKey=opsord_TBD-Lab03-1-2024-FRONTEND
             -Dsonar.organization=opsord
             -Dsonar.sources=Frontend/src
-            -Dsonar.tests=Frontend/src
             -Dsonar.test.inclusions=Frontend/src/**/*.test.js
-            -Dsonar.exclusions=Frontend/src/**/*.test.js,Frontend/node_modules/**,Frontend/public/**,Frontend/package-lock.json
+            -Dsonar.exclusions=Frontend/node_modules/**,Frontend/public/**
