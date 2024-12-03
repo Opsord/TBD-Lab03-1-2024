@@ -36,15 +36,17 @@ jobs:
           --health-retries=5
 
     steps:
+
     - name: Checkout code
       uses: actions/checkout@v3
+
     - name: Copy SQL script into PostgreSQL container
       run: |
-        docker cp ./Database/dbCreateV2.sql postgres:/tmp/dbCreateV2.sql
+        docker cp ./Database/dbCreateV2.sql postgis/postgis:/tmp/dbCreateV2.sql
 
     - name: Run SQL script inside PostgreSQL container
       run: |
-        docker exec postgres psql -U postgres -d LabTBD-1-2024 -f /tmp/dbCreateV2.sql
+        docker exec postgis/postgis psql -U postgres -d LabTBD-1-2024 -f /tmp/dbCreateV2.sql
 
     - name: Install Node.js
       uses: actions/setup-node@v4
