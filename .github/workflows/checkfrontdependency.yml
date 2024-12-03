@@ -6,6 +6,9 @@ on:
     workflows: ["OWASP Dependency-Check Backend"]
     types:
       - completed  # Cuando el workflow se completa
+  push:
+      branches:
+        - devSecOps---Pipeline
 
 jobs:
   owasp-dependency-check:
