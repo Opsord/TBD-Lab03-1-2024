@@ -1,10 +1,7 @@
 name: OWASP ZAP Full Scan
 
 on:
-  workflow_run:
-    workflows: ["SonarQube Cloud"]
-    types:
-      - completed
+  workflow_call:
 jobs:
   zap_scan:
     runs-on: ubuntu-latest

@@ -1,9 +1,12 @@
 name: SonarQube Cloud
 on:
-  workflow_run:
-    workflows: ["OWASP Depedency Check Frontend"]
-    types:
-      - completed
+  workflow_call:
+  push:
+    branches:
+      - devSecOps---Pipeline
+  pull_request:
+    branches:
+      - devSecOps---Pipeline
 
 jobs:
   backend:
@@ -77,3 +80,7 @@ jobs:
             -Dsonar.sources=Frontend/src
             -Dsonar.test.inclusions=Frontend/src/**/*.test.js
             -Dsonar.exclusions=Frontend/node_modules/**,Frontend/public/**
+  call-zap:
+    # This must be specified at the job level, not the step level
+    uses: ./.github/workflows/zap-check.yaml
+    secrets: inherit
