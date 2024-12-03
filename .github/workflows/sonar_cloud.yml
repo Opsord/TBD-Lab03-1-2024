@@ -49,6 +49,7 @@ jobs:
             -Dsonar.java.binaries=LAB-TBD/target/classes
 
   frontend:
+    needs: backend
     name: Build and analyze Frontend
     runs-on: ubuntu-latest
     steps:

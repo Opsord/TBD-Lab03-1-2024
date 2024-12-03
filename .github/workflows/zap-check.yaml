@@ -11,7 +11,7 @@ jobs:
         image: postgis/postgis:latest
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: password
+          POSTGRES_PASSWORD: 1234
           POSTGRES_DB: LabTBD-1-2024
         ports:
           - 5432:5432
