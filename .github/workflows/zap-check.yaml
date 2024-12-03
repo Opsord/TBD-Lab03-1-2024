@@ -45,10 +45,19 @@ jobs:
     - name: Copy MongoDB script to container
       run: |
         docker cp ./Database/LoadDataSkillsMongoDB.json mongo-container:/tmp/LoadDataSkillsMongoDB.json
+        docker cp ./Database/LoadDataUsersMongoDB.json mongo-container:/tmp/LoadDataUsersMongoDB.json
 
-    - name: Run MongoDB script on specific database
+    - name: Create database and collections
       run: |
-        docker exec mongo-container mongosh --eval "use LabTBD-1-2024; load('/tmp/LoadDataSkillsMongoDB.json')" 
+        docker exec -it mongo-container mongosh --eval "use LabTBD-1-2024; db.createCollection('skills');db.createCollection('users');"
+
+    - name: Import JSON data into MongoDB
+      run: |
+        docker exec mongo-container mongoimport --host localhost --db LabTBD-1-2024 --collection users --file /tmp/LoadDataUsersMongoDB.json --jsonArray
+
+    - name: Import JSON data into MongoDB
+      run: |
+        docker exec mongo-container mongoimport --host localhost --db LabTBD-1-2024 --collection skills --file /tmp/LoadDataSkillsMongoDB.json --jsonArray
 
     - name: Check Containers
       run: |
