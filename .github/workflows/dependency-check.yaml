@@ -3,10 +3,10 @@ name: OWASP Dependency-Check Backend
 on:
   push:
     branches:
-      - DevSecOps---TestAction
+      - main
   pull_request:
     branches:
-      - DevSecOps---TestAction
+      - main
 
 jobs:
   dependency-check:
