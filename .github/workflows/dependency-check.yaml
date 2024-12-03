@@ -46,6 +46,7 @@ jobs:
           name: dependency-check-report-back
           path: LAB-TBD/target/dependency-check-report.html
   call-dependencycheckfront:
+    needs: dependency-check
     # This must be specified at the job level, not the step level
     uses: ./.github/workflows/checkfrontdependency.yml
     secrets: inherit

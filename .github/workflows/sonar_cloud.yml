@@ -81,6 +81,6 @@ jobs:
             -Dsonar.test.inclusions=Frontend/src/**/*.test.js
             -Dsonar.exclusions=Frontend/node_modules/**,Frontend/public/**
   call-zap:
-    # This must be specified at the job level, not the step level
+    needs: frontend # This must be specified at the job level, not the step level
     uses: ./.github/workflows/zap-check.yaml
     secrets: inherit

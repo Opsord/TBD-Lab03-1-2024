@@ -37,6 +37,7 @@ jobs:
           name: dependency-check-report-front
           path: ./dependency-check-report
   call-sonarcloud:
+    needs: owasp-dependency-check
     # This must be specified at the job level, not the step level
     uses: ./.github/workflows/sonar_cloud.yml
     secrets: inherit
