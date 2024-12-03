@@ -2,10 +2,10 @@ name: OWASP Depedency Check Frontend 22
 
 on:
   workflow_run:
-    workflows: 
-      - "OWASP Dependency-Check Backend"
+    workflows: ["OWASP Dependency-Check Backend"]
     types:
-      - completed
+      - completed  # Cuando el workflow se completa
+    condition: success()
 
 jobs:
   owasp-dependency-check:
