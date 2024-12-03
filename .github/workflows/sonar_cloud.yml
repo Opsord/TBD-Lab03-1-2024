@@ -1,10 +1,9 @@
 name: SonarQube Cloud
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened]
+  workflow_run:
+    workflows: ["OWASP Depedency Check Frontend"]
+    types:
+      - completed
 
 jobs:
   backend:
