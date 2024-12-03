@@ -49,7 +49,7 @@ jobs:
 
     - name: Create database and collections
       run: |
-        docker exec -it mongo-container mongosh --eval "use LabTBD-1-2024; db.createCollection('skills');db.createCollection('users');"
+        docker exec mongo-container mongosh --eval "use LabTBD-1-2024; db.createCollection('skills');db.createCollection('users');"
 
     - name: Import JSON data into MongoDB
       run: |
