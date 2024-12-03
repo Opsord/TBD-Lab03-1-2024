@@ -106,4 +106,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: zap_scan
-        path: ./zap_scan.zip
+        path: zap_scan.zip
