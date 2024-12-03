@@ -41,17 +41,20 @@ jobs:
 
     - name: Checkout code
       uses: actions/checkout@v3
-
+    #Create Mongo Database
     - name: Update mongo with new database
       run: |
         docker exec mongo-container mongosh --eval "use LabTBD-1-2024"
       
-      #SUBIENDO EL SCRIPT para crear las tablas 
-    - name: Copy SQL script into PostgreSQL container
+    - name: Check Containers
       run: |
         docker ps
-    #EJECUCION DEL SCRIPT PARA CREAR TABLAS
+
     - name: Copy SQL script into PostgreSQL container
+      run: |
+        docker cp ./Database/dbCreateV2.sql custom-postgres:/tmp/dbCreateV2.sql
+
+    - name: Copy SQL script to populate tables
       run: |
         docker cp ./Database/dbCreateV2.sql custom-postgres:/tmp/dbCreateV2.sql
 
