@@ -5,7 +5,6 @@ on:
     workflows: ["OWASP Dependency-Check Backend"]
     types:
       - completed  # Cuando el workflow se completa
-    condition: success()
 
 jobs:
   owasp-dependency-check:
