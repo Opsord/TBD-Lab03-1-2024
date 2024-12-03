@@ -35,23 +35,31 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
+          --name mongo-container
 
     steps:
 
     - name: Checkout code
       uses: actions/checkout@v3
 
+      #SUBIENDO EL SCRIPT para crear las tablas 
     - name: Copy SQL script into PostgreSQL container
       run: |
         docker ps
-
+    #EJECUCION DEL SCRIPT PARA CREAR TABLAS
     - name: Copy SQL script into PostgreSQL container
       run: |
         docker cp ./Database/dbCreateV2.sql custom-postgres:/tmp/dbCreateV2.sql
 
-    - name: Run SQL script inside PostgreSQL container
+    #COPIANDO EL SCRIPT PARA POBLANR LAS TABLASI
+    - name: Copy SQL script to populate tables
       run: |
-        docker exec custom-postgres psql -U postgres -d LabTBD-1-2024 -f /tmp/dbCreateV2.sql
+        docker cp ./Database/dbLoadDataV2.sql custom-postgres:/tmp/dbLoadDataV2.sql
+
+    #corriendo EL SCRIPT PARA POBLANR LAS TABLASI
+    - name: Run SQL script to populate tables
+      run: |
+        docker exec custom-postgres psql -U postgres -d LabTBD-1-2024 -f /tmp/dbLoadDataV2.sql
 
     - name: Install Node.js
       uses: actions/setup-node@v4
