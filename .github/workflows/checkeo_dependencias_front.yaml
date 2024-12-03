@@ -17,7 +17,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16' # Usa la versaaaaión de Java que corresponda a tu proyecto
+          node-version: '16' # Usa la versaaaaión de Java que correspondaaaa a tu proyecto
       - name: Install dependencies
         working-directory: Frontend
         run: |
