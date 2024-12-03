@@ -165,3 +165,31 @@ VALUES
     (14, 3),
     (28, 4),
     (29, 5);
+
+------ Nuevas Datos para DevSecOps
+INSERT INTO supply (name, description, classification)
+VALUES
+    ('Kit de Rescate en Escombros', 'Incluye martillo, palanca, guantes resistentes y linterna para rescates en áreas colapsadas.', 'Rescate y extracción'),
+    ('Detector de Vida Portátil', 'Dispositivo que utiliza sensores para localizar personas atrapadas bajo escombros.', 'Rescate y localización'),
+    ('Sierra de Mano de Emergencia', 'Herramienta compacta para cortar madera, metal o escombros en áreas de difícil acceso.', 'Rescate y extracción'),
+    ('Mochila de Supervivencia', 'Incluye alimentos no perecederos, agua, botiquín, mantas y herramientas básicas para emergencias.', 'Supervivencia'),
+    ('Cámara Térmica Portátil', 'Herramienta para detectar calor corporal en la oscuridad o entre escombros.', 'Rescate y localización'),
+    ('Generador Portátil', 'Fuente de energía para operar dispositivos esenciales en áreas sin electricidad.', 'Energía y soporte'),
+    ('Equipo de Comunicación Satelital', 'Dispositivo de comunicación para áreas sin señal celular o infraestructura dañada.', 'Comunicación'),
+    ('Bombas de Agua Portátiles', 'Equipos para drenar agua acumulada en inundaciones o áreas anegadas.', 'Mitigación de desastres'),
+    ('Carpa de Emergencia', 'Refugio portátil resistente al clima extremo, ideal para desplazados.', 'Refugio y protección'),
+    ('Dron de Búsqueda y Rescate', 'Equipado con cámaras para monitoreo de áreas afectadas y búsqueda de personas.', 'Rescate y localización');
+
+INSERT INTO inventory (supply_id, emergency_id, requested, stock, missing, priority)
+VALUES
+    (1, 1, 50, 30, 20, 'Alta'),
+    (2, 2, 5, 3, 2, 'Crítica'),
+    (1, 3, 20, 50, 'Suficiente', 'Media'),
+    (3, 4, 10, 15, 'Suficiente', 'Baja'),
+    (2, 5, 8, 5, 3, 'Alta'),
+    (3, 1, 25, 40, 'Suficiente', 'Media'),
+    (1, 2, 15, 10, 5, 'Alta'),
+    (4, 3, 3, 20, 'Suficiente', 'Baja'),
+    (2, 4, 6, 2, 4, 'Crítica'),
+    (1, 5, 12, 8, 4, 'Alta');
+

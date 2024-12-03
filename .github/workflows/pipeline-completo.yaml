@@ -1,0 +1,155 @@
+name: OWASP ZAP Full Scan
+
+on:
+  workflow_run:
+    workflows: ["SonarQube Cloud"]
+    types:
+      - completed
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgis/postgis:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: LabTBD-1-2024
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres -d LabTBD-1-2024"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+          --name custom-postgres
+      mongo:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd="mongosh --eval 'db.runCommand({ ping: 1 })'"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+          --name mongo-container
+
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+    #Create Mongo Database
+    - name: Copy MongoDB script to container
+      run: |
+        docker cp ./Database/LoadDataSkillsMongoDB.json mongo-container:/tmp/LoadDataSkillsMongoDB.json
+        docker cp ./Database/LoadDataUsersMongoDB.json mongo-container:/tmp/LoadDataUsersMongoDB.json
+
+    - name: Create database and collections
+      run: |
+        docker exec mongo-container mongosh --eval "use LabTBD-1-2024; db.createCollection('skills');db.createCollection('users');"
+
+    - name: Import JSON data into MongoDB
+      run: |
+        docker exec mongo-container mongoimport --host localhost --db LabTBD-1-2024 --collection users --file /tmp/LoadDataUsersMongoDB.json --jsonArray
+
+    - name: Import JSON data into MongoDB
+      run: |
+        docker exec mongo-container mongoimport --host localhost --db LabTBD-1-2024 --collection skills --file /tmp/LoadDataSkillsMongoDB.json --jsonArray
+
+    - name: Check Containers
+      run: |
+        docker ps
+
+    - name: Copy SQL script into PostgreSQL container
+      run: |
+        docker cp ./Database/dbCreateV2.sql custom-postgres:/tmp/dbCreateV2.sql
+
+    - name: Run SQL script to create tables
+      run: |
+        docker exec custom-postgres psql -U postgres -d LabTBD-1-2024 -f /tmp/dbCreateV2.sql
+
+    #COPIANDO EL SCRIPT PARA POBLANR LAS TABLASI
+    - name: Copy SQL script to populate tables
+      run: |
+        docker cp ./Database/dbLoadDataV2.sql custom-postgres:/tmp/dbLoadDataV2.sql
+
+    #corriendo EL SCRIPT PARA POBLANR LAS TABLASI
+    - name: Run SQL script to populate tables
+      run: |
+        docker exec custom-postgres psql -U postgres -d LabTBD-1-2024 -f /tmp/dbLoadDataV2.sql
+        
+
+
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.18.0'
+
+    - name: Install Bun
+      run: |
+        curl -fsSL https://bun.sh/install | bash
+        export PATH=$HOME/.bun/bin:$PATH
+    - name: Checkear las rutas
+      run: |
+        cd ./Frontend
+        ls
+        pwd
+    - name: Update npm
+      working-directory: ./Frontend
+      run: npm install -g npm@latest
+
+    - name: Install frontend dependencies
+      working-directory: ./Frontend
+      run: npm install 
+
+    - name: Update browserslist DB
+      working-directory: ./Frontend
+      run: npx update-browserslist-db
+
+    - name: Build front
+      working-directory: ./Frontend
+      run: npm run build
+
+    - name: run preview
+      working-directory: ./Frontend
+      run: npm run preview &
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Start backend application
+      working-directory: LAB-TBD
+      run: |
+        chmod +x ./mvnw
+        ./mvnw clean package -DskipTests -Ddependency-check.skip=true
+        java -jar target/*.jar --spring.profiles.active=test &
+
+    - name: Wait for services to start
+      run: |
+        for i in {1..10}; do
+          if curl -s http://localhost:8090/health && curl -s http://localhost:4173; then
+            echo "Services are up!"
+            exit 0
+          fi
+          echo "Waiting for services to start..."
+          sleep 10
+        done
+        exit 1
+    - name: ZAP Scan
+      uses: zaproxy/action-full-scan@v0.12.0
+      with:
+        target: 'http://localhost:4173'
+        token: ${{secrets.GIT_TOKEN}}
+
+    - name: List ZAP Report Files
+      run: ls -l
+    - name: Upload ZAP Report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: zap_scan
+        path: zap_scan.zip

@@ -1,10 +1,7 @@
 name: SonarQube Cloud
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened]
+  workflow_call:
+  
 
 jobs:
   backend:
@@ -47,6 +44,7 @@ jobs:
             -Dsonar.java.binaries=LAB-TBD/target/classes
 
   frontend:
+    needs: backend
     name: Build and analyze Frontend
     runs-on: ubuntu-latest
     steps:
@@ -78,3 +76,7 @@ jobs:
             -Dsonar.sources=Frontend/src
             -Dsonar.test.inclusions=Frontend/src/**/*.test.js
             -Dsonar.exclusions=Frontend/node_modules/**,Frontend/public/**
+  call-zap:
+    needs: frontend 
+    uses: ./.github/workflows/zap-check.yaml
+    secrets: inherit
