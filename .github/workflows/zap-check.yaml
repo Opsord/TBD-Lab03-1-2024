@@ -82,11 +82,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20.18.0'
-
-    - name: Install Bun
-      run: |
-        curl -fsSL https://bun.sh/install | bash
-        export PATH=$HOME/.bun/bin:$PATH
+        
     - name: Checkear las rutas
       run: |
         cd ./Frontend
@@ -102,7 +98,7 @@ jobs:
 
     - name: Update browserslist DB
       working-directory: ./Frontend
-      run: npx update-browserslist-db
+      run: npm update caniuse-lite browserslist
 
     - name: Build front
       working-directory: ./Frontend
