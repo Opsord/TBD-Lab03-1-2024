@@ -1,4 +1,4 @@
-name: OWASP ZAP Baseline Scan
+name: OWASP ZAP Full Scan
 
 on:
   push:
@@ -106,3 +106,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: zap_scan
+        path: ./zap_scan.zip
