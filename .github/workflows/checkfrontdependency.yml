@@ -24,7 +24,7 @@ jobs:
         id: FullScanFront
         with:
           project: 'my-project'
-          path: './home/runner/work/TBD-Lab03-1-2024/TBD-Lab03-1-2024/Frontend/package-lock.json'
+          path: 'home/runner/work/TBD-Lab03-1-2024/TBD-Lab03-1-2024/Frontend/package-lock.json'
           format: 'HTML'
           out: './dependency-check-report'
         
