@@ -42,10 +42,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
     #Create Mongo Database
-    - name: Update mongo with new database
+    - name: Copy MongoDB script to container
       run: |
-        docker exec mongo-container mongosh --eval "use LabTBD-1-2024"
-      
+        docker cp ./Database/LoadDataSkillsMongoDB.json mongo-container:/tmp/LoadDataSkillsMongoDB.json
+
+    - name: Run MongoDB script on specific database
+      run: |
+        docker exec mongo-container mongosh --eval "use LabTBD-1-2024; load('/tmp/LoadDataSkillsMongoDB.json')" 
+
     - name: Check Containers
       run: |
         docker ps
