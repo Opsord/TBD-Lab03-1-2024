@@ -58,9 +58,9 @@ jobs:
       run: |
         docker cp ./Database/dbCreateV2.sql custom-postgres:/tmp/dbCreateV2.sql
 
-    - name: Copy SQL script to populate tables
+    - name: Run SQL script to create tables
       run: |
-        docker cp ./Database/dbCreateV2.sql custom-postgres:/tmp/dbCreateV2.sql
+        docker exec custom-postgres psql -U postgres -d LabTBD-1-2024 -f /tmp/dbCreateV2.sql
 
     #COPIANDO EL SCRIPT PARA POBLANR LAS TABLASI
     - name: Copy SQL script to populate tables
