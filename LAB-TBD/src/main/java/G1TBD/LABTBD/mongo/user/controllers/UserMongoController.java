@@ -38,7 +38,7 @@ public class UserMongoController {
     //---------------------------READ---------------------------
 
     @GetMapping("/")
-    public ResponseEntity<List<UserMongo>> getUsers() {
+    public ResponseEntity<?> getUsers() {
         try {
             List<UserMongo> users = userMongoService.getUsers();
             if (users.isEmpty()) {
@@ -46,7 +46,7 @@ public class UserMongoController {
             }
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(e.toString(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

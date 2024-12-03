@@ -373,6 +373,18 @@
                 "description": "Habilidad en el uso de drones para búsqueda y rescate"
             }
         ]
+    },
+    {
+        "rut": "11222333-7",
+        "email": "usuarioX@gmail.com",
+        "name": "Tester",
+        "last_name": "Testing",
+        "birth_date": "2003-04-22",
+        "sex": "M",
+        "password": "$2a$10$XjPyhgEaK9a9rn2MeAShxuxYAbuHwQlmzn3KJESCji.Y6DJ5R4tJu",
+        "availability": true,
+        "role": "COORDINADOR",
+        "skills": []
     }
 ]
 
