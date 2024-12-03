@@ -1,12 +1,10 @@
 name: OWASP Depedency Check Frontend 22
 
 on:
-  push:
-    branches:
-      - devSecOps---Pipeline
-  pull_request:
-    branches:
-      - devSecOps---Pipeline
+  workflow_run:
+    workflows: ["OWASP Dependency-Check Backend"]
+    types:
+      - completed
 
 jobs:
   owasp-dependency-check:
