@@ -14,7 +14,6 @@ jobs:
     services:
       postgres:
         image: postgis/postgis:latest
-        name: custom-postgres
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
@@ -26,6 +25,7 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
+          --name custom-postgres
       mongo:
         image: mongo:latest
         ports:
