@@ -35,7 +35,7 @@ jobs:
 
       # 4. Ejecutar OWASP Dependency-Check
       - name: Run OWASP Dependency-Check
-        working-directory: LAB-TBD  # Cambia "demo" por el directorio donde está tu pom.xml
+        working-directory: LAB-TBD  
         run: mvn org.owasp:dependency-check-maven:check
 
       # 5. Subir informe como artefacto
@@ -47,6 +47,5 @@ jobs:
           path: LAB-TBD/target/dependency-check-report.html
   call-dependencycheckfront:
     needs: dependency-check
-    # This must be specified at the job level, not the step level
     uses: ./.github/workflows/checkfrontdependency.yml
     secrets: inherit

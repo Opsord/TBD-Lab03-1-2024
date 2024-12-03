@@ -14,7 +14,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16' # Usa la versaaaaaaaaaión de Java que corresponda a tu proyecto
+          node-version: '16' 
       - name: Install dependencies
         working-directory: Frontend
         run: |
@@ -38,6 +38,5 @@ jobs:
           path: ./dependency-check-report
   call-sonarcloud:
     needs: owasp-dependency-check
-    # This must be specified at the job level, not the step level
     uses: ./.github/workflows/sonar_cloud.yml
     secrets: inherit

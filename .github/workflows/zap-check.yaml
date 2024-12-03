@@ -36,7 +36,7 @@ jobs:
 
     - name: Checkout code
       uses: actions/checkout@v3
-    #Create Mongo Database
+
     - name: Copy MongoDB script to container
       run: |
         docker cp ./Database/LoadDataSkillsMongoDB.json mongo-container:/tmp/LoadDataSkillsMongoDB.json
@@ -44,15 +44,15 @@ jobs:
 
     - name: Create database and collections
       run: |
-        docker exec mongo-container mongosh --eval "use LabTBD-1-2024; db.createCollection('skills');db.createCollection('users');"
+        docker exec mongo-container mongosh --eval "use LAB-TBD-1-2024; db.createCollection('skills');db.createCollection('users');"
 
     - name: Import JSON data into MongoDB
       run: |
-        docker exec mongo-container mongoimport --host localhost --db LabTBD-1-2024 --collection users --file /tmp/LoadDataUsersMongoDB.json --jsonArray
+        docker exec mongo-container mongoimport --host localhost --db LAB-TBD-1-2024 --collection users --file /tmp/LoadDataUsersMongoDB.json --jsonArray
 
     - name: Import JSON data into MongoDB
       run: |
-        docker exec mongo-container mongoimport --host localhost --db LabTBD-1-2024 --collection skills --file /tmp/LoadDataSkillsMongoDB.json --jsonArray
+        docker exec mongo-container mongoimport --host localhost --db LAB-TBD-1-2024 --collection skills --file /tmp/LoadDataSkillsMongoDB.json --jsonArray
 
     - name: Check Containers
       run: |
