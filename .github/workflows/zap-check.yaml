@@ -48,7 +48,11 @@ jobs:
       run: |
         curl -fsSL https://bun.sh/install | bash
         export PATH=$HOME/.bun/bin:$PATH
-
+    - name: Checkear las rutas
+      run: |
+        cd ./Frontend
+        ls
+        pwd
     - name: Update npm
       working-directory: ./Frontend
       run: npm install -g npm@latest
