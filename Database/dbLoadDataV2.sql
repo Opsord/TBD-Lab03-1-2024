@@ -1,6 +1,6 @@
 -- Poblacion de la tabla Institucion
-INSERT INTO institution (name) 
-VALUES 
+INSERT INTO institution (name)
+VALUES
     ('Cruz Roja de Chile'),
     ('Bomberos Municipales'),
     ('Equipo de rescate de desastres naturales');
@@ -8,7 +8,7 @@ VALUES
 
 -- Poblacion de la tabla person_institution
 INSERT INTO person_institution (rut, institution_id)
-VALUES 
+VALUES
     ('881263612-k', '1'),
     ('948128124-1', '2'),
     ('98482714-4', '3');
@@ -16,7 +16,7 @@ VALUES
 
 -- Poblacion de la tabla Emergencia
 INSERT INTO emergency (status, title, description)
-VALUES 
+VALUES
     (true, 'Incendio forestal en zona rural', 'Se ha reportado un incendio forestal en la zona de la Reserva Nacional. Se necesita asistencia inmediata.'),
     (false, 'Evacuación por fuga de gas', 'Se ha detectado una fuga de gas en un edificio residencial. Se requiere evacuación de los residentes.'),
     (true, 'Inundación en área urbana', 'Las fuertes lluvias han provocado inundaciones en varios sectores de la ciudad. Se necesitan equipos de rescate.'),
@@ -26,7 +26,7 @@ VALUES
 
 -- Población de la tabla Emergencia_Atributo
 INSERT INTO emergency_attribute (emergency_id, skill_code, compatibility)
-VALUES 
+VALUES
     (1, 'SKL007', true),   -- La emergencia 1 tiene compatibilidad con el atributo 1 (Fuerza física)
     (1, 'SKL001', true),   -- La emergencia 1 tiene compatibilidad con el atributo 2 (Rescate en Terreno)
     (1, 'SKL003', false),  -- La emergencia 1 no tiene compatibilidad con el atributo 3 (Apoyo psicológico)
@@ -42,7 +42,7 @@ VALUES
 
 -- Población de la tabla Tarea
 INSERT INTO task (description, status)
-VALUES 
+VALUES
     ('Coordinar y ejecutar la evacuación de los residentes afectados por el incendio forestal.', true),
     ('Gestionar la contención y control de la fuga de gas en el edificio residencial.', false),
     ('Realizar operaciones de rescate para ayudar a las personas atrapadas por la inundación.', true),
@@ -54,7 +54,7 @@ VALUES
 
 -- Población de la tabla Persona_Tarea
 INSERT INTO person_task (task_id, rut)
-VALUES 
+VALUES
     (1, '123271472-1'),
     (2, '176271472-1'),
     (3, '182473567-4'),
@@ -69,7 +69,7 @@ VALUES
 
 -- Población de la tabla Tarea_Emergencia
 INSERT INTO task_emergency (task_id, emergency_id)
-VALUES 
+VALUES
     (1, 2),
     (2, 2),
     (5, 1),
@@ -82,7 +82,7 @@ VALUES
 
 -- Población de la tabla Punto
 INSERT INTO point (longitude, latitude)
-VALUES 
+VALUES
 
 -- Sueltas por Chile (principalmente La Serena)
 
@@ -108,7 +108,7 @@ VALUES
     (-40.597468, -73.108497),
 
 -- Concepción
-    (-36.824599, -73.045838), 
+    (-36.824599, -73.045838),
     (-36.805786, -73.050785),
     (-36.796732, -73.090361),
     (-36.791214, -73.050608),
@@ -140,7 +140,7 @@ VALUES
 
 -- Agregar ubicaciones a los usuarios
 INSERT INTO person_point (point_id, rut)
-VALUES 
+VALUES
     (1, '123271472-1'),
     (2, '176271472-1'),
     (3, '182473567-4'),
@@ -159,7 +159,7 @@ VALUES
 
 -- Agregar ubicaciones a las emergencias
 INSERT INTO emergency_point (point_id, emergency_id)
-VALUES 
+VALUES
     (6, 1),
     (26, 2),
     (14, 3),
