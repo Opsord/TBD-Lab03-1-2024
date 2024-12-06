@@ -18,7 +18,7 @@
     "eslint-plugin-vue": "^9.25.0",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
-    "lucide-vue-next": "^0.368.0",
+    "lucide-vue-next": "^0.456.0",
     "oh-vue-icons": "^1.0.0-rc3",
     "radix-vue": "^1.7.0",
     "tailwind-merge": "^2.2.2",
