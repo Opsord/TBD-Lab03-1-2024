@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.3.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/> <!-- lookup parent from a repository -->
 	</parent>
 	<groupId>G1TBD</groupId>
 	<artifactId>LAB-TBD</artifactId>
@@ -14,39 +14,25 @@
 	<name>LAB-TBD</name>
 	<description>Laboratorio TBD 1-2024</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 		<sonar.organization>opsord</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
+		<!-- Spring Boot Starters -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.32</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
+		<!-- Security Dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -65,11 +51,20 @@
 			<version>0.11.2</version>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!-- Database Dependencies -->
 		<dependency>
-			<groupId>com.graphhopper.external</groupId>
-			<artifactId>jackson-datatype-jts</artifactId>
-			<version>0.10-2.5-1</version>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>4.2.1</version>
+		</dependency>
+
+		<!-- ORM & Hibernate Dependencies -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -80,40 +75,45 @@
 			<artifactId>hibernate-spatial</artifactId>
 			<version>6.5.0.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+
+		<!-- Spatial/Geographic Dependencies -->
 		<dependency>
 			<groupId>org.locationtech.jts</groupId>
 			<artifactId>jts-core</artifactId>
 			<version>1.17.0</version>
 		</dependency>
 		<dependency>
+			<groupId>com.graphhopper.external</groupId>
+			<artifactId>jackson-datatype-jts</artifactId>
+			<version>0.10-2.5-1</version>
+		</dependency>
+
+		<!-- JSON Processing Dependencies -->
+		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jdk8</artifactId>
 			<version>2.17.0</version>
 		</dependency>
+
+		<!-- Development Tools -->
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-mongodb</artifactId>
-			<version>4.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-commons</artifactId>
-			<version>3.2.1</version>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.32</version>
+			<scope>provided</scope>
 		</dependency>
 
-
+		<!-- Test Dependencies -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
