@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/LAB-TBD/src/main/resources/application.properties">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/LAB-TBD/src/main/resources/application.properties" />
+              <option name="originalContent" value="spring.application.name = LAB-TBD&#10;&#10;server.port = 8090&#10;&#10;#PostgreSQL&#10;spring.datasource.url = jdbc:postgresql://localhost:5432/LabTBD&#10;spring.datasource.username = postgres&#10;spring.datasource.password = 1502&#10;spring.datasource.driver-class-name=org.postgresql.Driver&#10;&#10;#JPA/Hibernate Configuration&#10;spring.jpa.hibernate.ddl-auto=update&#10;spring.jpa.show-sql=true&#10;spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect&#10;spring.jpa.properties.hibernate.format_sql=true&#10;&#10;#Mongodb&#10;spring.data.mongodb.host=localhost&#10;spring.data.mongodb.port=27017&#10;spring.data.mongodb.database=LabTBD-MongoDB&#10;spring.data.mongodb.auto-index-creation=true&#10;&#10;# Logging Configuration&#10;logging.level.org.springframework.data.mongodb.core.MongoTemplate=DEBUG" />
+              <option name="updatedContent" value="spring.application.name = LAB-TBD&#10;&#10;server.port = 8090&#10;&#10;#PostgreSQL&#10;spring.datasource.url = jdbc:postgresql://localhost:5432/LabTBD&#10;spring.datasource.username = postgres&#10;spring.datasource.password = 1502&#10;spring.datasource.driver-class-name=org.postgresql.Driver&#10;&#10;#JPA/Hibernate Configuration&#10;spring.jpa.hibernate.ddl-auto=update&#10;spring.jpa.show-sql=true&#10;spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect&#10;spring.jpa.properties.hibernate.format_sql=true&#10;&#10;#Mongodb&#10;spring.data.mongodb.host=localhost&#10;spring.data.mongodb.port=27017&#10;spring.data.mongodb.database=LabTBD-MongoDB&#10;spring.data.mongodb.auto-index-creation=true&#10;&#10;# Logging Configuration&#10;logging.level.org.springframework.data.mongodb.core.MongoTemplate=DEBUG" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
