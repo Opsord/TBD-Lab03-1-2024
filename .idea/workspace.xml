@@ -5,24 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c6ceca5-44dd-4f29-a8ea-1e4750954552" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/database/MongoDataLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB-TBD/src/main/resources/LoadDataSkillsMongoDB.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB-TBD/src/main/resources/LoadDataUsersMongoDB.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB-TBD/src/main/resources/data.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB-TBD/src/main/resources/schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/database/PostgisVerificator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/database/PostgreDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilotDiffState.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/auth/controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/auth/services/AuthServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/auth/services/AuthServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/web/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/JacksonConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/web/JacksonConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/security/JwtFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/security/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/PostGISEnabler.java" beforeDir="false" afterPath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/database/PostGISEnabler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/web/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/mongo/user/models/UserMongo.java" beforeDir="false" afterPath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/mongo/user/models/UserMongo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/mongo/user/models/UserSkill.java" beforeDir="false" afterPath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/mongo/user/models/UserSkill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LAB-TBD/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/LAB-TBD/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LAB-TBD/src/main/java/G1TBD/LABTBD/config/database/PostGISEnabler.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

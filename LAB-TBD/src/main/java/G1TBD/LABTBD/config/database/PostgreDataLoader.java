@@ -1,4 +1,3 @@
-// src/main/java/G1TBD/LABTBD/config/PostGISEnabler.java
 package G1TBD.LABTBD.config.database;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -13,8 +12,8 @@ import org.springframework.util.FileCopyUtils;
 import java.nio.charset.StandardCharsets;
 
 @Component
-@Order(Ordered.HIGHEST_PRECEDENCE)
-public class PostGISEnabler implements InitializingBean {
+@Order(Ordered.HIGHEST_PRECEDENCE + 1)
+public class PostgreDataLoader implements InitializingBean {
 
     @Value("${spring.datasource.url}")
     private String dbUrl;
@@ -30,44 +29,7 @@ public class PostGISEnabler implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        verifyPostGIS();
         initializeSchema();
-    }
-
-    private void verifyPostGIS() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(driverClassName);
-        dataSource.setUrl(dbUrl);
-        dataSource.setUsername(dbUsername);
-        dataSource.setPassword(dbPassword);
-
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-
-        try {
-            System.out.println("Verificando disponibilidad de PostGIS...");
-
-            Boolean isInstalled = jdbcTemplate.queryForObject(
-                    "SELECT EXISTS(SELECT 1 FROM pg_extension WHERE extname = 'postgis')", Boolean.class
-            );
-
-            if (!Boolean.TRUE.equals(isInstalled)) {
-                System.err.println("ERROR: PostGIS no está instalado en la base de datos.");
-                System.err.println("Por favor, instale PostGIS ejecutando: CREATE EXTENSION postgis;");
-                System.err.println("La aplicación se cerrará.");
-                System.exit(1);
-            } else {
-                System.out.println("✓ PostGIS está disponible y activo.");
-            }
-        } catch (Exception e) {
-            System.err.println("ERROR: No se pudo verificar PostGIS: " + e.getMessage());
-            System.err.println("Verifique que:");
-            System.err.println("1. PostgreSQL esté ejecutándose");
-            System.err.println("2. La base de datos exista");
-            System.err.println("3. Las credenciales sean correctas");
-            System.err.println("La aplicación se cerrará.");
-            e.printStackTrace();
-            System.exit(1);
-        }
     }
 
     private void initializeSchema() {
