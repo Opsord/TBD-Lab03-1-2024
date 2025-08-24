@@ -1,5 +1,6 @@
 package G1TBD.LABTBD.mongo.user.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +25,7 @@ import java.util.List;
 public class UserMongo implements UserDetails {
 
     @Id
+    @JsonProperty("user_id")
     private String user_id;
 
     @Indexed(unique = true)
@@ -33,9 +35,12 @@ public class UserMongo implements UserDetails {
     private String email;
 
     private String name;
+
+    @JsonProperty("last_name")
     private String last_name;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonProperty("birth_date")
     private LocalDate birth_date;
 
     private String sex;

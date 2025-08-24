@@ -1,4 +1,4 @@
-package G1TBD.LABTBD.config;
+package G1TBD.LABTBD.config.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;

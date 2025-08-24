@@ -1,4 +1,4 @@
-package G1TBD.LABTBD.config;
+package G1TBD.LABTBD.config.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

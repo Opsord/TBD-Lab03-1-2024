@@ -1,5 +1,6 @@
 package G1TBD.LABTBD.mongo.user.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +18,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class UserSkill {
 
     @Id
+    @JsonProperty("skill_id")
     private String skill_id;
 
     @Indexed(unique = false)
@@ -24,6 +26,7 @@ public class UserSkill {
 
     @Indexed(unique = false)
     @Field("skill_code")
+    @JsonProperty("skill_code")
     private String skillCode;
 
     private String description;

@@ -3,7 +3,7 @@ package G1TBD.LABTBD.auth.services;
 import G1TBD.LABTBD.auth.entities.AuthResponse;
 import G1TBD.LABTBD.auth.entities.LoginRequest;
 import G1TBD.LABTBD.auth.entities.RegisterRequest;
-import G1TBD.LABTBD.config.JwtService;
+import G1TBD.LABTBD.config.security.JwtService;
 import G1TBD.LABTBD.data.point.PointEntity;
 import G1TBD.LABTBD.data.point.PointService;
 import G1TBD.LABTBD.app.user.services.UserPointService;

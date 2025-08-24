@@ -1,0 +1,42 @@
+[
+    {
+        "skill_code": "SKL001",
+        "name": "Fuerza",
+        "description": "Fuerza física"
+    },
+    {
+        "skill_code": "SKL002",
+        "name": "Rescate",
+        "description": "Rescate en Terreno"
+    },
+    {
+        "skill_code": "SKL003",
+        "name": "Psicología",
+        "description": "Apoyo psicológico"
+    },
+    {
+        "skill_code": "SKL004",
+        "name": "Herramientas",
+        "description": "Manejo de herramientas de rescate"
+    },
+    {
+        "skill_code": "SKL005",
+        "name": "Primeros Auxilios",
+        "description": "Conocimientos en primeros auxilios"
+    },
+    {
+        "skill_code": "SKL006",
+        "name": "Comunicación",
+        "description": "Manejo de equipos de comunicación"
+    },
+    {
+        "skill_code": "SKL007",
+        "name": "Búsqueda",
+        "description": "Capacidad para la búsqueda y localización de personas perdidas"
+    },            {
+        "skill_code": "SKL008",
+        "name": "Drones",
+        "description": "Habilidad en el uso de drones para búsqueda y rescate"
+    }
+]
+

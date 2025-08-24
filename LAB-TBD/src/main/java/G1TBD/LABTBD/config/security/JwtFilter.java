@@ -1,4 +1,4 @@
-package G1TBD.LABTBD.config;
+package G1TBD.LABTBD.config.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

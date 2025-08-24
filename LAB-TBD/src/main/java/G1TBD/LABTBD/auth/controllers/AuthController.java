@@ -1,4 +1,4 @@
-package G1TBD.LABTBD.auth;
+package G1TBD.LABTBD.auth.controllers;
 
 import G1TBD.LABTBD.auth.entities.AuthResponse;
 import G1TBD.LABTBD.auth.entities.LoginRequest;

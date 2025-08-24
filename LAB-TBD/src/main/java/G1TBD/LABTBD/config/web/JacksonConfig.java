@@ -1,4 +1,4 @@
-package G1TBD.LABTBD.config;
+package G1TBD.LABTBD.config.web;
 
 import com.bedatadriven.jackson.datatype.jts.JtsModule;
 import com.fasterxml.jackson.databind.ObjectMapper;
