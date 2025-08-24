@@ -30,6 +30,7 @@ public class PostgreDataLoader implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         initializeSchema();
+        loadData();
     }
 
     private void initializeSchema() {
@@ -44,7 +45,7 @@ public class PostgreDataLoader implements InitializingBean {
         try {
             System.out.println("Inicializando schema de base de datos...");
 
-            // Read schema.sql file
+            // Read the schema.sql file
             ClassPathResource resource = new ClassPathResource("schema.sql");
             byte[] bdata = FileCopyUtils.copyToByteArray(resource.getInputStream());
             String schemaScript = new String(bdata, StandardCharsets.UTF_8);
@@ -77,6 +78,57 @@ public class PostgreDataLoader implements InitializingBean {
 
         } catch (Exception e) {
             System.err.println("ERROR: No se pudo inicializar el schema: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+    private void loadData() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(driverClassName);
+        dataSource.setUrl(dbUrl);
+        dataSource.setUsername(dbUsername);
+        dataSource.setPassword(dbPassword);
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        try {
+            System.out.println("Cargando datos iniciales...");
+
+            // Read data.sql file
+            ClassPathResource resource = new ClassPathResource("data.sql");
+            byte[] bdata = FileCopyUtils.copyToByteArray(resource.getInputStream());
+            String dataScript = new String(bdata, StandardCharsets.UTF_8);
+
+            // Split the script properly
+            String[] statements = splitSqlStatements(dataScript);
+
+            for (String statement : statements) {
+                String trimmedStatement = statement.trim();
+                if (!trimmedStatement.isEmpty() && !trimmedStatement.startsWith("--")) {
+                    String s = trimmedStatement.length() > 50 ?
+                            trimmedStatement.substring(0, 50) + "..." : trimmedStatement;
+                    try {
+                        jdbcTemplate.execute(trimmedStatement);
+                        System.out.println("✓ Datos cargados: " + s);
+                    } catch (Exception e) {
+                        // Check if it's a duplicate key error, which might be OK on re-runs
+                        if (e.getMessage().contains("duplicate key") ||
+                                e.getMessage().contains("already exists") ||
+                                e.getMessage().contains("ya existe")) {
+                            System.out.println("⚠ Datos ya existen: " + s);
+                        } else {
+                            System.err.println("Error cargando datos: " + trimmedStatement.substring(0, Math.min(100, trimmedStatement.length())));
+                            throw e;
+                        }
+                    }
+                }
+            }
+
+            System.out.println("✓ Datos iniciales cargados correctamente.");
+
+        } catch (Exception e) {
+            System.err.println("ERROR: No se pudo cargar los datos iniciales: " + e.getMessage());
             e.printStackTrace();
             System.exit(1);
         }
